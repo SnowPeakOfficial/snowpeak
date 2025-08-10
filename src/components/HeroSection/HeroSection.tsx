@@ -33,8 +33,8 @@ const HeroSection: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         background: isDark
-          ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%)'
-          : 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #CBD5E1 100%)',
+          ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
+          : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
         overflow: 'hidden',
       }}
     >

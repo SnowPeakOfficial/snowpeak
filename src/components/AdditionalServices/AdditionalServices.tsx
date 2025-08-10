@@ -33,7 +33,7 @@ const AdditionalServices: React.FC = () => {
   const getServiceIcon = (iconName: string) => {
     const iconProps = {
       sx: {
-        fontSize: '2.5rem',
+        fontSize: '3rem',
         color: 'primary.main',
         mb: 2,
       },
@@ -66,8 +66,8 @@ const AdditionalServices: React.FC = () => {
       sx={{
         py: { xs: 8, md: 12 },
         background: isDark
-          ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
-          : 'linear-gradient(135deg, #E2E8F0 0%, #F8FAFC 50%, #E2E8F0 100%)',
+          ? 'linear-gradient(135deg, #1E293B 0%, #334155 50%, #1E293B 100%)'
+          : 'linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #F1F5F9 100%)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -115,7 +115,7 @@ const AdditionalServices: React.FC = () => {
               lineHeight: 1.6,
             }}
           >
-            Comprehensive add-on services to enhance your digital presence and maximize your project's impact
+            Comprehensive add-on services to enhance your digital presence and maximize your project&apos;s impact
           </Typography>
         </Box>
 
@@ -156,7 +156,13 @@ const AdditionalServices: React.FC = () => {
                 },
               }}
             >
-              <CardContent sx={{ p: 3, flexGrow: 1, textAlign: 'center' }}>
+              <CardContent sx={{ 
+                p: 3, 
+                flexGrow: 1, 
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
                 {/* Service Icon */}
                 <Box sx={{ mb: 2 }}>
                   {getServiceIcon(service.icon)}
@@ -188,71 +194,67 @@ const AdditionalServices: React.FC = () => {
                   {service.description}
                 </Typography>
 
-                {/* Price and Timeline */}
-                <Box sx={{ mb: 3 }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 600,
-                      color: 'primary.main',
-                      mb: 1,
-                    }}
-                  >
-                    {service.price}
-                  </Typography>
-                  <Chip
-                    label={service.timeline}
-                    size="small"
-                    sx={{
-                      backgroundColor: isDark
-                        ? 'rgba(34, 197, 94, 0.2)'
-                        : 'rgba(34, 197, 94, 0.1)',
-                      color: 'success.main',
-                      border: `1px solid ${theme.palette.success.main}40`,
-                      fontWeight: 600,
-                      fontSize: '0.75rem',
-                    }}
-                  />
-                </Box>
-
-                {/* Key Features */}
-                <Stack spacing={1} sx={{ mb: 3, textAlign: 'left' }}>
-                  {service.features.slice(0, 3).map((feature, index) => (
-                    <Typography
-                      key={index}
-                      variant="body2"
-                      sx={{
-                        color: 'text.secondary',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '0.8rem',
-                        '&:before': {
-                          content: '"✓"',
-                          color: 'primary.main',
-                          fontWeight: 'bold',
-                          mr: 1,
+                {/* Features Container */}
+                <Box
+                  sx={{
+                    p: 2,
+                    backgroundColor: isDark
+                      ? 'rgba(59, 130, 246, 0.1)'
+                      : 'rgba(57, 94, 202, 0.05)',
+                    borderRadius: 1,
+                    border: `1px solid ${theme.palette.primary.main}20`,
+                    mb: 3,
+                  }}
+                >
+                  {/* Key Features */}
+                  <Stack spacing={1} sx={{ mb: 2, textAlign: 'left' }}>
+                    {service.features.map((feature, index) => (
+                      <Typography
+                        key={index}
+                        variant="body2"
+                        sx={{
+                          color: 'text.secondary',
+                          display: 'flex',
+                          alignItems: 'center',
                           fontSize: '0.875rem',
-                        },
-                      }}
-                    >
-                      {feature}
-                    </Typography>
-                  ))}
-                  {service.features.length > 3 && (
-                    <Typography
-                      variant="body2"
+                          '&:before': {
+                            content: '"✓"',
+                            color: 'primary.main',
+                            fontWeight: 'bold',
+                            mr: 1,
+                          },
+                        }}
+                      >
+                        {feature}
+                      </Typography>
+                    ))}
+                  </Stack>
+
+                  {/* Timeline and Price */}
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Chip
+                      label={service.timeline}
+                      size="small"
                       sx={{
-                        color: 'text.secondary',
-                        fontStyle: 'italic',
-                        fontSize: '0.75rem',
-                        textAlign: 'center',
-                        mt: 1,
+                        backgroundColor: isDark
+                          ? 'rgba(34, 197, 94, 0.2)'
+                          : 'rgba(34, 197, 94, 0.1)',
+                        color: 'success.main',
+                        border: `1px solid ${theme.palette.success.main}40`,
+                        fontWeight: 600,
+                      }}
+                    />
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 600,
+                        color: 'primary.main',
                       }}
                     >
-                      +{service.features.length - 3} more features
+                      {service.price}
                     </Typography>
-                  )}
-                </Stack>
+                  </Box>
+                </Box>
 
                 {/* CTA Button */}
                 <Button
@@ -302,7 +304,7 @@ const AdditionalServices: React.FC = () => {
               mx: 'auto',
             }}
           >
-            We offer tailored solutions for unique business requirements. Let's discuss your specific needs.
+            We offer tailored solutions for unique business requirements. Let&apos;s discuss your specific needs.
           </Typography>
           <Button
             component={Link}

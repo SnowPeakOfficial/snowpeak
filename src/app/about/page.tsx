@@ -53,7 +53,7 @@ const AboutPage: React.FC = () => {
           sx={{
             py: { xs: 12, md: 16 },
             background: isDark
-              ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
+              ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
               : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
             position: 'relative',
             overflow: 'hidden',
@@ -262,8 +262,8 @@ const AboutPage: React.FC = () => {
           sx={{
             py: { xs: 8, md: 12 },
             background: isDark
-              ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
-              : 'linear-gradient(135deg, #E2E8F0 0%, #F8FAFC 50%, #E2E8F0 100%)',
+              ? 'linear-gradient(135deg, #1E293B 0%, #334155 50%, #1E293B 100%)'
+              : 'linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #F1F5F9 100%)',
           }}
         >
           <Container maxWidth="lg">

@@ -65,11 +65,14 @@ const ServicesPreview: React.FC = () => {
     }));
   };
 
-  const getSelectedPackage = (service: any) => {
+  type ServicePackage = { name: string; price: string; timeline: string; features: string[]; popular?: boolean };
+  type Service = { id: string; title: string; description: string; icon: string; packages: ServicePackage[]; technologies: string[] };
+
+  const getSelectedPackage = (service: Service) => {
     // Use explicit check for undefined to allow index 0
     const selectedIndex = selectedPackages[service.id] !== undefined 
       ? selectedPackages[service.id] 
-      : service.packages.findIndex((pkg: any) => pkg.popular);
+      : service.packages.findIndex((pkg: ServicePackage) => pkg.popular);
     
     // If no popular package found, default to 0
     const finalIndex = selectedIndex !== -1 ? selectedIndex : 0;
@@ -81,8 +84,8 @@ const ServicesPreview: React.FC = () => {
       sx={{
         py: { xs: 12, md: 16 },
         background: isDark
-          ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
-          : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
+          ? 'linear-gradient(135deg, #1E293B 0%, #334155 50%, #1E293B 100%)'
+          : 'linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #F1F5F9 100%)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -167,13 +170,13 @@ const ServicesPreview: React.FC = () => {
             const selectedPackage = getSelectedPackage(service);
             const selectedIndex = selectedPackages[service.id] !== undefined 
               ? selectedPackages[service.id] 
-              : service.packages.findIndex((pkg: any) => pkg.popular);
+              : service.packages.findIndex((pkg: ServicePackage) => pkg.popular);
             const finalSelectedIndex = selectedIndex !== -1 ? selectedIndex : 0;
             
             return (
               <Box key={service.id} sx={{ position: 'relative' }}>
                 {/* Most Popular Badge */}
-                {service.id === 'web-development' && (
+                {service.id === 'web-applications' && (
                   <Box
                     sx={{
                       position: 'absolute',
@@ -209,7 +212,7 @@ const ServicesPreview: React.FC = () => {
                       ? 'rgba(30, 41, 59, 0.8)'
                       : 'rgba(255, 255, 255, 0.8)',
                     backdropFilter: 'blur(10px)',
-                    border: service.id === 'web-development' 
+                    border: service.id === 'web-applications' 
                       ? `2px solid ${theme.palette.primary.main}` 
                       : `1px solid ${theme.palette.divider}`,
                     borderRadius: 2,
@@ -223,7 +226,12 @@ const ServicesPreview: React.FC = () => {
                     },
                   }}
                 >
-                  <CardContent sx={{ p: { xs: 2, sm: 3, md: 4 }, flexGrow: 1 }}>
+                  <CardContent sx={{ 
+                    p: { xs: 2, sm: 3, md: 4 }, 
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}>
                     {/* Service Icon */}
                     <Box sx={{ textAlign: 'center' }}>
                       {getServiceIcon(service.icon)}
@@ -233,7 +241,7 @@ const ServicesPreview: React.FC = () => {
                     <Typography
                       variant="h5"
                       sx={{
-                        mb: 2,
+                        mb: 1,
                         fontWeight: 600,
                         textAlign: 'center',
                         color: 'text.primary',
@@ -264,17 +272,17 @@ const ServicesPreview: React.FC = () => {
                         sx={{
                           mb: 2,
                           '& .MuiTab-root': {
-                            minHeight: { xs: '2.5rem', sm: '3rem' },
+                            minHeight: { xs: '2.25rem', sm: '2.75rem' },
                             fontSize: { xs: '0.7rem', sm: '0.75rem' },
                             fontWeight: 600,
-                            padding: { xs: '0.5rem 0.25rem', sm: '0.75rem 1rem' },
+                            padding: { xs: '0.25rem 0.25rem', sm: '0.5rem 0.75rem' },
                           },
                           '& .MuiTabs-flexContainer': {
                             gap: { xs: '0.25rem', sm: '0.5rem' },
                           },
                         }}
                       >
-                        {service.packages.map((pkg: any, index: number) => (
+                        {service.packages.map((pkg: ServicePackage, index: number) => (
                           <Tab
                             key={index}
                             label={
@@ -319,7 +327,7 @@ const ServicesPreview: React.FC = () => {
                       </Tabs>
 
                       {/* Selected Package Details */}
-                      <Box
+                        <Box
                         sx={{
                           p: 2,
                           backgroundColor: isDark

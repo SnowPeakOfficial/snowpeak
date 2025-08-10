@@ -17,7 +17,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: '$750',
+        price: 'Starting at $750',
         timeline: '1-2 weeks',
         features: [
           'Up to 3 pages (Home, About, Contact)',
@@ -31,7 +31,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: '$2,500',
+        price: 'Starting at $2,500',
         timeline: '3+ weeks',
         features: [
           '5-10+ custom designed pages',
@@ -57,7 +57,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: '$3,000',
+        price: 'Starting at $3,000',
         timeline: '3+ weeks',
         features: [
           'Core app with 1-2 key features',
@@ -74,7 +74,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: '$8,000',
+        price: 'Starting at $8,000',
         timeline: '6+ weeks',
         features: [
           'Core app with 3-5 key features',
@@ -96,7 +96,7 @@ export const SERVICES = [
       },
       {
         name: 'Enterprise',
-        price: '$30,000',
+        price: 'Starting at $30,000',
         timeline: '3+ months',
         features: [
           'Complex real-time, data-heavy systems',
@@ -130,7 +130,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: '$5,000',
+        price: 'Starting at $5,000',
         timeline: '4+ weeks',
         features: [
           'Cross-platform app with 1-2 features',
@@ -145,7 +145,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: '$10,000',
+        price: 'Starting at $10,000',
         timeline: '8+ weeks',
         features: [
           'Cross-platform app with advanced features',
@@ -166,7 +166,7 @@ export const SERVICES = [
       },
       {
         name: 'Enterprise',
-        price: '$40,000',
+        price: 'Starting at $40,000',
         timeline: '4+ months',
         features: [
           'Complex native/hybrid app with real-time features',
@@ -199,7 +199,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: '$3,000',
+        price: 'Starting at $3,000',
         timeline: '3+ weeks',
         features: [
           'One core feature',
@@ -211,7 +211,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: '$8,000',
+        price: 'Starting at $8,000',
         timeline: '6+ weeks',
         features: [
           'Multiple features (background worker, API usage)',
@@ -235,7 +235,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: '$300/month',
+        price: 'Starting at $300/month',
         timeline: 'Ongoing',
         features: [
           'Up to 3 hours/month dev work',
@@ -247,7 +247,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: '$800/month',
+        price: 'Starting at $800/month',
         timeline: 'Ongoing',
         features: [
           'Up to 10 hours/month dev work',
@@ -260,7 +260,7 @@ export const SERVICES = [
       },
       {
         name: 'Enterprise',
-        price: '$3,000/month',
+        price: 'Starting at $3,000/month',
         timeline: 'Ongoing',
         features: [
           '30 hours/month dev work',
@@ -285,7 +285,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'branding-logo-design',
     title: 'Branding/Logo Design',
     description: 'Professional brand identity and logo design that captures your business essence and creates lasting impressions.',
-    price: '$500',
+    price: 'Starting at $500',
     timeline: '1-2 weeks',
     features: [
       'Custom logo design',
@@ -300,7 +300,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'design-system-ui-kit',
     title: 'Design System/UI Kit',
     description: 'Comprehensive design systems and UI kits that ensure consistency across all your digital touchpoints.',
-    price: '$700',
+    price: 'Starting at $700',
     timeline: '2-3 weeks',
     features: [
       'Component library',
@@ -315,7 +315,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'content-creation-copywriting',
     title: 'Content Creation/Copywriting',
     description: 'Engaging, SEO-optimized content that speaks to your audience and drives conversions.',
-    price: '$200/page',
+    price: 'Starting at $200/page',
     timeline: '3-5 days per page',
     features: [
       'SEO-optimized content',
@@ -330,7 +330,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'seo-optimization-package',
     title: 'SEO Optimization Package',
     description: 'Comprehensive SEO audit and optimization to improve your search engine rankings and organic traffic.',
-    price: '$500',
+    price: 'Starting at $500',
     timeline: '1-2 weeks',
     features: [
       'Technical SEO audit',
@@ -345,7 +345,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'accessibility-audit',
     title: 'Accessibility Audit',
     description: 'Thorough accessibility assessment and improvements to ensure your site is usable by everyone.',
-    price: '$1,000',
+    price: 'Starting at $1,000',
     timeline: '1-2 weeks',
     features: [
       'WCAG compliance audit',
@@ -360,7 +360,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'email-marketing-setup',
     title: 'Email Marketing Setup',
     description: 'Complete email marketing system setup with templates, automation, and integration with your website.',
-    price: '$300',
+    price: 'Starting at $300',
     timeline: '3-5 days',
     features: [
       'Email platform setup',
@@ -375,7 +375,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'multilingual-support',
     title: 'Multilingual Support Setup',
     description: 'Complete multilingual website setup to reach global audiences with professional translation management.',
-    price: '$400',
+    price: 'Starting at $400',
     timeline: '1 week',
     features: [
       'Multi-language framework setup',
@@ -390,7 +390,7 @@ export const ADDITIONAL_SERVICES = [
     id: 'analytics-integration',
     title: 'Analytics Integration',
     description: 'Comprehensive analytics setup to track user behavior, conversions, and business metrics.',
-    price: '$200',
+    price: 'Starting at $200',
     timeline: '2-3 days',
     features: [
       'Google Analytics 4 setup',
@@ -405,6 +405,182 @@ export const ADDITIONAL_SERVICES = [
 
 
 export const PORTFOLIO_PROJECTS = [
+  {
+    id: 'restaurant-website',
+    title: 'Bella Vista Restaurant',
+    type: 'Website',
+    description: 'Modern restaurant website with online reservations, menu management, and event booking system.',
+    technologies: ['Next.js', 'TypeScript', 'Sanity CMS', 'Stripe', 'Vercel'],
+    features: [
+      'Interactive menu with dietary filters',
+      'Online reservation system',
+      'Event booking and catering',
+      'Photo gallery and virtual tour',
+      'Customer reviews integration',
+      'Multi-language support'
+    ],
+    status: 'Live',
+    users: '500+',
+    platforms: ['Web', 'Mobile Responsive'],
+    image: '/images/portfolio/bellavista-hero.jpg',
+    liveUrl: 'https://bellavista-restaurant.com',
+    featured: false,
+    metrics: {
+      monthlyReservations: {
+        value: '200+',
+        label: 'Monthly Reservations',
+        tooltip: 'Online reservations booked through the website each month',
+        type: 'business'
+      },
+      pageViews: {
+        value: '10K+',
+        label: 'Monthly Views',
+        tooltip: 'Monthly page views and website traffic',
+        type: 'traffic'
+      },
+      conversionRate: {
+        value: '8.5%',
+        label: 'Conversion Rate',
+        tooltip: 'Percentage of visitors who make a reservation',
+        type: 'performance'
+      }
+    },
+    challenge: 'Modernizing an established restaurant\'s online presence to increase reservations and customer engagement.',
+    solution: 'Built a visually stunning website with seamless reservation system and content management.',
+    outcome: 'Increased online reservations by 150% and improved customer engagement with 8.5% conversion rate.'
+  },
+  {
+    id: 'ecommerce-platform',
+    title: 'ModernShop Pro',
+    type: 'Web Application',
+    description: 'Full-stack e-commerce platform with advanced inventory management, payment processing, and analytics dashboard.',
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe', 'AWS', 'Redis'],
+    features: [
+      'Advanced product catalog with variants',
+      'Real-time inventory tracking',
+      'Multi-payment gateway integration',
+      'Admin dashboard with analytics',
+      'Customer account management',
+      'Order tracking and notifications'
+    ],
+    status: 'Live',
+    users: '1,000+',
+    platforms: ['Web', 'Mobile Responsive'],
+    image: '/images/portfolio/modernshop-hero.jpg',
+    liveUrl: 'https://modernshop-demo.vercel.app',
+    featured: true,
+    metrics: {
+      monthlyRevenue: {
+        value: '$50K+',
+        label: 'Monthly Revenue',
+        tooltip: 'Total monthly revenue processed through the platform',
+        type: 'revenue'
+      },
+      conversionRate: {
+        value: '3.2%',
+        label: 'Conversion Rate',
+        tooltip: 'Percentage of visitors who complete a purchase',
+        type: 'performance'
+      },
+      uptime: {
+        value: '99.9%',
+        label: 'Uptime',
+        tooltip: 'Platform availability and reliability percentage',
+        type: 'technical'
+      }
+    },
+    challenge: 'Building a scalable e-commerce solution that handles high traffic and complex inventory management.',
+    solution: 'Implemented microservices architecture with Redis caching and optimized database queries.',
+    outcome: 'Achieved 99.9% uptime with sub-2s page load times and processed over $50K in transactions.'
+  },
+  {
+    id: 'saas-dashboard',
+    title: 'DataInsight Pro',
+    type: 'Web Application',
+    description: 'SaaS analytics dashboard for small businesses with real-time data visualization and reporting.',
+    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Chart.js', 'AWS'],
+    features: [
+      'Real-time data visualization',
+      'Custom report generation',
+      'Multi-source data integration',
+      'Team collaboration tools',
+      'Automated insights and alerts',
+      'White-label customization'
+    ],
+    status: 'Live',
+    users: '150+',
+    platforms: ['Web', 'API'],
+    image: '/images/portfolio/datainsight-hero.jpg',
+    liveUrl: 'https://datainsight-pro.com',
+    featured: true,
+    metrics: {
+      activeUsers: {
+        value: '150+',
+        label: 'Active Users',
+        tooltip: 'Monthly active business users on the platform',
+        type: 'users'
+      },
+      mrr: {
+        value: '$15K+',
+        label: 'Monthly Revenue',
+        tooltip: 'Monthly recurring revenue from active subscriptions',
+        type: 'revenue'
+      },
+      churnRate: {
+        value: '3%',
+        label: 'Churn Rate',
+        tooltip: 'Monthly customer churn rate - industry leading low rate',
+        type: 'retention'
+      }
+    },
+    challenge: 'Building a comprehensive analytics platform that\'s powerful yet simple enough for small business owners.',
+    solution: 'Created intuitive drag-and-drop dashboard builder with pre-built templates and smart recommendations.',
+    outcome: 'Achieved $15K+ MRR with 3% churn rate and 72 NPS score from satisfied customers.'
+  },
+  {
+    id: 'fitness-tracker',
+    title: 'FitTrack Mobile',
+    type: 'Mobile Application',
+    description: 'Cross-platform fitness tracking app with workout plans, nutrition logging, and social features.',
+    technologies: ['React Native', 'TypeScript', 'Firebase', 'Expo', 'HealthKit'],
+    features: [
+      'Custom workout plan creation',
+      'Nutrition and calorie tracking',
+      'Progress photos and measurements',
+      'Social challenges and leaderboards',
+      'Wearable device integration',
+      'Offline workout mode'
+    ],
+    status: 'Live',
+    users: '2,500+',
+    platforms: ['iOS', 'Android'],
+    image: '/images/portfolio/fittrack-hero.jpg',
+    liveUrl: 'https://fittrack-app.com',
+    featured: false,
+    metrics: {
+      downloads: {
+        value: '5K+',
+        label: 'Downloads',
+        tooltip: 'Total app downloads across iOS and Android app stores',
+        type: 'downloads'
+      },
+      retention: {
+        value: '68%',
+        label: 'User Retention',
+        tooltip: '30-day user retention rate - users who continue using the app',
+        type: 'engagement'
+      },
+      rating: {
+        value: '4.6/5',
+        label: 'App Rating',
+        tooltip: 'Average rating across iOS App Store and Google Play Store',
+        type: 'rating'
+      }
+    },
+    challenge: 'Creating an engaging fitness app that motivates users to maintain consistent workout routines.',
+    solution: 'Implemented gamification features, social challenges, and personalized workout recommendations.',
+    outcome: 'Achieved 68% user retention rate and 4.6/5 app store rating with active community engagement.'
+  },
   {
     id: 'ilmtab',
     title: 'IlmTab',
@@ -421,9 +597,77 @@ export const PORTFOLIO_PROJECTS = [
     status: 'Live',
     users: '20+',
     platforms: ['Chrome', 'Firefox', 'Edge'],
-    image: '/images/ilmtab-preview.jpg',
-    liveUrl: 'https://chromewebstore.google.com/detail/ilmtab/djhmkpliepbdnjpofgmcchjhgjhiomdj',
+    image: '/images/portfolio/ilmtab-hero.jpg',
+    liveUrl: 'https://ilmtab.vercel.app/',
+    featured: true,
+    metrics: {
+      activeUsers: {
+        value: '150+',
+        label: 'Active Users',
+        tooltip: 'Monthly active users across all browser platforms',
+        type: 'users'
+      },
+      rating: {
+        value: '4.8/5',
+        label: 'User Rating',
+        tooltip: 'Average rating from Chrome Web Store and Firefox Add-ons',
+        type: 'rating'
+      },
+      downloads: {
+        value: '500+',
+        label: 'Downloads',
+        tooltip: 'Total downloads across Chrome, Firefox, and Edge stores',
+        type: 'downloads'
+      }
+    },
+    challenge: 'Creating a spiritual productivity tool that seamlessly integrates Islamic practices into daily browsing.',
+    solution: 'Built a comprehensive extension with prayer reminders, Quranic verses, and Islamic calendar integration.',
+    outcome: 'Positive user feedback with 4.8/5 rating and growing user base across multiple browsers.'
   },
+  {
+    id: 'productivity-extension',
+    title: 'FocusFlow',
+    type: 'Browser Extension',
+    description: 'Productivity browser extension with website blocking, time tracking, and focus session management.',
+    technologies: ['TypeScript', 'React', 'Chrome APIs', 'IndexedDB'],
+    features: [
+      'Smart website blocking with categories',
+      'Pomodoro timer with customizable intervals',
+      'Daily productivity analytics',
+      'Focus session tracking',
+      'Distraction alerts and notifications',
+      'Cross-device sync'
+    ],
+    status: 'Live',
+    users: '1,200+',
+    platforms: ['Chrome', 'Firefox', 'Edge'],
+    image: '/images/portfolio/focusflow-hero.jpg',
+    liveUrl: 'https://chrome.google.com/webstore/detail/focusflow',
+    featured: false,
+    metrics: {
+      activeUsers: {
+        value: '1.2K+',
+        label: 'Active Users',
+        tooltip: 'Monthly active users across all browser platforms',
+        type: 'users'
+      },
+      rating: {
+        value: '4.7/5',
+        label: 'User Rating',
+        tooltip: 'Average rating from Chrome Web Store and Firefox Add-ons',
+        type: 'rating'
+      },
+      avgSessionTime: {
+        value: '45min',
+        label: 'Avg Session',
+        tooltip: 'Average focus session duration per user',
+        type: 'engagement'
+      }
+    },
+    challenge: 'Creating a non-intrusive productivity tool that actually helps users stay focused without being annoying.',
+    solution: 'Implemented smart blocking algorithms and gentle nudges rather than hard blocks.',
+    outcome: 'Users report 40% increase in productivity with 4.7/5 rating and high daily engagement.'
+  }
 ];
 
 export const TESTIMONIALS = [

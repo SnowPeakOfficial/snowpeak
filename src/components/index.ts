@@ -4,3 +4,6 @@ export { default as ServicesPreview } from './ServicesPreview/ServicesPreview';
 export { default as AdditionalServices } from './AdditionalServices/AdditionalServices';
 export { default as ProcessSection } from './ProcessSection/ProcessSection';
 export { default as Footer } from './Footer/Footer';
+export { default as FeaturedProjects } from './FeaturedProjects/FeaturedProjects';
+export { default as Testimonials } from './Testimonials/Testimonials';
+export { default as CallToActionBand } from './CallToActionBand/CallToActionBand';

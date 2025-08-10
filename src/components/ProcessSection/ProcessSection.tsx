@@ -107,7 +107,7 @@ const ProcessSection: React.FC = () => {
         py: { xs: 8, md: 12 },
         background: isDark
           ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
-          : 'linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 50%, #F8FAFC 100%)',
+          : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
         position: 'relative',
         overflow: 'hidden',
       }}
