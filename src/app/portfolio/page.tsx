@@ -198,6 +198,8 @@ const PortfolioPage: React.FC = () => {
                   onMouseEnter={() => setHoveredProject(project.id)}
                   onMouseLeave={() => setHoveredProject(null)}
                   sx={{
+                    width: '100%',
+                    maxWidth: '100%',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
@@ -205,9 +207,7 @@ const PortfolioPage: React.FC = () => {
                       ? 'rgba(30, 41, 59, 0.8)'
                       : 'rgba(255, 255, 255, 0.9)',
                     backdropFilter: 'blur(10px)',
-                    border: project.featured 
-                      ? `2px solid ${theme.palette.primary.main}` 
-                      : `1px solid ${theme.palette.divider}`,
+                    border: 'none',
                     borderRadius: 3,
                     position: 'relative',
                     overflow: 'hidden',
@@ -222,33 +222,6 @@ const PortfolioPage: React.FC = () => {
                         : '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: 16,
-                        right: 16,
-                        zIndex: 10,
-                      }}
-                    >
-                      <Chip
-                        icon={<Star sx={{ fontSize: '1rem !important' }} />}
-                        label="Featured"
-                        size="small"
-                        sx={{
-                          background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                          color: 'white',
-                          fontWeight: 600,
-                          fontSize: '0.75rem',
-                          '& .MuiChip-icon': {
-                            color: 'white',
-                          },
-                        }}
-                      />
-                    </Box>
-                  )}
-
                   {/* Project Image Placeholder */}
                   <Box
                     sx={{
@@ -433,29 +406,6 @@ const PortfolioPage: React.FC = () => {
                         </Stack>
                       </Box>
                     )}
-
-                    {/* Technologies */}
-                    <Box sx={{ mb: 3 }}>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
-                        Technologies:
-                      </Typography>
-                      <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.5 }}>
-                        {project.technologies.map((tech) => (
-                          <Chip
-                            key={tech}
-                            label={tech}
-                            size="small"
-                            variant="outlined"
-                            sx={{
-                              fontSize: '0.75rem',
-                              height: '1.75rem',
-                              borderColor: 'divider',
-                              color: 'text.secondary',
-                            }}
-                          />
-                        ))}
-                      </Stack>
-                    </Box>
 
                     {/* CTA Buttons */}
                     <Stack direction="row" spacing={1} sx={{ mt: 'auto' }}>
