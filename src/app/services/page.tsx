@@ -612,14 +612,18 @@ const ServicesPage: React.FC = () => {
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
-                gap: 5,
+                gridTemplateColumns: { 
+                  xs: '1fr', 
+                  sm: 'repeat(2, 1fr)', 
+                  lg: 'repeat(3, 1fr)' 
+                },
+                gap: { xs: 3, md: 4, lg: 5 },
               }}
             >
               {/* Frontend */}
               <Card
                 sx={{
-                  p: 5,
+                  p: { xs: 3, md: 4, lg: 5 },
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
@@ -639,7 +643,7 @@ const ServicesPage: React.FC = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    mb: 4,
+                    mb: { xs: 3, md: 4 },
                     fontWeight: 600,
                     textAlign: 'center',
                     color: 'text.primary',
@@ -647,15 +651,15 @@ const ServicesPage: React.FC = () => {
                 >
                   Frontend
                 </Typography>
-                <Stack spacing={3}>
+                <Stack spacing={{ xs: 2, md: 3 }}>
                   {TECH_STACK.frontend.map((tech) => (
                     <Box
                       key={tech.name}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 3,
-                        p: 2,
+                        gap: { xs: 2, md: 3 },
+                        p: { xs: 1.5, md: 2 },
                         borderRadius: 2,
                         background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
                         border: `1px solid ${theme.palette.primary.main}20`,
@@ -678,7 +682,7 @@ const ServicesPage: React.FC = () => {
               {/* Backend */}
               <Card
                 sx={{
-                  p: 5,
+                  p: { xs: 3, md: 4, lg: 5 },
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
@@ -698,7 +702,7 @@ const ServicesPage: React.FC = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    mb: 4,
+                    mb: { xs: 3, md: 4 },
                     fontWeight: 600,
                     textAlign: 'center',
                     color: 'text.primary',
@@ -706,15 +710,15 @@ const ServicesPage: React.FC = () => {
                 >
                   Backend
                 </Typography>
-                <Stack spacing={3}>
+                <Stack spacing={{ xs: 2, md: 3 }}>
                   {TECH_STACK.backend.map((tech) => (
                     <Box
                       key={tech.name}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 3,
-                        p: 2,
+                        gap: { xs: 2, md: 3 },
+                        p: { xs: 1.5, md: 2 },
                         borderRadius: 2,
                         background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
                         border: `1px solid ${theme.palette.primary.main}20`,
@@ -737,7 +741,7 @@ const ServicesPage: React.FC = () => {
               {/* Database */}
               <Card
                 sx={{
-                  p: 5,
+                  p: { xs: 3, md: 4, lg: 5 },
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
@@ -757,7 +761,7 @@ const ServicesPage: React.FC = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    mb: 4,
+                    mb: { xs: 3, md: 4 },
                     fontWeight: 600,
                     textAlign: 'center',
                     color: 'text.primary',
@@ -765,15 +769,192 @@ const ServicesPage: React.FC = () => {
                 >
                   Database
                 </Typography>
-                <Stack spacing={3}>
+                <Stack spacing={{ xs: 2, md: 3 }}>
                   {TECH_STACK.databases.map((tech) => (
                     <Box
                       key={tech.name}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 3,
-                        p: 2,
+                        gap: { xs: 2, md: 3 },
+                        p: { xs: 1.5, md: 2 },
+                        borderRadius: 2,
+                        background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
+                        border: `1px solid ${theme.palette.primary.main}20`,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          background: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
+                          transform: 'translateX(0.25rem)',
+                        },
+                      }}
+                    >
+                      {getTechIcon(tech.icon, tech.name)}
+                      <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                        {tech.name}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              </Card>
+
+              {/* Mobile */}
+              <Card
+                sx={{
+                  p: { xs: 3, md: 4, lg: 5 },
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 2,
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.5rem)',
+                    boxShadow: isDark
+                      ? '0 2rem 4rem rgba(0, 0, 0, 0.4)'
+                      : '0 2rem 4rem rgba(0, 0, 0, 0.15)',
+                    borderColor: 'primary.main',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    mb: { xs: 3, md: 4 },
+                    fontWeight: 600,
+                    textAlign: 'center',
+                    color: 'text.primary',
+                  }}
+                >
+                  Mobile
+                </Typography>
+                <Stack spacing={{ xs: 2, md: 3 }}>
+                  {TECH_STACK.mobile.map((tech) => (
+                    <Box
+                      key={tech.name}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: { xs: 2, md: 3 },
+                        p: { xs: 1.5, md: 2 },
+                        borderRadius: 2,
+                        background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
+                        border: `1px solid ${theme.palette.primary.main}20`,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          background: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
+                          transform: 'translateX(0.25rem)',
+                        },
+                      }}
+                    >
+                      {getTechIcon(tech.icon, tech.name)}
+                      <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                        {tech.name}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              </Card>
+
+              {/* Cloud */}
+              <Card
+                sx={{
+                  p: { xs: 3, md: 4, lg: 5 },
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 2,
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.5rem)',
+                    boxShadow: isDark
+                      ? '0 2rem 4rem rgba(0, 0, 0, 0.4)'
+                      : '0 2rem 4rem rgba(0, 0, 0, 0.15)',
+                    borderColor: 'primary.main',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    mb: { xs: 3, md: 4 },
+                    fontWeight: 600,
+                    textAlign: 'center',
+                    color: 'text.primary',
+                  }}
+                >
+                  Cloud & DevOps
+                </Typography>
+                <Stack spacing={{ xs: 2, md: 3 }}>
+                  {TECH_STACK.cloud.map((tech) => (
+                    <Box
+                      key={tech.name}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: { xs: 2, md: 3 },
+                        p: { xs: 1.5, md: 2 },
+                        borderRadius: 2,
+                        background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
+                        border: `1px solid ${theme.palette.primary.main}20`,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          background: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
+                          transform: 'translateX(0.25rem)',
+                        },
+                      }}
+                    >
+                      {getTechIcon(tech.icon, tech.name)}
+                      <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                        {tech.name}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              </Card>
+
+              {/* Tools */}
+              <Card
+                sx={{
+                  p: { xs: 3, md: 4, lg: 5 },
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 2,
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.5rem)',
+                    boxShadow: isDark
+                      ? '0 2rem 4rem rgba(0, 0, 0, 0.4)'
+                      : '0 2rem 4rem rgba(0, 0, 0, 0.15)',
+                    borderColor: 'primary.main',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    mb: { xs: 3, md: 4 },
+                    fontWeight: 600,
+                    textAlign: 'center',
+                    color: 'text.primary',
+                  }}
+                >
+                  Development Tools
+                </Typography>
+                <Stack spacing={{ xs: 2, md: 3 }}>
+                  {TECH_STACK.tools.map((tech) => (
+                    <Box
+                      key={tech.name}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: { xs: 2, md: 3 },
+                        p: { xs: 1.5, md: 2 },
                         borderRadius: 2,
                         background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
                         border: `1px solid ${theme.palette.primary.main}20`,
