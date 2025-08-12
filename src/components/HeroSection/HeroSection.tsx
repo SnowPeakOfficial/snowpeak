@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
     <Box
       sx={{
         position: 'relative',
-        minHeight: '100vh',
+        py: { xs: 12, md: 16 },
         display: 'flex',
         alignItems: 'center',
         background: isDark
@@ -66,71 +66,6 @@ const HeroSection: React.FC = () => {
           {/* Left Content */}
           <Box sx={{ flex: { xs: '1', lg: '1' }, width: '100%' }}>
             <Box sx={{ textAlign: { xs: 'center', lg: 'left' } }}>
-              {/* Trust Indicator */}
-              <Box
-                sx={{
-                  mb: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: { xs: 'center', lg: 'flex-start' },
-                  gap: 1,
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 20,
-                    height: 14,
-                    flexShrink: 0,
-                    position: 'relative',
-                    borderRadius: '2px',
-                    overflow: 'hidden',
-                    animation: 'pulse 2s infinite',
-                    '@keyframes pulse': {
-                      '0%, 100%': { opacity: 1 },
-                      '50%': { opacity: 0.7 },
-                    },
-                  }}
-                >
-                  {/* Canadian Flag */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: 'linear-gradient(90deg, #FF0000 0%, #FF0000 25%, #FFFFFF 25%, #FFFFFF 75%, #FF0000 75%, #FF0000 100%)',
-                    }}
-                  />
-                  {/* Maple Leaf */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      fontSize: '8px',
-                      color: '#FF0000',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    🍁
-                  </Box>
-                </Box>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'success.main',
-                    fontWeight: 600,
-                    fontSize: 'clamp(0.75rem, 1vw + 0.25rem, 0.875rem)',
-                    textAlign: { xs: 'center', lg: 'left' },
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  Trusted by 10+ Canadian businesses • Free consultation available
-                </Typography>
-              </Box>
-
               {/* Main Heading */}
               <Typography
                 variant="h1"
@@ -176,6 +111,70 @@ const HeroSection: React.FC = () => {
               >
                 {COMPANY_INFO.description}
               </Typography>
+
+              {/* Trust Indicator */}
+              <Box
+                sx={{
+                  mb: 4,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: { xs: 'center', lg: 'flex-start' },
+                  gap: 1.5,
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 32,
+                    height: 22,
+                    flexShrink: 0,
+                    position: 'relative',
+                    borderRadius: '3px',
+                    overflow: 'hidden',
+                    animation: 'pulse 2s infinite',
+                    '@keyframes pulse': {
+                      '0%, 100%': { opacity: 1 },
+                      '50%': { opacity: 0.7 },
+                    },
+                  }}
+                >
+                  {/* Canadian Flag */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: 'linear-gradient(90deg, #FF0000 0%, #FF0000 25%, #FFFFFF 25%, #FFFFFF 75%, #FF0000 75%, #FF0000 100%)',
+                    }}
+                  />
+                  {/* Maple Leaf */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      fontSize: '12px',
+                      color: '#FF0000',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    🍁
+                  </Box>
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'success.main',
+                    fontWeight: 600,
+                    fontSize: 'clamp(0.875rem, 1vw + 0.25rem, 1rem)',
+                    textAlign: { xs: 'center', lg: 'left' },
+                  }}
+                >
+                  Trusted by 10+ Canadian businesses • Free consultation available
+                </Typography>
+              </Box>
 
               {/* CTA Buttons */}
               <Stack
