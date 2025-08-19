@@ -16,13 +16,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
 } from '@mui/material';
 import {
   ArrowForward,
@@ -35,6 +28,15 @@ import {
   Settings,
   ViewQuilt as LayoutIcon,
   Home,
+  TrendingUp,
+  Security,
+  Speed,
+  Devices,
+  Code,
+  Analytics,
+  CloudDone,
+  AutoFixHigh,
+  Timeline,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -82,6 +84,189 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       default:
         return <GlobalIcon {...iconProps} />;
     }
+  };
+
+  const getServiceFeatures = (serviceId: string) => {
+    const features: Record<string, Array<{
+      title: string;
+      description: string;
+      icon: React.ReactNode;
+      details: string;
+    }>> = {
+      'web-development': [
+        {
+          title: 'Responsive Design',
+          description: 'Perfect display across all devices and screen sizes',
+          icon: <Devices sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Our responsive designs automatically adapt to desktop, tablet, and mobile devices, ensuring your website looks professional and functions perfectly regardless of how visitors access it.'
+        },
+        {
+          title: 'SEO Optimization',
+          description: 'Built-in search engine optimization for better visibility',
+          icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Every website includes comprehensive SEO optimization with proper meta tags, structured data, fast loading times, and clean code structure to help you rank higher in search results.'
+        },
+        {
+          title: 'Performance Focus',
+          description: 'Lightning-fast loading times and optimal user experience',
+          icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'We optimize every aspect of your website for speed, including image compression, code minification, and efficient hosting solutions to ensure visitors never wait.'
+        },
+        {
+          title: 'Content Management',
+          description: 'Easy-to-use systems for updating your content',
+          icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Update your website content, add new pages, and manage your blog posts with intuitive content management systems that require no technical knowledge.'
+        }
+      ],
+      'web-applications': [
+        {
+          title: 'Scalable Architecture',
+          description: 'Built to grow with your business and user base',
+          icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Our applications use modern, cloud-native architectures that automatically scale to handle increased traffic and data loads as your business grows.'
+        },
+        {
+          title: 'Real-time Features',
+          description: 'Live data updates and interactive user experiences',
+          icon: <Timeline sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Implement real-time notifications, live chat, collaborative editing, and instant data synchronization to create engaging, interactive user experiences.'
+        },
+        {
+          title: 'Advanced Security',
+          description: 'Enterprise-grade security and data protection',
+          icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Comprehensive security measures including encrypted data transmission, secure authentication, input validation, and regular security audits to protect your application and user data.'
+        },
+        {
+          title: 'Analytics Integration',
+          description: 'Comprehensive insights and performance monitoring',
+          icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Built-in analytics and monitoring tools provide detailed insights into user behavior, application performance, and business metrics to drive informed decisions.'
+        }
+      ],
+      'mobile-applications': [
+        {
+          title: 'Cross-Platform Development',
+          description: 'One codebase for iOS and Android platforms',
+          icon: <Devices sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Using React Native and Flutter, we create apps that work seamlessly on both iOS and Android while maintaining native performance and user experience.'
+        },
+        {
+          title: 'Native Performance',
+          description: 'Smooth, responsive user experience on all devices',
+          icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Our cross-platform apps deliver native-like performance with smooth animations, fast response times, and efficient memory usage across all target devices.'
+        },
+        {
+          title: 'Offline Functionality',
+          description: 'Works seamlessly even without internet connection',
+          icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Implement offline data storage, background synchronization, and cached content to ensure your app provides value even when users are disconnected.'
+        },
+        {
+          title: 'App Store Optimization',
+          description: 'Complete submission and optimization for app stores',
+          icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'We handle the complete app store submission process, including metadata optimization, screenshot creation, and compliance with platform guidelines for maximum visibility.'
+        }
+      ],
+      'browser-extensions': [
+        {
+          title: 'Cross-Browser Support',
+          description: 'Compatible with Chrome, Firefox, Edge, and more',
+          icon: <GlobalIcon sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Develop extensions that work seamlessly across all major browsers including Chrome, Firefox, Edge, Safari, and other Chromium-based browsers.'
+        },
+        {
+          title: 'Productivity Enhancement',
+          description: 'Streamline workflows and automate repetitive tasks',
+          icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Create powerful productivity tools that integrate with existing workflows, automate repetitive tasks, and provide quick access to frequently used functions.'
+        },
+        {
+          title: 'Secure Integration',
+          description: 'Safe interaction with web pages and user data',
+          icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Implement secure data handling, minimal permissions, and safe interaction with web pages while maintaining user privacy and browser security standards.'
+        },
+        {
+          title: 'Easy Distribution',
+          description: 'Seamless publishing to browser extension stores',
+          icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Handle the complete distribution process including store submissions, review management, and update rollouts to ensure your extension reaches your target audience.'
+        }
+      ],
+      'maintenance-support': [
+        {
+          title: 'Proactive Monitoring',
+          description: '24/7 uptime monitoring and performance tracking',
+          icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Continuous monitoring of your website or application performance, uptime, and security with instant alerts for any issues that need attention.'
+        },
+        {
+          title: 'Security Updates',
+          description: 'Regular security patches and vulnerability fixes',
+          icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Stay protected with regular security updates, vulnerability assessments, and immediate patches for any security issues that arise.'
+        },
+        {
+          title: 'Performance Optimization',
+          description: 'Ongoing improvements for speed and efficiency',
+          icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Regular performance audits and optimizations to ensure your digital assets continue to load quickly and provide excellent user experiences.'
+        },
+        {
+          title: 'Feature Development',
+          description: 'Continuous enhancement and new feature additions',
+          icon: <Code sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+          details: 'Ongoing development support to add new features, improve existing functionality, and adapt your digital presence to changing business needs.'
+        }
+      ]
+    };
+    
+    return features[serviceId] || [];
+  };
+
+  const getServiceProcess = (serviceId: string) => {
+    const processes: Record<string, Array<{
+      step: number;
+      title: string;
+      description: string;
+    }>> = {
+      'web-development': [
+        { step: 1, title: 'Discovery & Planning', description: 'We analyze your business goals, target audience, and technical requirements to create a comprehensive project roadmap.' },
+        { step: 2, title: 'Design & Prototyping', description: 'Create wireframes, mockups, and interactive prototypes to visualize your website before development begins.' },
+        { step: 3, title: 'Development & Testing', description: 'Build your website using modern technologies with rigorous testing across all devices and browsers.' },
+        { step: 4, title: 'Launch & Optimization', description: 'Deploy your website with proper SEO setup, analytics integration, and performance optimization.' }
+      ],
+      'web-applications': [
+        { step: 1, title: 'Requirements Analysis', description: 'Deep dive into your business processes, user workflows, and technical specifications to design the perfect solution.' },
+        { step: 2, title: 'Architecture Design', description: 'Plan the technical architecture, database structure, and system integrations for optimal performance and scalability.' },
+        { step: 3, title: 'Agile Development', description: 'Build your application in iterative sprints with regular demos and feedback sessions to ensure perfect alignment.' },
+        { step: 4, title: 'Deployment & Scaling', description: 'Launch your application with proper monitoring, backup systems, and scaling infrastructure in place.' }
+      ],
+      'mobile-applications': [
+        { step: 1, title: 'Platform Strategy', description: 'Determine the optimal approach for your target platforms and define the core user experience and feature set.' },
+        { step: 2, title: 'UI/UX Design', description: 'Create intuitive, platform-specific designs that follow iOS and Android design guidelines for optimal user experience.' },
+        { step: 3, title: 'Cross-Platform Development', description: 'Build your app using React Native or Flutter for efficient development and consistent experience across platforms.' },
+        { step: 4, title: 'Store Submission', description: 'Handle the complete app store submission process including optimization, review management, and launch coordination.' }
+      ],
+      'browser-extensions': [
+        { step: 1, title: 'Use Case Analysis', description: 'Understand your users\' workflows and identify opportunities for productivity enhancement and automation.' },
+        { step: 2, title: 'Extension Architecture', description: 'Design the extension structure, permissions, and integration points for optimal functionality and security.' },
+        { step: 3, title: 'Development & Testing', description: 'Build and test your extension across multiple browsers ensuring compatibility and performance.' },
+        { step: 4, title: 'Store Distribution', description: 'Publish your extension to browser stores with optimized listings and manage the review and approval process.' }
+      ],
+      'maintenance-support': [
+        { step: 1, title: 'System Assessment', description: 'Comprehensive audit of your current digital assets to identify optimization opportunities and potential issues.' },
+        { step: 2, title: 'Monitoring Setup', description: 'Implement comprehensive monitoring systems for uptime, performance, security, and user experience tracking.' },
+        { step: 3, title: 'Maintenance Schedule', description: 'Establish regular maintenance routines including updates, backups, security patches, and performance optimizations.' },
+        { step: 4, title: 'Ongoing Support', description: 'Provide continuous support with dedicated developer time for enhancements, fixes, and feature additions.' }
+      ]
+    };
+    
+    return processes[serviceId] || [];
   };
 
   const getServiceFAQs = (serviceId: string) => {
@@ -201,55 +386,9 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     return faqs[serviceId] || [];
   };
 
-  const getServiceBenefits = (serviceId: string) => {
-    const benefits: Record<string, string[]> = {
-      'web-development': [
-        'Professional online presence that builds credibility',
-        'Mobile-responsive design for all devices',
-        'SEO optimization for better search rankings',
-        'Fast loading times and optimal performance',
-        'Easy content management and updates',
-        'Secure hosting and regular backups'
-      ],
-      'web-applications': [
-        'Scalable architecture that grows with your business',
-        'Real-time data processing and updates',
-        'Secure user authentication and data protection',
-        'Custom workflows tailored to your processes',
-        'Integration with existing systems and APIs',
-        'Comprehensive admin dashboard and analytics'
-      ],
-      'mobile-applications': [
-        'Reach customers on their preferred mobile devices',
-        'Native-like performance with cross-platform efficiency',
-        'Push notifications for user engagement',
-        'Offline functionality for uninterrupted use',
-        'App store optimization for better discoverability',
-        'Seamless integration with device features'
-      ],
-      'browser-extensions': [
-        'Enhance user productivity within their browser',
-        'Seamless integration with existing workflows',
-        'Cross-browser compatibility for wider reach',
-        'Lightweight and fast performance',
-        'Easy distribution through browser stores',
-        'Regular updates and feature enhancements'
-      ],
-      'maintenance-support': [
-        'Peace of mind with proactive monitoring',
-        'Regular security updates and patches',
-        'Performance optimization and improvements',
-        'Dedicated developer support when needed',
-        'Priority response for critical issues',
-        'Ongoing feature development and enhancements'
-      ]
-    };
-    
-    return benefits[serviceId] || [];
-  };
-
+  const features = getServiceFeatures(service.id);
+  const process = getServiceProcess(service.id);
   const faqs = getServiceFAQs(service.id);
-  const benefits = getServiceBenefits(service.id);
 
   return (
     <Box>
@@ -376,7 +515,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         </Container>
       </Box>
 
-      {/* Benefits Section */}
+      {/* Features Showcase Section - Zigzag Layout */}
       <Box
         sx={{
           py: { xs: 8, md: 12 },
@@ -386,7 +525,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         }}
       >
         <Container maxWidth="xl">
-          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 12 } }}>
             <Typography
               variant="h2"
               sx={{
@@ -400,7 +539,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                 fontWeight: 700,
               }}
             >
-              Why Choose Our {service.title}?
+              Key Features & Benefits
             </Typography>
             <Typography
               variant="h6"
@@ -410,64 +549,422 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                 mx: 'auto',
               }}
             >
-              Key benefits and advantages of our service
+              Everything you need for a successful {service.title.toLowerCase()} solution
+            </Typography>
+          </Box>
+
+          {features.map((feature, index) => (
+            <Box
+              key={index}
+              sx={{
+                mb: { xs: 12, md: 16 },
+                '&:last-child': { mb: 0 },
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', lg: index % 2 === 0 ? 'row' : 'row-reverse' },
+                  alignItems: 'center',
+                  gap: { xs: 6, md: 8, lg: 12 },
+                  minHeight: { lg: '500px' },
+                }}
+              >
+                {/* Visual Column */}
+                <Box
+                  sx={{
+                    flex: '1 1 55%',
+                    width: '100%',
+                    maxWidth: { lg: '55%' },
+                    position: 'relative',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      height: { xs: '350px', md: '400px', lg: '450px' },
+                      borderRadius: 4,
+                      background: isDark
+                        ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%)'
+                        : 'linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.8) 100%)',
+                      border: `1px solid ${theme.palette.divider}`,
+                      backdropFilter: 'blur(20px)',
+                      overflow: 'hidden',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      '&:hover': {
+                        transform: 'translateY(-0.75rem) scale(1.02)',
+                        boxShadow: isDark
+                          ? '0 3rem 6rem rgba(0, 0, 0, 0.5)'
+                          : '0 3rem 6rem rgba(0, 0, 0, 0.2)',
+                      },
+                    }}
+                  >
+                    {/* Background Pattern */}
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundImage: isDark
+                          ? 'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)'
+                          : 'radial-gradient(circle at 30% 20%, rgba(57, 94, 202, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(132, 139, 216, 0.1) 0%, transparent 50%)',
+                        zIndex: 1,
+                      }}
+                    />
+
+                    {/* Feature Visual Content */}
+                    <Box
+                      sx={{
+                        position: 'relative',
+                        zIndex: 2,
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        p: 4,
+                      }}
+                    >
+                      {/* Feature Icon */}
+                      <Box
+                        sx={{
+                          mb: 3,
+                          p: 3,
+                          borderRadius: '50%',
+                          background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                          border: `2px solid ${theme.palette.primary.main}40`,
+                          animation: 'float 3s ease-in-out infinite',
+                          '@keyframes float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                          },
+                        }}
+                      >
+                        {feature.icon}
+                      </Box>
+
+                      {/* Feature Mockup Elements */}
+                      <Box
+                        sx={{
+                          width: '100%',
+                          maxWidth: '280px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            height: '10px',
+                            borderRadius: 1,
+                            background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                            opacity: 0.8,
+                          }}
+                        />
+                        <Box
+                          sx={{
+                            height: '6px',
+                            width: '70%',
+                            borderRadius: 1,
+                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                          }}
+                        />
+                        <Box
+                          sx={{
+                            height: '6px',
+                            width: '85%',
+                            borderRadius: 1,
+                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                          }}
+                        />
+                        
+                        {/* Feature-specific elements */}
+                        <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
+                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
+                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
+                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* Content Column */}
+                <Box
+                  sx={{
+                    flex: '1 1 45%',
+                    width: '100%',
+                    maxWidth: { lg: '45%' },
+                    textAlign: { xs: 'center', lg: 'left' },
+                  }}
+                >
+                  <Typography
+                    variant="overline"
+                    sx={{
+                      display: 'block',
+                      mb: 2,
+                      color: 'primary.main',
+                      fontWeight: 600,
+                      letterSpacing: 1.5,
+                      fontSize: '0.875rem',
+                    }}
+                  >
+                    {feature.title.toUpperCase()}
+                  </Typography>
+                  
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      mb: 3,
+                      fontWeight: 700,
+                      background: isDark
+                        ? 'linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%)'
+                        : 'linear-gradient(135deg, #0F172A 0%, #334155 100%)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 2.5rem)',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {feature.title}
+                  </Typography>
+                  
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      mb: 3,
+                      color: 'text.secondary',
+                      lineHeight: 1.6,
+                      fontSize: '1.25rem',
+                      fontWeight: 500,
+                    }}
+                  >
+                    {feature.description}
+                  </Typography>
+                  
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mb: 4,
+                      color: 'text.secondary',
+                      lineHeight: 1.7,
+                      fontSize: '1.1rem',
+                    }}
+                  >
+                    {feature.details}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          ))}
+        </Container>
+      </Box>
+
+      {/* Process Section - Zigzag Layout */}
+      <Box
+        sx={{
+          py: { xs: 8, md: 12 },
+          background: isDark
+            ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
+            : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
+        }}
+      >
+        <Container maxWidth="xl">
+          <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 12 } }}>
+            <Typography
+              variant="h2"
+              sx={{
+                mb: 2,
+                background: isDark
+                  ? 'linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%)'
+                  : 'linear-gradient(135deg, #0F172A 0%, #334155 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 700,
+              }}
+            >
+              Our Process
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'text.secondary',
+                maxWidth: '600px',
+                mx: 'auto',
+              }}
+            >
+              How we deliver exceptional {service.title.toLowerCase()} solutions
             </Typography>
           </Box>
 
           <Box
             sx={{
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: '1fr',
-                md: 'repeat(2, 1fr)',
-                lg: 'repeat(3, 1fr)',
-              },
-              gap: 3,
-              mb: { xs: 6, md: 8 },
+              display: 'flex',
+              flexDirection: { xs: 'column', lg: 'row' },
+              alignItems: 'center',
+              gap: { xs: 6, md: 8, lg: 12 },
+              minHeight: { lg: '600px' },
             }}
           >
-            {benefits.map((benefit, index) => (
-              <Card
-                key={index}
+            {/* Process Visual Column */}
+            <Box
+              sx={{
+                flex: '1 1 55%',
+                width: '100%',
+                maxWidth: { lg: '55%' },
+                position: 'relative',
+              }}
+            >
+              <Box
                 sx={{
+                  position: 'relative',
+                  height: { xs: '400px', md: '500px', lg: '550px' },
+                  borderRadius: 4,
                   background: isDark
-                    ? 'rgba(30, 41, 59, 0.8)'
-                    : 'rgba(255, 255, 255, 0.8)',
-                  backdropFilter: 'blur(10px)',
+                    ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%)'
+                    : 'linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.8) 100%)',
                   border: `1px solid ${theme.palette.divider}`,
-                  borderRadius: 2,
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backdropFilter: 'blur(20px)',
+                  overflow: 'hidden',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
-                    transform: 'translateY(-0.25rem)',
+                    transform: 'translateY(-0.75rem) scale(1.02)',
                     boxShadow: isDark
-                      ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
-                      : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                      ? '0 3rem 6rem rgba(0, 0, 0, 0.5)'
+                      : '0 3rem 6rem rgba(0, 0, 0, 0.2)',
                   },
                 }}
               >
-                <CardContent sx={{ p: 3 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <CheckCircle
+                {/* Background Pattern */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: isDark
+                      ? 'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)'
+                      : 'radial-gradient(circle at 30% 20%, rgba(57, 94, 202, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(132, 139, 216, 0.1) 0%, transparent 50%)',
+                    zIndex: 1,
+                  }}
+                />
+
+                {/* Process Steps Visual */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    zIndex: 2,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    p: 4,
+                  }}
+                >
+                  {process.map((step, index) => (
+                    <Box
+                      key={index}
                       sx={{
-                        color: 'primary.main',
-                        fontSize: '1.5rem',
-                        mt: 0.25,
-                        flexShrink: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        maxWidth: '300px',
+                        gap: 3,
+                        opacity: 0.8 + (index * 0.05),
+                        animation: `slideIn 0.6s ease-out ${index * 0.2}s both`,
+                        '@keyframes slideIn': {
+                          '0%': { opacity: 0, transform: 'translateX(-20px)' },
+                          '100%': { opacity: 0.8 + (index * 0.05), transform: 'translateX(0)' },
+                        },
                       }}
-                    />
+                    >
+                      <Box
+                        sx={{
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontWeight: 700,
+                          fontSize: '1.25rem',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {step.step}
+                      </Box>
+                      <Box
+                        sx={{
+                          flex: 1,
+                          height: '8px',
+                          borderRadius: 1,
+                          background: `linear-gradient(90deg, ${theme.palette.primary.main}40 0%, ${theme.palette.secondary.main}20 100%)`,
+                        }}
+                      />
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Process Content Column */}
+            <Box
+              sx={{
+                flex: '1 1 45%',
+                width: '100%',
+                maxWidth: { lg: '45%' },
+                textAlign: { xs: 'center', lg: 'left' },
+              }}
+            >
+              <Stack spacing={4}>
+                {process.map((step, index) => (
+                  <Box key={index}>
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        mb: 2,
+                        fontWeight: 700,
+                        color: 'text.primary',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 2,
+                        justifyContent: { xs: 'center', lg: 'flex-start' },
+                      }}
+                    >
+                      <Chip
+                        label={step.step}
+                        size="small"
+                        sx={{
+                          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                          color: 'white',
+                          fontWeight: 700,
+                          fontSize: '0.875rem',
+                        }}
+                      />
+                      {step.title}
+                    </Typography>
                     <Typography
                       variant="body1"
                       sx={{
-                        color: 'text.primary',
-                        lineHeight: 1.6,
+                        color: 'text.secondary',
+                        lineHeight: 1.7,
+                        fontSize: '1.1rem',
                       }}
                     >
-                      {benefit}
+                      {step.description}
                     </Typography>
                   </Box>
-                </CardContent>
-              </Card>
-            ))}
+                ))}
+              </Stack>
+            </Box>
           </Box>
         </Container>
       </Box>
@@ -477,8 +974,8 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         sx={{
           py: { xs: 8, md: 12 },
           background: isDark
-            ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
-            : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
+            ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
+            : 'linear-gradient(135deg, #E2E8F0 0%, #F8FAFC 50%, #E2E8F0 100%)',
         }}
       >
         <Container maxWidth="xl">
@@ -675,8 +1172,8 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         sx={{
           py: { xs: 8, md: 12 },
           background: isDark
-            ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
-            : 'linear-gradient(135deg, #E2E8F0 0%, #F8FAFC 50%, #E2E8F0 100%)',
+            ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
+            : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
         }}
       >
         <Container maxWidth="lg">
@@ -759,8 +1256,8 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         sx={{
           py: { xs: 8, md: 12 },
           background: isDark
-            ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
-            : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
+            ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
+            : 'linear-gradient(135deg, #E2E8F0 0%, #F8FAFC 50%, #E2E8F0 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}
