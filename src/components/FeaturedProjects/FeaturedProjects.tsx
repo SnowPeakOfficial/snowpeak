@@ -377,6 +377,7 @@ const FeaturedProjects: React.FC = () => {
                       <Box
                         sx={{
                           display: 'flex',
+                          justifyContent: 'center',
                           mb: 2,
                         }}
                       >
@@ -411,6 +412,9 @@ const FeaturedProjects: React.FC = () => {
                           fontWeight: 600,
                           color: 'text.primary',
                           lineHeight: 1.3,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                         }}
                       >
                         {project.title}
