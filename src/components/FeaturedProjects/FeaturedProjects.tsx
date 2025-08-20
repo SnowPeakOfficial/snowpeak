@@ -427,7 +427,11 @@ const FeaturedProjects: React.FC = () => {
                           mb: 2,
                           color: 'text.secondary',
                           lineHeight: 1.6,
-                          flexGrow: 1,
+                          height: '4.8rem', // Fixed height for 3 lines (1.6 * 1rem * 3)
+                          overflow: 'hidden',
+                          display: '-webkit-box',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
                         }}
                       >
                         {project.description}
