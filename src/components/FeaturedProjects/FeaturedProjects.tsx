@@ -373,6 +373,36 @@ const FeaturedProjects: React.FC = () => {
                         />
                       </Stack>
 
+                      {/* Business Logo */}
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          mb: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: { xs: 50, sm: 60 },
+                            height: { xs: 50, sm: 60 },
+                            borderRadius: '50%',
+                            background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                            fontWeight: 'bold',
+                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                            transition: 'all 0.3s ease',
+                            boxShadow: isDark
+                              ? '0 4px 16px rgba(0, 0, 0, 0.3)'
+                              : '0 4px 16px rgba(0, 0, 0, 0.1)',
+                          }}
+                        >
+                          {project.title.charAt(0)}
+                        </Box>
+                      </Box>
+
                       {/* Project Title */}
                       <Typography
                         variant="h5"
