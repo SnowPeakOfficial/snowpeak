@@ -93,137 +93,141 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       icon: React.ReactNode;
       details: string;
     }>> = {
-      'web-development': [
-        {
-          title: 'Responsive Design',
-          description: 'Perfect display across all devices and screen sizes',
-          icon: <Devices sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Our responsive designs automatically adapt to desktop, tablet, and mobile devices, ensuring your website looks professional and functions perfectly regardless of how visitors access it.'
-        },
-        {
-          title: 'SEO Optimization',
-          description: 'Built-in search engine optimization for better visibility',
-          icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Every website includes comprehensive SEO optimization with proper meta tags, structured data, fast loading times, and clean code structure to help you rank higher in search results.'
-        },
-        {
-          title: 'Performance Focus',
-          description: 'Lightning-fast loading times and optimal user experience',
-          icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'We optimize every aspect of your website for speed, including image compression, code minification, and efficient hosting solutions to ensure visitors never wait.'
-        },
-        {
-          title: 'Content Management',
-          description: 'Easy-to-use systems for updating your content',
-          icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Update your website content, add new pages, and manage your blog posts with intuitive content management systems that require no technical knowledge.'
-        }
-      ],
-      'web-applications': [
-        {
-          title: 'Scalable Architecture',
-          description: 'Built to grow with your business and user base',
-          icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Our applications use modern, cloud-native architectures that automatically scale to handle increased traffic and data loads as your business grows.'
-        },
-        {
-          title: 'Real-time Features',
-          description: 'Live data updates and interactive user experiences',
-          icon: <Timeline sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Implement real-time notifications, live chat, collaborative editing, and instant data synchronization to create engaging, interactive user experiences.'
-        },
-        {
-          title: 'Advanced Security',
-          description: 'Enterprise-grade security and data protection',
-          icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Comprehensive security measures including encrypted data transmission, secure authentication, input validation, and regular security audits to protect your application and user data.'
-        },
-        {
-          title: 'Analytics Integration',
-          description: 'Comprehensive insights and performance monitoring',
-          icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Built-in analytics and monitoring tools provide detailed insights into user behavior, application performance, and business metrics to drive informed decisions.'
-        }
-      ],
-      'mobile-applications': [
-        {
-          title: 'Cross-Platform Development',
-          description: 'One codebase for iOS and Android platforms',
-          icon: <Devices sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Using React Native and Flutter, we create apps that work seamlessly on both iOS and Android while maintaining native performance and user experience.'
-        },
-        {
-          title: 'Native Performance',
-          description: 'Smooth, responsive user experience on all devices',
-          icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Our cross-platform apps deliver native-like performance with smooth animations, fast response times, and efficient memory usage across all target devices.'
-        },
-        {
-          title: 'Offline Functionality',
-          description: 'Works seamlessly even without internet connection',
-          icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Implement offline data storage, background synchronization, and cached content to ensure your app provides value even when users are disconnected.'
-        },
-        {
-          title: 'App Store Optimization',
-          description: 'Complete submission and optimization for app stores',
-          icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'We handle the complete app store submission process, including metadata optimization, screenshot creation, and compliance with platform guidelines for maximum visibility.'
-        }
-      ],
-      'browser-extensions': [
-        {
-          title: 'Cross-Browser Support',
-          description: 'Compatible with Chrome, Firefox, Edge, and more',
-          icon: <GlobalIcon sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Develop extensions that work seamlessly across all major browsers including Chrome, Firefox, Edge, Safari, and other Chromium-based browsers.'
-        },
-        {
-          title: 'Productivity Enhancement',
-          description: 'Streamline workflows and automate repetitive tasks',
-          icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Create powerful productivity tools that integrate with existing workflows, automate repetitive tasks, and provide quick access to frequently used functions.'
-        },
-        {
-          title: 'Secure Integration',
-          description: 'Safe interaction with web pages and user data',
-          icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Implement secure data handling, minimal permissions, and safe interaction with web pages while maintaining user privacy and browser security standards.'
-        },
-        {
-          title: 'Easy Distribution',
-          description: 'Seamless publishing to browser extension stores',
-          icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Handle the complete distribution process including store submissions, review management, and update rollouts to ensure your extension reaches your target audience.'
-        }
-      ],
-      'maintenance-support': [
-        {
-          title: 'Proactive Monitoring',
-          description: '24/7 uptime monitoring and performance tracking',
-          icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Continuous monitoring of your website or application performance, uptime, and security with instant alerts for any issues that need attention.'
-        },
-        {
-          title: 'Security Updates',
-          description: 'Regular security patches and vulnerability fixes',
-          icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Stay protected with regular security updates, vulnerability assessments, and immediate patches for any security issues that arise.'
-        },
-        {
-          title: 'Performance Optimization',
-          description: 'Ongoing improvements for speed and efficiency',
-          icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Regular performance audits and optimizations to ensure your digital assets continue to load quickly and provide excellent user experiences.'
-        },
-        {
-          title: 'Feature Development',
-          description: 'Continuous enhancement and new feature additions',
-          icon: <Code sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-          details: 'Ongoing development support to add new features, improve existing functionality, and adapt your digital presence to changing business needs.'
-        }
-      ]
-    };
+  'web-development': [
+    {
+      title: 'Custom Website Design',
+      description: 'Modern, visually appealing websites tailored to your brand and business goals',
+      icon: <Devices sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We design websites that are responsive, mobile-friendly, and visually aligned with your brand. Whether you need a simple landing page or a multi-page business site, your website will look professional and attract customers.'
+    },
+    {
+      title: 'SEO & Visibility',
+      description: 'Improve your search rankings and reach your target audience',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Every website is optimized with proper meta tags, descriptions, and best SEO practices to help your business rank higher on search engines and gain organic traffic.'
+    },
+    {
+      title: 'Fast & Optimized Performance',
+      description: 'Websites built for speed and seamless user experience',
+      icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We optimize images, scripts, and hosting to ensure fast loading times and smooth navigation, reducing bounce rates and keeping visitors engaged.'
+    },
+    {
+      title: 'Content Management & Updates',
+      description: 'Easily update your content without technical skills',
+      icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Our websites come with intuitive content management systems, allowing you to add new pages, edit content, and manage blog posts with ease.'
+    }
+  ],
+
+  'web-applications': [
+    {
+      title: 'Scalable & Robust Architecture',
+      description: 'Web applications built to handle growth and complexity',
+      icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Our apps are designed with modern, scalable architectures that adapt as your business grows, ensuring consistent performance even with increasing users and data.'
+    },
+    {
+      title: 'Interactive & Real-time Features',
+      description: 'Engage users with dynamic, responsive interactions',
+      icon: <Timeline sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We integrate real-time updates, live collaboration tools, notifications, and interactive dashboards to deliver a highly engaging experience for your users.'
+    },
+    {
+      title: 'Enterprise-Grade Security',
+      description: 'Keep your data safe with industry-standard security',
+      icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Your application is protected with secure authentication, encrypted data transfer, input validation, and regular security audits to prevent vulnerabilities.'
+    },
+    {
+      title: 'Data & Analytics Integration',
+      description: 'Track performance and make informed decisions',
+      icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We include analytics and monitoring tools that provide insights on user behavior, app performance, and business metrics, enabling data-driven improvements.'
+    }
+  ],
+
+  'mobile-applications': [
+    {
+      title: 'Cross-Platform Mobile Apps',
+      description: 'One app that works seamlessly on iOS and Android',
+      icon: <Devices sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Using React Native or Flutter, we build apps that run smoothly on both platforms while providing a native-like experience, saving time and development cost.'
+    },
+    {
+      title: 'High-Performance & Smooth UX',
+      description: 'Fast, responsive apps that delight users',
+      icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Our mobile apps are optimized for speed, responsive layouts, and smooth animations, ensuring users enjoy a seamless and engaging experience.'
+    },
+    {
+      title: 'Offline & Reliable Functionality',
+      description: 'Works even without an internet connection',
+      icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We implement offline storage, caching, and background sync so your users can access core features even when connectivity is limited.'
+    },
+    {
+      title: 'App Store Deployment',
+      description: 'Optimized submission and visibility for app stores',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We handle the entire app store submission process, including metadata, screenshots, and compliance checks, helping your app reach your audience efficiently.'
+    }
+  ],
+
+  'browser-extensions': [
+    {
+      title: 'Cross-Browser Compatibility',
+      description: 'Extensions that work on Chrome, Firefox, Edge, and more',
+      icon: <GlobalIcon sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We develop extensions that work reliably across all major browsers, ensuring your users have the same seamless experience regardless of their preferred platform.'
+    },
+    {
+      title: 'Boost Productivity & Engagement',
+      description: 'Tools to automate tasks and enhance workflows',
+      icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Extensions can automate repetitive tasks, provide quick access to important actions, and improve overall productivity for your users.'
+    },
+    {
+      title: 'Secure & Safe Integration',
+      description: 'Minimal permissions and data protection',
+      icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We ensure secure handling of user data and safe interaction with websites, following best practices for privacy and browser security.'
+    },
+    {
+      title: 'Distribution & Updates',
+      description: 'Smooth deployment to extension stores',
+      icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We manage store submissions, approvals, and update rollouts, ensuring your extension reaches users quickly and stays up-to-date.'
+    }
+  ],
+
+  'maintenance-support': [
+    {
+      title: 'Proactive Monitoring',
+      description: 'Track uptime, performance, and potential issues 24/7',
+      icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We continuously monitor your website or app to detect problems before they affect users, ensuring reliability and stability.'
+    },
+    {
+      title: 'Security & Updates',
+      description: 'Keep your digital assets safe and up-to-date',
+      icon: <Security sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Our maintenance plans include timely security patches, vulnerability fixes, and software updates to protect your platform.'
+    },
+    {
+      title: 'Performance Optimization',
+      description: 'Maintain fast load times and smooth operation',
+      icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We regularly optimize code, assets, and infrastructure to ensure your website or app runs efficiently and delivers a great user experience.'
+    },
+    {
+      title: 'Ongoing Feature Support',
+      description: 'Continuous improvements and new functionality',
+      icon: <Code sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We help implement new features, tweak existing functionality, and ensure your digital product evolves with your business needs.'
+    }
+  ]
+};
     
     return features[serviceId] || [];
   };
