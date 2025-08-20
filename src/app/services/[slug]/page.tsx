@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -16,6 +16,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Tabs,
+  Tab,
 } from '@mui/material';
 import {
   ArrowForward,
@@ -51,6 +53,7 @@ interface ServicePageProps {
 const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const [selectedPackageIndex, setSelectedPackageIndex] = useState<number>(0);
   
   // Find the service by slug
   const service = SERVICES.find(s => s.id === params.slug);
@@ -58,6 +61,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
   if (!service) {
     notFound();
   }
+
+  // Initialize selected package index to popular package or first package
+  React.useEffect(() => {
+    const popularIndex = service.packages.findIndex(pkg => pkg.popular);
+    setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
+  }, [service.packages]);
 
   const getServiceIcon = (iconName: string) => {
     const iconProps = {
@@ -238,37 +247,118 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       title: string;
       description: string;
     }>> = {
-      'web-development': [
-        { step: 1, title: 'Discovery & Planning', description: 'We analyze your business goals, target audience, and technical requirements to create a comprehensive project roadmap.' },
-        { step: 2, title: 'Design & Prototyping', description: 'Create wireframes, mockups, and interactive prototypes to visualize your website before development begins.' },
-        { step: 3, title: 'Development & Testing', description: 'Build your website using modern technologies with rigorous testing across all devices and browsers.' },
-        { step: 4, title: 'Launch & Optimization', description: 'Deploy your website with proper SEO setup, analytics integration, and performance optimization.' }
-      ],
-      'web-applications': [
-        { step: 1, title: 'Requirements Analysis', description: 'Deep dive into your business processes, user workflows, and technical specifications to design the perfect solution.' },
-        { step: 2, title: 'Architecture Design', description: 'Plan the technical architecture, database structure, and system integrations for optimal performance and scalability.' },
-        { step: 3, title: 'Agile Development', description: 'Build your application in iterative sprints with regular demos and feedback sessions to ensure perfect alignment.' },
-        { step: 4, title: 'Deployment & Scaling', description: 'Launch your application with proper monitoring, backup systems, and scaling infrastructure in place.' }
-      ],
-      'mobile-applications': [
-        { step: 1, title: 'Platform Strategy', description: 'Determine the optimal approach for your target platforms and define the core user experience and feature set.' },
-        { step: 2, title: 'UI/UX Design', description: 'Create intuitive, platform-specific designs that follow iOS and Android design guidelines for optimal user experience.' },
-        { step: 3, title: 'Cross-Platform Development', description: 'Build your app using React Native or Flutter for efficient development and consistent experience across platforms.' },
-        { step: 4, title: 'Store Submission', description: 'Handle the complete app store submission process including optimization, review management, and launch coordination.' }
-      ],
-      'browser-extensions': [
-        { step: 1, title: 'Use Case Analysis', description: 'Understand your users\' workflows and identify opportunities for productivity enhancement and automation.' },
-        { step: 2, title: 'Extension Architecture', description: 'Design the extension structure, permissions, and integration points for optimal functionality and security.' },
-        { step: 3, title: 'Development & Testing', description: 'Build and test your extension across multiple browsers ensuring compatibility and performance.' },
-        { step: 4, title: 'Store Distribution', description: 'Publish your extension to browser stores with optimized listings and manage the review and approval process.' }
-      ],
-      'maintenance-support': [
-        { step: 1, title: 'System Assessment', description: 'Comprehensive audit of your current digital assets to identify optimization opportunities and potential issues.' },
-        { step: 2, title: 'Monitoring Setup', description: 'Implement comprehensive monitoring systems for uptime, performance, security, and user experience tracking.' },
-        { step: 3, title: 'Maintenance Schedule', description: 'Establish regular maintenance routines including updates, backups, security patches, and performance optimizations.' },
-        { step: 4, title: 'Ongoing Support', description: 'Provide continuous support with dedicated developer time for enhancements, fixes, and feature additions.' }
-      ]
-    };
+  'web-development': [
+    {
+      step: 1,
+      title: 'Discovery & Planning',
+      description: 'We analyze your business goals, target audience, and technical requirements to create a detailed roadmap that ensures your website aligns with your brand and objectives.'
+    },
+    {
+      step: 2,
+      title: 'Design & Prototyping',
+      description: 'Create wireframes, mockups, and interactive prototypes for your review, visualizing the look, feel, and user experience of your website before development.'
+    },
+    {
+      step: 3,
+      title: 'Build & Quality Assurance',
+      description: 'Develop a fully responsive, fast, and secure website using modern technologies, with rigorous testing across devices and browsers to guarantee optimal performance.'
+    },
+    {
+      step: 4,
+      title: 'Launch & Optimization',
+      description: 'Deploy your website with SEO setup, analytics integration, and performance optimizations, ensuring a smooth launch and measurable results.'
+    }
+  ],
+  'web-applications': [
+    {
+      step: 1,
+      title: 'Requirements Analysis',
+      description: 'Deep dive into your business processes, user workflows, and technical needs to design a solution that effectively solves your challenges.'
+    },
+    {
+      step: 2,
+      title: 'Architecture & System Design',
+      description: 'Plan scalable, maintainable, and secure application architecture, database structure, and system integrations for long-term growth and reliability.'
+    },
+    {
+      step: 3,
+      title: 'Agile Development & Iteration',
+      description: 'Build your application in iterative sprints with regular demos, feedback, and refinements to ensure it meets your goals and exceeds expectations.'
+    },
+    {
+      step: 4,
+      title: 'Deployment & Scaling',
+      description: 'Launch your application with robust monitoring, automated backups, and scalable infrastructure to support growth and ensure uninterrupted service.'
+    }
+  ],
+  'mobile-applications': [
+    {
+      step: 1,
+      title: 'Platform Strategy',
+      description: 'Determine the optimal approach for iOS, Android, or cross-platform solutions, defining core features and user experience to maximize reach and engagement.'
+    },
+    {
+      step: 2,
+      title: 'UI/UX Design',
+      description: 'Design intuitive, platform-specific interfaces that follow best practices and guidelines for an engaging, seamless mobile experience.'
+    },
+    {
+      step: 3,
+      title: 'Cross-Platform Development',
+      description: 'Develop your app using React Native or Flutter to deliver a high-performance, consistent experience across devices while optimizing development efficiency.'
+    },
+    {
+      step: 4,
+      title: 'App Store Submission & Optimization',
+      description: 'Handle the complete app store submission process, including metadata, screenshots, review management, and optimization for maximum visibility and downloads.'
+    }
+  ],
+  'browser-extensions': [
+    {
+      step: 1,
+      title: 'Use Case Analysis',
+      description: 'Understand your users’ workflows and goals to identify opportunities for productivity enhancements and automated solutions.'
+    },
+    {
+      step: 2,
+      title: 'Extension Architecture',
+      description: 'Design the extension structure, permissions, and integration points for secure, reliable, and maintainable functionality across browsers.'
+    },
+    {
+      step: 3,
+      title: 'Development & Testing',
+      description: 'Build your extension with robust features and test it across multiple browsers, ensuring compatibility, security, and smooth performance.'
+    },
+    {
+      step: 4,
+      title: 'Store Distribution & Launch',
+      description: 'Publish your extension to browser stores, manage the review process, and optimize listings for maximum reach and user adoption.'
+    }
+  ],
+  'maintenance-support': [
+    {
+      step: 1,
+      title: 'System Assessment & Audit',
+      description: 'Conduct a thorough evaluation of your digital assets to identify optimization opportunities, security risks, and potential issues.'
+    },
+    {
+      step: 2,
+      title: 'Monitoring & Alerts Setup',
+      description: 'Implement comprehensive uptime, performance, and security monitoring with instant alerts to proactively address issues before they impact users.'
+    },
+    {
+      step: 3,
+      title: 'Scheduled Maintenance',
+      description: 'Establish regular routines including software updates, backups, performance optimization, and security patches to keep your systems running smoothly.'
+    },
+    {
+      step: 4,
+      title: 'Ongoing Support & Enhancements',
+      description: 'Provide continuous developer support for fixes, updates, and feature additions, ensuring your digital assets evolve with your business needs.'
+    }
+  ]
+};
+
     
     return processes[serviceId] || [];
   };
@@ -1011,28 +1101,43 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
             </Typography>
           </Box>
 
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: '1fr',
-                md: service.packages.length === 2 ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(300px, 1fr))',
-              },
-              gap: 3,
-              maxWidth: service.packages.length === 2 ? '800px' : '100%',
-              mx: 'auto',
-            }}
-          >
-            {service.packages.map((pkg, index) => (
+          {/* Single Card with Package Selector - Matching Home Page Style */}
+          <Box sx={{ maxWidth: '600px', mx: 'auto' }}>
+            <Box sx={{ position: 'relative' }}>
+              {/* Most Popular Badge */}
+              {service.packages[selectedPackageIndex]?.popular && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: -8,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 10,
+                  }}
+                >
+                  <Chip
+                    label="Most Popular"
+                    size="small"
+                    sx={{
+                      background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
+                      color: 'white',
+                      fontWeight: 600,
+                      fontSize: '0.75rem',
+                      boxShadow: isDark
+                        ? '0 0.5rem 1rem rgba(0, 0, 0, 0.3)'
+                        : '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+                    }}
+                  />
+                </Box>
+              )}
+
               <Card
-                key={index}
                 sx={{
-                  position: 'relative',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
-                  border: pkg.popular 
+                  border: service.packages[selectedPackageIndex]?.popular 
                     ? `2px solid ${theme.palette.primary.main}` 
                     : `1px solid ${theme.palette.divider}`,
                   borderRadius: 2,
@@ -1042,131 +1147,190 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                     boxShadow: isDark
                       ? '0 2rem 4rem rgba(0, 0, 0, 0.4)'
                       : '0 2rem 4rem rgba(0, 0, 0, 0.15)',
+                    borderColor: 'primary.main',
                   },
                 }}
               >
-                {pkg.popular && (
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: -8,
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      zIndex: 10,
-                    }}
-                  >
-                    <Chip
-                      label="Most Popular"
-                      size="small"
-                      sx={{
-                        background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                        color: 'white',
-                        fontWeight: 600,
-                        fontSize: '0.75rem',
-                      }}
-                    />
+                <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+                  {/* Service Icon */}
+                  <Box sx={{ textAlign: 'center', mb: 3 }}>
+                    {getServiceIcon(service.icon)}
                   </Box>
-                )}
 
-                <CardContent sx={{ p: 4 }}>
+                  {/* Service Title */}
                   <Typography
                     variant="h4"
                     sx={{
                       mb: 1,
-                      fontWeight: 700,
+                      fontWeight: 600,
+                      textAlign: 'center',
                       color: 'text.primary',
-                      textAlign: 'center',
                     }}
                   >
-                    {pkg.name}
+                    {service.title}
                   </Typography>
-                  
+
+                  {/* Service Description */}
                   <Typography
-                    variant="h3"
+                    variant="body1"
                     sx={{
-                      mb: 1,
-                      fontWeight: 700,
-                      color: 'primary.main',
+                      mb: 3,
+                      color: 'text.secondary',
                       textAlign: 'center',
+                      lineHeight: 1.6,
                     }}
                   >
-                    {pkg.price}
+                    {service.description}
                   </Typography>
 
-                  <Box sx={{ textAlign: 'center', mb: 3 }}>
-                    <Chip
-                      label={pkg.timeline}
-                      size="small"
+                  {/* Package Selector */}
+                  <Box sx={{ mb: 3 }}>
+                    <Tabs
+                      value={selectedPackageIndex}
+                      onChange={(_, newValue) => setSelectedPackageIndex(newValue)}
+                      variant="fullWidth"
                       sx={{
-                        backgroundColor: isDark
-                          ? 'rgba(34, 197, 94, 0.2)'
-                          : 'rgba(34, 197, 94, 0.1)',
-                        color: 'success.main',
-                        border: `1px solid ${theme.palette.success.main}40`,
-                        fontWeight: 600,
+                        mb: 2,
+                        '& .MuiTab-root': {
+                          minHeight: { xs: '2.25rem', sm: '2.75rem' },
+                          fontSize: { xs: '0.7rem', sm: '0.75rem' },
+                          fontWeight: 600,
+                          padding: { xs: '0.25rem 0.25rem', sm: '0.5rem 0.75rem' },
+                        },
+                        '& .MuiTabs-flexContainer': {
+                          gap: { xs: '0.25rem', sm: '0.5rem' },
+                        },
                       }}
-                    />
-                  </Box>
+                    >
+                      {service.packages.map((pkg, index) => (
+                        <Tab
+                          key={index}
+                          label={
+                            <Box sx={{ 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: { xs: 0.25, sm: 0.5 },
+                              flexDirection: { xs: 'column', sm: 'row' },
+                              textAlign: 'center',
+                            }}>
+                              <Typography 
+                                variant="caption" 
+                                sx={{ 
+                                  fontSize: { xs: '0.65rem', sm: '0.75rem' },
+                                  lineHeight: 1.2,
+                                }}
+                              >
+                                {pkg.name}
+                              </Typography>
+                              {pkg.popular && (
+                                <Box
+                                  sx={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    width: { xs: 12, sm: 16 },
+                                    height: { xs: 12, sm: 16 },
+                                    borderRadius: '50%',
+                                    backgroundColor: 'secondary.main',
+                                    color: 'white',
+                                    fontSize: { xs: '0.5rem', sm: '0.6rem' },
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  ★
+                                </Box>
+                              )}
+                            </Box>
+                          }
+                        />
+                      ))}
+                    </Tabs>
 
-                  <Stack spacing={2} sx={{ mb: 4 }}>
-                    {pkg.features.map((feature, featureIndex) => (
-                      <Box
-                        key={featureIndex}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: 1,
-                        }}
-                      >
-                        <CheckCircle
+                    {/* Selected Package Details */}
+                    <Box
+                      sx={{
+                        p: 2,
+                        backgroundColor: isDark
+                          ? 'rgba(59, 130, 246, 0.1)'
+                          : 'rgba(57, 94, 202, 0.05)',
+                        borderRadius: 1,
+                        border: `1px solid ${theme.palette.primary.main}20`,
+                      }}
+                    >
+                      {/* Package Features */}
+                      <Stack spacing={1} sx={{ mb: 2 }}>
+                        {service.packages[selectedPackageIndex]?.features.map((feature, index) => (
+                          <Typography
+                            key={index}
+                            variant="body2"
+                            sx={{
+                              color: 'text.secondary',
+                              display: 'flex',
+                              alignItems: 'center',
+                              fontSize: '0.875rem',
+                              '&:before': {
+                                content: '"✓"',
+                                color: 'primary.main',
+                                fontWeight: 'bold',
+                                mr: 1,
+                              },
+                            }}
+                          >
+                            {feature}
+                          </Typography>
+                        ))}
+                      </Stack>
+
+                      {/* Timeline and Price */}
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Chip
+                          label={service.packages[selectedPackageIndex]?.timeline}
+                          size="small"
                           sx={{
-                            color: 'primary.main',
-                            fontSize: '1.25rem',
-                            mt: 0.125,
-                            flexShrink: 0,
+                            backgroundColor: isDark
+                              ? 'rgba(34, 197, 94, 0.2)'
+                              : 'rgba(34, 197, 94, 0.1)',
+                            color: 'success.main',
+                            border: `1px solid ${theme.palette.success.main}40`,
+                            fontWeight: 600,
                           }}
                         />
                         <Typography
-                          variant="body2"
+                          variant="h6"
                           sx={{
-                            color: 'text.secondary',
-                            lineHeight: 1.5,
+                            fontWeight: 600,
+                            color: 'primary.main',
                           }}
                         >
-                          {feature}
+                          {service.packages[selectedPackageIndex]?.price}
                         </Typography>
                       </Box>
-                    ))}
-                  </Stack>
+                    </Box>
+                  </Box>
 
+                  {/* CTA Button */}
                   <Button
                     component={Link}
                     href="/contact"
-                    variant={pkg.popular ? "contained" : "outlined"}
+                    variant="outlined"
                     fullWidth
-                    size="large"
                     endIcon={<ArrowForward />}
                     sx={{
-                      ...(pkg.popular ? {
-                        background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                        '&:hover': {
-                          background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                        },
-                      } : {
-                        borderColor: 'primary.main',
-                        color: 'primary.main',
-                        '&:hover': {
-                          backgroundColor: 'primary.main',
-                          color: 'primary.contrastText',
-                        },
-                      }),
+                      mt: 'auto',
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      '&:hover': {
+                        backgroundColor: 'primary.main',
+                        color: 'primary.contrastText',
+                        transform: 'scale(1.02)',
+                      },
                     }}
                   >
                     Get Started
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+            </Box>
           </Box>
         </Container>
       </Box>
