@@ -21,6 +21,8 @@ import {
   Star,
 } from '@mui/icons-material';
 import Link from 'next/link';
+import Image from 'next/image';
+import laptopImage from '../../assets/laptop.jpg';
  
 
 const AboutPage: React.FC = () => {
@@ -30,18 +32,18 @@ const AboutPage: React.FC = () => {
   const values = [
     {
       icon: <Handshake sx={{ fontSize: '2rem', color: 'primary.main' }} />,
-      title: 'Honest Collaboration',
-      description: 'We believe in transparent communication and working closely with our clients as true partners.',
+      title: 'Partnership That Delivers',
+      description: 'No surprises, no hidden costs, no technical jargon. We keep you informed every step of the way and treat your success as our own. When you win, we win.',
     },
     {
       icon: <EmojiObjects sx={{ fontSize: '2rem', color: 'primary.main' }} />,
-      title: 'Thoughtful Design',
-      description: 'Every pixel, interaction, and line of code is crafted with intention and user experience in mind.',
+      title: 'User-Centered Excellence',
+      description: 'Your users\' experience drives every decision we make. From intuitive interfaces to lightning-fast performance, we build solutions that your customers will love to use.',
     },
     {
       icon: <Star sx={{ fontSize: '2rem', color: 'primary.main' }} />,
-      title: 'Quality Craftsmanship',
-      description: "We don't just build what you ask for — we help you figure out what will actually work best.",
+      title: 'Solutions That Scale',
+      description: 'We don\'t just deliver what you request—we engineer solutions that grow with your business. Our code is built to last, scale, and adapt as your needs evolve.',
     },
   ];
 
@@ -51,7 +53,7 @@ const AboutPage: React.FC = () => {
         {/* Hero Section */}
         <Box
           sx={{
-            py: { xs: 12, md: 16 },
+            py: { xs: 6, md: 8 },
             background: isDark
               ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
               : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
@@ -65,59 +67,16 @@ const AboutPage: React.FC = () => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 alignItems: 'center',
-                gap: 6,
+                gap: 4,
               }}
             >
-              <Box sx={{ flex: { md: '2' } }}>
-                <Chip
-                  label="Based in Toronto, Canada"
-                  icon={
-                    <Box
-                      sx={{
-                        width: 16,
-                        height: 12,
-                        flexShrink: 0,
-                        position: 'relative',
-                        borderRadius: '2px',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {/* Canadian Flag */}
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          background: 'linear-gradient(90deg, #FF0000 0%, #FF0000 25%, #FFFFFF 25%, #FFFFFF 75%, #FF0000 75%, #FF0000 100%)',
-                        }}
-                      />
-                      {/* Maple Leaf */}
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          fontSize: '6px',
-                          color: '#FF0000',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        🍁
-                      </Box>
-                    </Box>
-                  }
-                  sx={{
-                    mb: 3,
-                    backgroundColor: isDark
-                      ? 'rgba(59, 130, 246, 0.2)'
-                      : 'rgba(57, 94, 202, 0.1)',
-                    color: 'primary.main',
-                    border: `1px solid ${theme.palette.primary.main}40`,
-                  }}
-                />
+              <Box sx={{ 
+                flex: { md: '1' }, 
+                pl: { md: 6 },
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }}>
                 <Typography
                   variant="h1"
                   sx={{
@@ -129,23 +88,38 @@ const AboutPage: React.FC = () => {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     fontWeight: 700,
-                    fontSize: 'clamp(2.5rem, 5vw + 1rem, 4rem)',
+                    fontSize: 'clamp(1.8rem, 4vw + 0.5rem, 2.8rem)',
+                    lineHeight: 1.2,
                   }}
                 >
-                  Meet the Team Behind SnowPeak
+                  Building Beyond Expectations
                 </Typography>
                 <Typography
                   variant="h5"
                   sx={{
-                    mb: 4,
+                    mb: 3,
                     color: 'text.secondary',
                     lineHeight: 1.6,
-                    fontSize: 'clamp(1.125rem, 2vw + 0.5rem, 1.5rem)',
+                    fontSize: 'clamp(1rem, 1.5vw + 0.3rem, 1.2rem)',
                   }}
                 >
-                  We&apos;re Canadian developers passionate about creating digital experiences 
-                  that go beyond expectations — building solutions that reach higher than 
-                  what&apos;s typical.
+                  In 2025, a team of passionate developers recognized a gap in the digital landscape. 
+                  While countless agencies promised quick solutions and template-based websites, businesses 
+                  were left with generic results that failed to capture their unique vision. We founded 
+                  SnowPeak with a simple belief: every business deserves software that&apos;s as unique as their story.
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mb: 3,
+                    color: 'text.secondary',
+                    lineHeight: 1.6,
+                    fontSize: 'clamp(0.9rem, 1.2vw + 0.3rem, 1.1rem)',
+                  }}
+                >
+                  Our name reflects our philosophy—just as mountain peaks rise above the ordinary landscape, 
+                  we build digital solutions that elevate businesses beyond standard expectations. We don&apos;t 
+                  just code; we craft experiences that resonate with your audience and drive real results.
                 </Typography>
                 <Button
                   component={Link}
@@ -158,6 +132,7 @@ const AboutPage: React.FC = () => {
                     px: 4,
                     py: 1.5,
                     fontSize: '1.125rem',
+                    alignSelf: 'flex-start',
                     '&:hover': {
                       background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
                       transform: 'translateY(-0.125rem) scale(1.02)',
@@ -167,97 +142,47 @@ const AboutPage: React.FC = () => {
                   Let&apos;s Work Together
                 </Button>
               </Box>
-              <Box sx={{ flex: { md: '1' } }}>
+
+              {/* Right Side - Laptop Image */}
+              <Box sx={{ flex: { md: '1.2' }, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', alignItems: 'center' }}>
                 <Box
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 3,
-                    alignItems: 'center',
+                    position: 'relative',
+                    width: '100%',
+                    maxWidth: 650,
+                    height: 500,
+                    borderRadius: 3,
+                    overflow: 'hidden',
+                    boxShadow: isDark
+                      ? '0 2rem 4rem rgba(0, 0, 0, 0.4)'
+                      : '0 2rem 4rem rgba(0, 0, 0, 0.15)',
+                    border: `1px solid ${theme.palette.divider}`,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-0.5rem) scale(1.02)',
+                      boxShadow: isDark
+                        ? '0 3rem 6rem rgba(0, 0, 0, 0.5)'
+                        : '0 3rem 6rem rgba(0, 0, 0, 0.2)',
+                    },
                   }}
                 >
-                  {/* Developer Card */}
-                  <Card
-                    sx={{
-                      background: isDark
-                        ? 'rgba(30, 41, 59, 0.8)'
-                        : 'rgba(255, 255, 255, 0.8)',
-                      backdropFilter: 'blur(10px)',
-                      border: `1px solid ${theme.palette.divider}`,
-                      borderRadius: 3,
-                      p: 3,
-                      textAlign: 'center',
-                      maxWidth: 300,
-                      width: '100%',
+                  <Image
+                    src={laptopImage}
+                    alt="SnowPeak Development Team"
+                    fill
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
                     }}
-                  >
-                    <Avatar
-                      sx={{
-                        width: 80,
-                        height: 80,
-                        mx: 'auto',
-                        mb: 2,
-                        backgroundColor: 'primary.main',
-                        fontSize: '1.5rem',
-                      }}
-                    >
-                      <Code />
-                    </Avatar>
-                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                      Safiuddin Ahmed Mohammad
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
-                      Co-Founder - Technical Architect
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      Designs and builds thoughtful digital experiences — from the first line of code to final polish.
-                    </Typography>
-                  </Card>
-
-                  {/* Business Partner Card */}
-                  <Card
-                    sx={{
-                      background: isDark
-                        ? 'rgba(30, 41, 59, 0.8)'
-                        : 'rgba(255, 255, 255, 0.8)',
-                      backdropFilter: 'blur(10px)',
-                      border: `1px solid ${theme.palette.divider}`,
-                      borderRadius: 3,
-                      p: 3,
-                      textAlign: 'center',
-                      maxWidth: 300,
-                      width: '100%',
-                    }}
-                  >
-                    <Avatar
-                      sx={{
-                        width: 80,
-                        height: 80,
-                        mx: 'auto',
-                        mb: 2,
-                        backgroundColor: 'secondary.main',
-                        fontSize: '1.5rem',
-                      }}
-                    >
-                      <Business />
-                    </Avatar>
-                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                      Waleed Amray
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'secondary.main', fontWeight: 500 }}>
-                      Co-Founder - Strategic Operations
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      Drives strategy, client growth, and ensures every creative vision aligns with business goals.
-                    </Typography>
-                  </Card>
+                    priority
+                  />
                 </Box>
               </Box>
             </Box>
           </Container>
         </Box>
 
-        {/* Our Story Section */}
+        {/* Founding Team Section */}
         <Box
           sx={{
             py: { xs: 8, md: 12 },
@@ -281,118 +206,179 @@ const AboutPage: React.FC = () => {
                   fontWeight: 700,
                 }}
               >
-                From Passion to Purpose
+                The Minds Behind SnowPeak
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'text.secondary',
+                  maxWidth: '800px',
+                  mx: 'auto',
+                  lineHeight: 1.6,
+                  mb: 6,
+                }}
+              >
+                Our founding team combines deep technical expertise with strategic business insight. 
+                Our technical architects bring diverse perspectives and specialized skills to every 
+                development challenge, while our strategic operations leader ensures every project 
+                delivers measurable business value.
               </Typography>
             </Box>
 
+            {/* Team Cards Grid */}
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                gap: 6,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  md: 'repeat(3, 1fr)',
+                },
+                gap: 4,
+                maxWidth: '1000px',
+                mx: 'auto',
               }}
             >
-              <Box sx={{ flex: 1 }}>
-                <Card
+              {/* Waleed Card */}
+              <Card
+                sx={{
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 3,
+                  p: 3,
+                  textAlign: 'center',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.25rem)',
+                    boxShadow: isDark
+                      ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                      : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                    borderColor: 'secondary.main',
+                  },
+                }}
+              >
+                <Avatar
                   sx={{
-                    height: '100%',
-                    background: isDark
-                      ? 'rgba(30, 41, 59, 0.8)'
-                      : 'rgba(255, 255, 255, 0.8)',
-                    backdropFilter: 'blur(10px)',
-                    border: `1px solid ${theme.palette.divider}`,
-                    borderRadius: 2,
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 2,
+                    backgroundColor: 'secondary.main',
+                    fontSize: '1.5rem',
                   }}
                 >
-                  <CardContent sx={{ p: 4 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                      <Code sx={{ fontSize: '2.5rem', color: 'primary.main', mr: 2 }} />
-                      <Typography variant="h4" sx={{ fontWeight: 600 }}>
-                        The Developer
-                      </Typography>
-                    </Box>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: 'text.secondary',
-                        lineHeight: 1.7,
-                        mb: 3,
-                      }}
-                    >
-                      I&apos;m a Canadian software developer with several years of experience building 
-                      modern websites, web apps, browser extensions, and mobile solutions. What 
-                      started as a passion for clean design and solving real problems has evolved 
-                      into something bigger.
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: 'text.secondary',
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      I specialize in custom-built solutions — not cookie-cutter templates. 
-                      Whether it&apos;s a polished landing page or a complex app, I care about the 
-                      details that make users think: &quot;Wow, this works exactly how I hoped.&quot;
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
-              <Box sx={{ flex: 1 }}>
-                <Card
+                  <Business />
+                </Avatar>
+                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                  Waleed Amray
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: 'secondary.main', fontWeight: 500 }}>
+                  Co-Founder - Strategic Operations
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Drives strategy, client growth, and ensures every creative vision aligns with business goals.
+                </Typography>
+              </Card>
+
+              {/* Safiuddin Card */}
+              <Card
+                sx={{
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 3,
+                  p: 3,
+                  textAlign: 'center',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.25rem)',
+                    boxShadow: isDark
+                      ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                      : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                    borderColor: 'primary.main',
+                  },
+                }}
+              >
+                <Avatar
                   sx={{
-                    height: '100%',
-                    background: isDark
-                      ? 'rgba(30, 41, 59, 0.8)'
-                      : 'rgba(255, 255, 255, 0.8)',
-                    backdropFilter: 'blur(10px)',
-                    border: `1px solid ${theme.palette.divider}`,
-                    borderRadius: 2,
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 2,
+                    backgroundColor: 'primary.main',
+                    fontSize: '1.5rem',
                   }}
                 >
-                  <CardContent sx={{ p: 4 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                      <Business sx={{ fontSize: '2.5rem', color: 'primary.main', mr: 2 }} />
-                      <Typography variant="h4" sx={{ fontWeight: 600 }}>
-                        The Partnership
-                      </Typography>
-                    </Box>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: 'text.secondary',
-                        lineHeight: 1.7,
-                        mb: 3,
-                      }}
-                    >
-                      SnowPeak isn&apos;t just a one-person show. I work closely with a business 
-                      partner who handles the strategic side — client relationships, project 
-                      management, and ensuring every project delivers real business value.
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: 'text.secondary',
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      This partnership means our clients get both technical excellence and 
-                      dedicated business focus — something many solo developers can&apos;t offer. 
-                      We&apos;re your complete digital team.
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
+                  <Code />
+                </Avatar>
+                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                  Safiuddin Ahmed Mohammad
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
+                  Co-Founder - Technical Architect
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Designs and builds thoughtful digital experiences — from the first line of code to final polish.
+                </Typography>
+              </Card>
+
+              {/* Kevin Tran Card */}
+              <Card
+                sx={{
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 3,
+                  p: 3,
+                  textAlign: 'center',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.25rem)',
+                    boxShadow: isDark
+                      ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                      : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                    borderColor: 'primary.main',
+                  },
+                }}
+              >
+                <Avatar
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 2,
+                    backgroundColor: 'primary.main',
+                    fontSize: '1.5rem',
+                  }}
+                >
+                  <Code />
+                </Avatar>
+                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                  Kevin Tran
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
+                  Co-Founder - Technical Architect
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Brings extensive experience in building robust software solutions with a focus on scalability and performance.
+                </Typography>
+              </Card>
             </Box>
           </Container>
         </Box>
 
-        {/* Values Section */}
+        {/* Company Evolution Section */}
         <Box
           sx={{
             py: { xs: 8, md: 12 },
             background: isDark
-              ? 'linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #1E293B 100%)'
+              ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
               : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
           }}
         >
@@ -411,17 +397,239 @@ const AboutPage: React.FC = () => {
                   fontWeight: 700,
                 }}
               >
-                Our Values
+                Our Journey
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: 6,
+                alignItems: 'center',
+              }}
+            >
+              {/* Left Side - Company Stats */}
+              <Box sx={{ flex: 1 }}>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(2, 1fr)' },
+                    gap: 4,
+                  }}
+                >
+                <Card
+                  sx={{
+                    background: isDark
+                      ? 'rgba(30, 41, 59, 0.8)'
+                      : 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    border: `1px solid ${theme.palette.divider}`,
+                    borderRadius: 2,
+                    textAlign: 'center',
+                    p: 3,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-0.25rem)',
+                      boxShadow: isDark
+                        ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                        : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                      borderColor: 'primary.main',
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: 700,
+                      color: 'primary.main',
+                      mb: 1,
+                    }}
+                  >
+                    10+
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Projects Completed
+                  </Typography>
+                </Card>
+
+                <Card
+                  sx={{
+                    background: isDark
+                      ? 'rgba(30, 41, 59, 0.8)'
+                      : 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    border: `1px solid ${theme.palette.divider}`,
+                    borderRadius: 2,
+                    textAlign: 'center',
+                    p: 3,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-0.25rem)',
+                      boxShadow: isDark
+                        ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                        : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                      borderColor: 'primary.main',
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: 700,
+                      color: 'primary.main',
+                      mb: 1,
+                    }}
+                  >
+                    2025
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Founded
+                  </Typography>
+                </Card>
+
+                <Card
+                  sx={{
+                    background: isDark
+                      ? 'rgba(30, 41, 59, 0.8)'
+                      : 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    border: `1px solid ${theme.palette.divider}`,
+                    borderRadius: 2,
+                    textAlign: 'center',
+                    p: 3,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-0.25rem)',
+                      boxShadow: isDark
+                        ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                        : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                      borderColor: 'primary.main',
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: 700,
+                      color: 'primary.main',
+                      mb: 1,
+                    }}
+                  >
+                    20+
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Technologies
+                  </Typography>
+                </Card>
+
+                <Card
+                  sx={{
+                    background: isDark
+                      ? 'rgba(30, 41, 59, 0.8)'
+                      : 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    border: `1px solid ${theme.palette.divider}`,
+                    borderRadius: 2,
+                    textAlign: 'center',
+                    p: 3,
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      transform: 'translateY(-0.25rem)',
+                      boxShadow: isDark
+                        ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                        : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                      borderColor: 'primary.main',
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: 700,
+                      color: 'primary.main',
+                      mb: 1,
+                    }}
+                  >
+                    100%
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Client Satisfaction
+                  </Typography>
+                </Card>
+                </Box>
+              </Box>
+
+              {/* Right Side - Journey Text */}
+              <Box sx={{ flex: 1 }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: 'text.secondary',
+                    lineHeight: 1.7,
+                    mb: 3,
+                    fontSize: '1.125rem',
+                  }}
+                >
+                  What started as a shared vision among passionate developers has evolved into a 
+                  comprehensive digital solutions company. From our first client project to building 
+                  complex enterprise applications, we&apos;ve maintained our commitment to quality 
+                  craftsmanship while expanding our capabilities.
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: 'text.secondary',
+                    lineHeight: 1.7,
+                    fontSize: '1.125rem',
+                  }}
+                >
+                  Today, we&apos;ve successfully delivered 10+ projects across web development, mobile 
+                  applications, and browser extensions, serving clients who value custom solutions over 
+                  cookie-cutter approaches. Each project has taught us something new, making us better 
+                  partners for the next challenge.
+                </Typography>
+              </Box>
+            </Box>
+          </Container>
+        </Box>
+
+        {/* Values Section */}
+        <Box
+          sx={{
+            py: { xs: 8, md: 12 },
+            background: isDark
+              ? 'linear-gradient(135deg, #1E293B 0%, #334155 50%, #1E293B 100%)'
+              : 'linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #F1F5F9 100%)',
+          }}
+        >
+          <Container maxWidth="lg">
+            <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
+              <Typography
+                variant="h2"
+                sx={{
+                  mb: 2,
+                  background: isDark
+                    ? 'linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%)'
+                    : 'linear-gradient(135deg, #0F172A 0%, #334155 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 700,
+                }}
+              >
+                Why Choose SnowPeak
               </Typography>
               <Typography
                 variant="h6"
                 sx={{
                   color: 'text.secondary',
-                  maxWidth: '600px',
+                  maxWidth: '700px',
                   mx: 'auto',
+                  lineHeight: 1.6,
                 }}
               >
-                The principles that guide everything we do
+                What sets us apart isn&apos;t just our technical expertise—it&apos;s how we work with you to achieve extraordinary results
               </Typography>
             </Box>
 
