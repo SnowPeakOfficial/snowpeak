@@ -388,48 +388,6 @@ const ServicesPreview: React.FC = () => {
                       </Box>
                     </Box>
 
-                    {/* Technologies */}
-                    <Box sx={{ mb: 3 }}>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          mb: 1,
-                          color: 'text.secondary',
-                          fontWeight: 600,
-                        }}
-                      >
-                        Technologies:
-                      </Typography>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          gap: { xs: 0.5, sm: 1 },
-                          justifyContent: 'flex-start',
-                          alignItems: 'center',
-                        }}
-                      >
-                        {service.technologies.map((tech: string) => (
-                          <Chip
-                            key={tech}
-                            label={tech}
-                            size="small"
-                            sx={{
-                              backgroundColor: isDark
-                                ? 'rgba(59, 130, 246, 0.2)'
-                                : 'rgba(57, 94, 202, 0.1)',
-                              color: 'primary.main',
-                              border: `1px solid ${theme.palette.primary.main}40`,
-                              fontSize: { xs: '0.65rem', sm: '0.75rem' },
-                              height: { xs: '1.5rem', sm: '2rem' },
-                              '& .MuiChip-label': {
-                                px: { xs: 0.5, sm: 1 },
-                              },
-                            }}
-                          />
-                        ))}
-                      </Box>
-                    </Box>
 
                     {/* CTA Button */}
                     <Button

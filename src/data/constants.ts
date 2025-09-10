@@ -802,59 +802,6 @@ export const NAVIGATION_ITEMS = [
   { label: 'Contact', href: '/contact' },
 ];
 
-// Tech Stack for Services Page
-export const TECH_STACK = {
-  frontend: [
-    { name: 'React', description: 'Modern UI library for interactive interfaces', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-    { name: 'Next.js', description: 'Full-stack React framework with SSR', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
-    { name: 'TypeScript', description: 'Type-safe JavaScript for better code quality', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
-    { name: 'Tailwind CSS', description: 'Utility-first CSS framework', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' },
-    { name: 'Material-UI', description: 'React component library', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg' },
-    { name: 'HTML5', description: 'Modern markup language', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-    { name: 'CSS3', description: 'Advanced styling and animations', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-    { name: 'JavaScript', description: 'Dynamic programming language', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  ],
-  backend: [
-    { name: 'Node.js', description: 'JavaScript runtime for server-side development', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-    { name: 'Java/Spring Boot', description: 'Enterprise-grade backend framework', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
-    { name: '.NET/C#', description: 'Microsoft\'s robust development platform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg' },
-    { name: 'Python', description: 'Versatile language for web and data applications', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-    { name: 'RESTful APIs', description: 'Standard web service architecture', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg' },
-    { name: 'GraphQL', description: 'Flexible query language for APIs', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg' },
-  ],
-  databases: [
-    { name: 'PostgreSQL', description: 'Advanced open-source relational database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
-    { name: 'MongoDB', description: 'Flexible NoSQL document database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-    { name: 'MySQL', description: 'Popular relational database system', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-    { name: 'SQL Server', description: 'Microsoft\'s enterprise database solution', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg' },
-    { name: 'Firebase', description: 'Google\'s real-time database platform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
-    { name: 'Redis', description: 'In-memory data structure store', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg' },
-  ],
-  mobile: [
-    { name: 'React Native', description: 'Cross-platform mobile development', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-    { name: 'Flutter', description: 'Google\'s UI toolkit for mobile apps', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
-    { name: 'Expo', description: 'Platform for universal React applications', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-    { name: 'iOS Development', description: 'Native iOS app development', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg' },
-    { name: 'Android Development', description: 'Native Android app development', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg' },
-  ],
-  cloud: [
-    { name: 'Google Cloud Platform', description: 'Google\'s comprehensive cloud platform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
-    { name: 'AWS', description: 'Amazon\'s comprehensive cloud platform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' },
-    { name: 'Azure', description: 'Microsoft\'s cloud computing service', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
-    { name: 'Vercel', description: 'Frontend deployment and hosting platform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg' },
-    { name: 'Docker', description: 'Containerization for consistent deployments', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-    { name: 'GitHub Actions', description: 'CI/CD automation and workflows', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
-  ],
-  tools: [
-    { name: 'Git', description: 'Version control system', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-    { name: 'VS Code', description: 'Modern code editor', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
-    { name: 'IntelliJ IDEA', description: 'Powerful IDE for Java development', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg' },
-    { name: 'Visual Studio', description: 'Microsoft\'s integrated development environment', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg' },
-    { name: 'Figma', description: 'Collaborative design and prototyping', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
-    { name: 'Stripe', description: 'Payment processing integration', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stripe/stripe-original.svg' },
-  ],
-};
-
 // Animation and UI constants
 export const ANIMATION_DURATION = 300;
 export const SCROLL_OFFSET = 80;

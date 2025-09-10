@@ -184,6 +184,7 @@ const PortfolioPage: React.FC = () => {
                 md: 'repeat(2, 1fr)',
                 lg: 'repeat(3, 1fr)'
               },
+              gridAutoRows: '1fr', // Ensure equal row heights
               gap: { xs: 3, md: 4 },
               mb: { xs: 6, md: 8 },
             }}
@@ -313,6 +314,37 @@ const PortfolioPage: React.FC = () => {
                       />
                     </Stack>
 
+                    {/* Business Logo */}
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          mb: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: { xs: 50, sm: 60 },
+                            height: { xs: 50, sm: 60 },
+                            borderRadius: '50%',
+                            background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                            fontWeight: 'bold',
+                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                            transition: 'all 0.3s ease',
+                            boxShadow: isDark
+                              ? '0 4px 16px rgba(0, 0, 0, 0.3)'
+                              : '0 4px 16px rgba(0, 0, 0, 0.1)',
+                          }}
+                        >
+                          {project.title.charAt(0)}
+                        </Box>
+                      </Box>
+
                     {/* Project Title */}
                     <Typography
                       variant="h5"
@@ -321,6 +353,9 @@ const PortfolioPage: React.FC = () => {
                         fontWeight: 600,
                         color: 'text.primary',
                         lineHeight: 1.3,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
                       {project.title}
@@ -333,6 +368,11 @@ const PortfolioPage: React.FC = () => {
                         mb: 3,
                         color: 'text.secondary',
                         lineHeight: 1.6,
+                        height: '4.8rem', // Fixed height for 3 lines
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
                       }}
                     >
                       {project.description}
@@ -340,25 +380,60 @@ const PortfolioPage: React.FC = () => {
 
                     {/* Challenge, Solution, Outcome */}
                     {project.challenge && (
-                      <Box sx={{ mb: 3 }}>
+                      <Box sx={{ mb: 3, height: '16rem', overflow: 'hidden' }}>
                         <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
                           Challenge:
                         </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2, lineHeight: 1.5 }}>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary', 
+                            mb: 2, 
+                            lineHeight: 1.5,
+                            height: '3rem',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
                           {project.challenge}
                         </Typography>
                         
                         <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
                           Solution:
                         </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2, lineHeight: 1.5 }}>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary', 
+                            mb: 2, 
+                            lineHeight: 1.5,
+                            height: '3rem',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
                           {project.solution}
                         </Typography>
                         
                         <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
                           Outcome:
                         </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.5 }}>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary', 
+                            lineHeight: 1.5,
+                            height: '3rem',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
                           {project.outcome}
                         </Typography>
                       </Box>
