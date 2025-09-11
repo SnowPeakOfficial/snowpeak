@@ -140,6 +140,7 @@ const Footer: React.FC = () => {
                 fontWeight: 600,
                 color: 'text.primary',
                 mb: 2,
+                px: 1,
               }}
             >
               Quick Links
@@ -156,7 +157,8 @@ const Footer: React.FC = () => {
                     color: 'text.secondary',
                     textTransform: 'none',
                     fontWeight: 400,
-                    px: 0,
+                    px: 1,
+                    maxWidth: '60%',
                     '&:hover': {
                       color: 'primary.main',
                       backgroundColor: 'transparent',
@@ -177,6 +179,7 @@ const Footer: React.FC = () => {
                 fontWeight: 600,
                 color: 'text.primary',
                 mb: 2,
+                px: 1,
               }}
             >
               Services
@@ -193,7 +196,8 @@ const Footer: React.FC = () => {
                     color: 'text.secondary',
                     textTransform: 'none',
                     fontWeight: 400,
-                    px: 0,
+                    px: 1,
+                    maxWidth: '60%',
                     '&:hover': {
                       color: 'primary.main',
                       backgroundColor: 'transparent',
