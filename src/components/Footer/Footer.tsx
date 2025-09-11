@@ -13,12 +13,13 @@ import {
 } from '@mui/material';
 import {
   LinkedIn,
-  GitHub,
   Twitter,
   Email,
   Phone,
   LocationOn,
   ArrowUpward,
+  Facebook,
+  Instagram,
 } from '@mui/icons-material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -99,23 +100,6 @@ const Footer: React.FC = () => {
               </IconButton>
               <IconButton
                 component="a"
-                href={CONTACT_INFO.social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  color: 'text.secondary',
-                  '&:hover': {
-                    color: isDark ? '#fff' : '#000',
-                    backgroundColor: isDark
-                      ? 'rgba(255, 255, 255, 0.1)'
-                      : 'rgba(0, 0, 0, 0.1)',
-                  },
-                }}
-              >
-                <GitHub />
-              </IconButton>
-              <IconButton
-                component="a"
                 href={CONTACT_INFO.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -128,6 +112,57 @@ const Footer: React.FC = () => {
                 }}
               >
                 <Twitter />
+              </IconButton>
+              <IconButton
+                component="a"
+                href={CONTACT_INFO.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: 'text.secondary',
+                  '&:hover': {
+                    color: '#E4405F',
+                    backgroundColor: 'rgba(228, 64, 95, 0.1)',
+                  },
+                }}
+              >
+                <Instagram />
+              </IconButton>
+              <IconButton
+                component="a"
+                href={CONTACT_INFO.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: 'text.secondary',
+                  '&:hover': {
+                    color: '#1877F2',
+                    backgroundColor: 'rgba(24, 119, 242, 0.1)',
+                  },
+                }}
+              >
+                <Facebook />
+              </IconButton>
+              <IconButton
+                component="a"
+                href={CONTACT_INFO.social.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: 'text.secondary',
+                  '&:hover': {
+                    color: '#000',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                  },
+                }}
+              >
+                <Box
+                  component="svg"
+                  sx={{ width: 24, height: 24, fill: 'currentColor' }}
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </Box>
               </IconButton>
             </Stack>
           </Box>
