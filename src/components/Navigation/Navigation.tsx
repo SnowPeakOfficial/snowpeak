@@ -153,7 +153,7 @@ const Navigation: React.FC = () => {
                           <Button
                             key={service.id}
                             component={Link}
-                            href={`/services#${service.id}`}
+                            href={`/services/${service.id}`}
                             onClick={handleNavClick}
                             variant="text"
                             sx={{
@@ -400,7 +400,7 @@ const Navigation: React.FC = () => {
                                     <Box
                                       key={service.id}
                                       component={Link}
-                                      href={`/services#${service.id}`}
+                                      href={`/services/${service.id}`}
                                       onClick={handleServicesClose}
                                       sx={{
                                         display: 'block',
