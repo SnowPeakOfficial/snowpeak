@@ -174,16 +174,28 @@ const ServicesPreview: React.FC = () => {
             const finalSelectedIndex = selectedIndex !== -1 ? selectedIndex : 0;
             
             return (
-              <Box key={service.id} sx={{ position: 'relative' }}>
+              <Box 
+                key={service.id} 
+                sx={{ 
+                  position: 'relative',
+                  '&:hover .most-popular-badge': {
+                    opacity: 1,
+                    transform: 'translateX(-50%) translateY(0)',
+                  },
+                }}
+              >
                 {/* Most Popular Badge */}
                 {service.id === 'web-applications' && (
                   <Box
+                    className="most-popular-badge"
                     sx={{
                       position: 'absolute',
                       top: -8,
                       left: '50%',
-                      transform: 'translateX(-50%)',
+                      transform: 'translateX(-50%) translateY(-8px)',
                       zIndex: 10,
+                      opacity: 0,
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                   >
                     <Chip
@@ -201,7 +213,6 @@ const ServicesPreview: React.FC = () => {
                     />
                   </Box>
                 )}
-
 
                 <Card
                   sx={{
@@ -392,7 +403,7 @@ const ServicesPreview: React.FC = () => {
                     {/* CTA Button */}
                     <Button
                       component={Link}
-                      href="/contact"
+                      href={`/services/${service.id}`}
                       variant="outlined"
                       fullWidth
                       endIcon={<ArrowForward />}
@@ -407,7 +418,7 @@ const ServicesPreview: React.FC = () => {
                         },
                       }}
                     >
-                      Get Started
+                      Learn More
                     </Button>
                   </CardContent>
                 </Card>
