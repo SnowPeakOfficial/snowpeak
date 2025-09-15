@@ -33,28 +33,58 @@ const FeaturedProjects: React.FC = () => {
   const isDark = theme.palette.mode === 'dark';
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Use all projects
-  const projects = PORTFOLIO_PROJECTS;
+  const originalProjects = PORTFOLIO_PROJECTS;
   const projectsPerView = 3;
-  const maxIndex = Math.max(0, projects.length - projectsPerView);
+  
+  // Create infinite carousel by duplicating projects at beginning and end
+  const projects = [
+    ...originalProjects.slice(-projectsPerView), // Last few projects at the beginning
+    ...originalProjects, // Original projects
+    ...originalProjects.slice(0, projectsPerView), // First few projects at the end
+  ];
+  
+  // Start at the first "real" project (after the duplicated ones)
+  const [realIndex, setRealIndex] = useState(projectsPerView);
 
   const handlePrevious = () => {
-    setCurrentIndex(prev => {
-      if (prev === 0) {
-        return maxIndex; // Loop to end
-      }
-      return prev - 1;
-    });
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setRealIndex(prev => prev - 1);
+    
+    // If we're at the first duplicated section, reset to the end without animation
+    setTimeout(() => {
+      setRealIndex(prev => {
+        if (prev === projectsPerView - 1) {
+          setIsTransitioning(false);
+          return originalProjects.length + projectsPerView - 1;
+        }
+        setIsTransitioning(false);
+        return prev;
+      });
+    }, 500); // Match the transition duration
   };
 
   const handleNext = () => {
-    setCurrentIndex(prev => {
-      if (prev >= maxIndex) {
-        return 0; // Loop to beginning
-      }
-      return prev + 1;
-    });
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setRealIndex(prev => prev + 1);
+    
+    // If we're at the last duplicated section, reset to the beginning without animation
+    setTimeout(() => {
+      setRealIndex(prev => {
+        if (prev === originalProjects.length + projectsPerView) {
+          setIsTransitioning(false);
+          return projectsPerView;
+        }
+        setIsTransitioning(false);
+        return prev;
+      });
+    }, 500); // Match the transition duration
   };
 
   const getProjectTypeColor = (type: string) => {
@@ -161,7 +191,12 @@ const FeaturedProjects: React.FC = () => {
         </Box>
 
         {/* Carousel Container */}
-        <Box sx={{ position: 'relative', mb: { xs: 6, md: 8 } }}>
+        <Box sx={{ 
+          position: 'relative', 
+          mb: { xs: 6, md: 8 },
+          px: { xs: 4, md: 6 }, // Increased horizontal padding to prevent clipping
+          py: 3, // Increased vertical padding to prevent clipping
+        }}>
           {/* Navigation Arrows */}
           <IconButton
             onClick={handlePrevious}
@@ -234,25 +269,35 @@ const FeaturedProjects: React.FC = () => {
           {/* Carousel Track */}
           <Box
             sx={{
-              overflow: 'hidden',
+              overflow: 'visible', // Change to visible to prevent clipping
               width: '100%',
+              py: 3, // Increased padding for hover effects
+              position: 'relative',
             }}
           >
+            {/* Inner container with overflow hidden for the sliding effect */}
             <Box
               sx={{
-                display: 'flex',
-                transform: `translateX(-${currentIndex * (100 / projectsPerView)}%)`,
-                transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                gap: { xs: 3, md: 4 },
+                overflow: 'hidden',
+                mx: { xs: 2, md: 3 }, // Add margin to create space for hover effects
               }}
             >
+              <Box
+                sx={{
+                  display: 'flex',
+                  transform: `translateX(-${realIndex * (100 / projectsPerView)}%)`,
+                  transition: isTransitioning ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+                  gap: { xs: 3, md: 4 },
+                  px: { xs: 2, md: 3 }, // Add padding to the sliding container
+                }}
+              >
               {projects.map((project, index) => {
                 const typeColors = getProjectTypeColor(project.type);
                 const isHovered = hoveredProject === project.id;
                 
                 return (
                   <Card
-                    key={project.id}
+                    key={`${project.id}-${index}`}
                     onMouseEnter={() => setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
                     sx={{
@@ -272,11 +317,11 @@ const FeaturedProjects: React.FC = () => {
                       position: 'relative',
                       overflow: 'hidden',
                       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      transform: isHovered ? 'translateY(-0.75rem) scale(1.02)' : 'translateY(0) scale(1)',
+                      transform: isHovered ? 'translateY(-0.5rem) scale(1.01)' : 'translateY(0) scale(1)',
                       boxShadow: isHovered
                         ? isDark
-                          ? '0 2rem 4rem rgba(0, 0, 0, 0.4)'
-                          : '0 2rem 4rem rgba(0, 0, 0, 0.15)'
+                          ? '0 1.5rem 3rem rgba(0, 0, 0, 0.4)'
+                          : '0 1.5rem 3rem rgba(0, 0, 0, 0.15)'
                         : isDark
                           ? '0 0.5rem 1rem rgba(0, 0, 0, 0.2)'
                           : '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
@@ -520,6 +565,7 @@ const FeaturedProjects: React.FC = () => {
                   </Card>
                 );
               })}
+              </Box>
             </Box>
           </Box>
         </Box>
