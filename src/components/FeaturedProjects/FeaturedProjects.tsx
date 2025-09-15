@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Box, 
   Container, 
@@ -11,6 +11,7 @@ import {
   Stack, 
   Button, 
   useTheme,
+  useMediaQuery,
   IconButton,
   Fade,
   Tooltip
@@ -31,13 +32,31 @@ import { PORTFOLIO_PROJECTS } from '@/data/constants';
 const FeaturedProjects: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
+  
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   
   // Use all projects
   const originalProjects = PORTFOLIO_PROJECTS;
-  const projectsPerView = 3;
+  
+  // Responsive projects per view
+  const getProjectsPerView = () => {
+    if (isMobile) return 1;
+    if (isTablet) return 2;
+    return 3;
+  };
+  
+  const [projectsPerView, setProjectsPerView] = useState(getProjectsPerView());
+  
+  // Update projectsPerView when screen size changes
+  useEffect(() => {
+    setProjectsPerView(getProjectsPerView());
+  }, [isMobile, isTablet]);
   
   // Create infinite carousel by duplicating projects at beginning and end
   const projects = [
@@ -48,6 +67,35 @@ const FeaturedProjects: React.FC = () => {
   
   // Start at the first "real" project (after the duplicated ones)
   const [realIndex, setRealIndex] = useState(projectsPerView);
+  
+  // Update realIndex when projectsPerView changes
+  useEffect(() => {
+    setRealIndex(projectsPerView);
+  }, [projectsPerView]);
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrevious();
+    }
+  };
 
   const handlePrevious = () => {
     if (isTransitioning) return;
@@ -202,12 +250,12 @@ const FeaturedProjects: React.FC = () => {
             onClick={handlePrevious}
             sx={{
               position: 'absolute',
-              left: { xs: -40, md: -80 },
+              left: { xs: -20, sm: -40, md: -80 },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              width: { xs: 56, md: 64 },
-              height: { xs: 56, md: 64 },
+              width: { xs: 40, sm: 56, md: 64 },
+              height: { xs: 40, sm: 56, md: 64 },
               background: isDark
                 ? 'rgba(30, 41, 59, 0.9)'
                 : 'rgba(255, 255, 255, 0.9)',
@@ -229,19 +277,19 @@ const FeaturedProjects: React.FC = () => {
               },
             }}
           >
-            <ChevronLeft sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }} />
+            <ChevronLeft sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
           </IconButton>
 
           <IconButton
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              right: { xs: -40, md: -80 },
+              right: { xs: -20, sm: -40, md: -80 },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              width: { xs: 56, md: 64 },
-              height: { xs: 56, md: 64 },
+              width: { xs: 40, sm: 56, md: 64 },
+              height: { xs: 40, sm: 56, md: 64 },
               background: isDark
                 ? 'rgba(30, 41, 59, 0.9)'
                 : 'rgba(255, 255, 255, 0.9)',
@@ -263,7 +311,7 @@ const FeaturedProjects: React.FC = () => {
               },
             }}
           >
-            <ChevronRight sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }} />
+            <ChevronRight sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
           </IconButton>
 
           {/* Carousel Track */}
@@ -271,15 +319,18 @@ const FeaturedProjects: React.FC = () => {
             sx={{
               overflow: 'visible', // Change to visible to prevent clipping
               width: '100%',
-              py: { xs: 4, md: 6 }, // Significantly increased padding for hover effects
+              py: { xs: 2, sm: 4, md: 6 }, // Responsive padding for hover effects
               position: 'relative',
             }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {/* Inner container with overflow hidden for the sliding effect */}
             <Box
               sx={{
                 overflow: 'hidden',
-                mx: { xs: 2, md: 3 }, // Add margin to create space for hover effects
+                mx: { xs: 1, sm: 2, md: 3 }, // Responsive margin for hover effects
                 position: 'relative',
               }}
             >
@@ -288,9 +339,9 @@ const FeaturedProjects: React.FC = () => {
                   display: 'flex',
                   transform: `translateX(-${realIndex * (100 / projectsPerView)}%)`,
                   transition: isTransitioning ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-                  gap: { xs: 3, md: 4 },
-                  px: { xs: 2, md: 3 }, // Add padding to the sliding container
-                  py: 2, // Add vertical padding to prevent clipping
+                  gap: isMobile ? 0 : { sm: 3, md: 4 }, // No gap on mobile to prevent cropping
+                  px: { xs: 0, sm: 2, md: 3 }, // No padding on mobile
+                  py: { xs: 1, sm: 2 }, // Responsive vertical padding
                 }}
               >
               {projects.map((project, index) => {
@@ -303,9 +354,9 @@ const FeaturedProjects: React.FC = () => {
                     onMouseEnter={() => setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
                     sx={{
-                      width: `calc(${100 / projectsPerView}% - ${24}px)`,
-                      minWidth: `calc(${100 / projectsPerView}% - ${24}px)`,
-                      maxWidth: `calc(${100 / projectsPerView}% - ${24}px)`,
+                      width: isMobile ? '100%' : `calc(${100 / projectsPerView}% - 24px)`,
+                      minWidth: isMobile ? '100%' : `calc(${100 / projectsPerView}% - 24px)`,
+                      maxWidth: isMobile ? '100%' : `calc(${100 / projectsPerView}% - 24px)`,
                       flexShrink: 0,
                       height: '100%',
                       display: 'flex',
@@ -315,12 +366,12 @@ const FeaturedProjects: React.FC = () => {
                         : 'rgba(255, 255, 255, 0.9)',
                       backdropFilter: 'blur(10px)',
                       border: 'none',
-                      borderRadius: 3,
+                      borderRadius: { xs: 2, md: 3 },
                       position: 'relative',
                       overflow: 'hidden',
                       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      transform: isHovered ? 'translateY(-0.5rem) scale(1.01)' : 'translateY(0) scale(1)',
-                      boxShadow: isHovered
+                      transform: isHovered && !isMobile ? 'translateY(-0.5rem) scale(1.01)' : 'translateY(0) scale(1)',
+                      boxShadow: isHovered && !isMobile
                         ? isDark
                           ? '0 1.5rem 3rem rgba(0, 0, 0, 0.4)'
                           : '0 1.5rem 3rem rgba(0, 0, 0, 0.15)'
@@ -332,7 +383,7 @@ const FeaturedProjects: React.FC = () => {
                     {/* Project Image Placeholder */}
                     <Box
                       sx={{
-                        height: 200,
+                        height: { xs: 150, sm: 180, md: 200 },
                         background: `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
                         display: 'flex',
                         alignItems: 'center',
@@ -343,59 +394,61 @@ const FeaturedProjects: React.FC = () => {
                     >
                       <Box
                         sx={{
-                          width: 80,
-                          height: 80,
+                          width: { xs: 60, sm: 70, md: 80 },
+                          height: { xs: 60, sm: 70, md: 80 },
                           borderRadius: '50%',
                           background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           color: 'white',
-                          fontSize: '2rem',
+                          fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' },
                           fontWeight: 'bold',
-                          transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+                          transform: isHovered && !isMobile ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
                           transition: 'all 0.3s ease',
                         }}
                       >
                         {project.title.charAt(0)}
                       </Box>
                       
-                      {/* Overlay on hover */}
-                      <Fade in={isHovered}>
-                        <Box
-                          sx={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            background: 'rgba(0, 0, 0, 0.3)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <IconButton
-                            component={Link}
-                            href={project.liveUrl || '#'}
-                            target="_blank"
-                            rel="noopener"
+                      {/* Overlay on hover - only show on non-mobile */}
+                      {!isMobile && (
+                        <Fade in={isHovered}>
+                          <Box
                             sx={{
-                              background: 'rgba(255, 255, 255, 0.9)',
-                              color: 'primary.main',
-                              '&:hover': {
-                                background: 'white',
-                                transform: 'scale(1.1)',
-                              },
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              background: 'rgba(0, 0, 0, 0.3)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
                             }}
                           >
-                            <Launch />
-                          </IconButton>
-                        </Box>
-                      </Fade>
+                            <IconButton
+                              component={Link}
+                              href={project.liveUrl || '#'}
+                              target="_blank"
+                              rel="noopener"
+                              sx={{
+                                background: 'rgba(255, 255, 255, 0.9)',
+                                color: 'primary.main',
+                                '&:hover': {
+                                  background: 'white',
+                                  transform: 'scale(1.1)',
+                                },
+                              }}
+                            >
+                              <Launch />
+                            </IconButton>
+                          </Box>
+                        </Fade>
+                      )}
                     </Box>
 
-                    <CardContent sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ p: { xs: 2, sm: 2.5, md: 3 }, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                       {/* Project Type and Status */}
                       <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
                         <Chip 
@@ -453,7 +506,7 @@ const FeaturedProjects: React.FC = () => {
 
                       {/* Project Title */}
                       <Typography
-                        variant="h5"
+                        variant={isMobile ? "h6" : "h5"}
                         sx={{
                           mb: 1,
                           fontWeight: 600,
@@ -462,6 +515,7 @@ const FeaturedProjects: React.FC = () => {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
                         }}
                       >
                         {project.title}
@@ -474,11 +528,12 @@ const FeaturedProjects: React.FC = () => {
                           mb: 2,
                           color: 'text.secondary',
                           lineHeight: 1.6,
-                          height: '4.8rem', // Fixed height for 3 lines (1.6 * 1rem * 3)
+                          height: { xs: '3.2rem', sm: '4.8rem' }, // Responsive height: 2 lines on mobile, 3 on larger screens
                           overflow: 'hidden',
                           display: '-webkit-box',
-                          WebkitLineClamp: 3,
+                          WebkitLineClamp: { xs: 2, sm: 3 },
                           WebkitBoxOrient: 'vertical',
+                          fontSize: { xs: '0.875rem', sm: '0.875rem' },
                         }}
                       >
                         {project.description}
@@ -525,7 +580,11 @@ const FeaturedProjects: React.FC = () => {
                       )}
 
                       {/* CTA Buttons */}
-                      <Stack direction="row" spacing={1} sx={{ mt: 'auto' }}>
+                      <Stack 
+                        direction={isMobile ? "column" : "row"} 
+                        spacing={1} 
+                        sx={{ mt: 'auto' }}
+                      >
                         {project.liveUrl && (
                           <Button
                             component={Link}
@@ -533,13 +592,16 @@ const FeaturedProjects: React.FC = () => {
                             target="_blank"
                             rel="noopener"
                             variant="contained"
-                            size="small"
+                            size={isMobile ? "medium" : "small"}
                             endIcon={<Launch />}
+                            fullWidth={isMobile}
                             sx={{
                               background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                              fontSize: { xs: '0.875rem', sm: '0.75rem' },
+                              py: { xs: 1, sm: 0.5 },
                               '&:hover': {
                                 background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                                transform: 'scale(1.05)',
+                                transform: isMobile ? 'none' : 'scale(1.05)',
                               },
                             }}
                           >
@@ -550,10 +612,13 @@ const FeaturedProjects: React.FC = () => {
                           component={Link}
                           href="/portfolio"
                           variant="outlined"
-                          size="small"
+                          size={isMobile ? "medium" : "small"}
+                          fullWidth={isMobile}
                           sx={{
                             borderColor: 'primary.main',
                             color: 'primary.main',
+                            fontSize: { xs: '0.875rem', sm: '0.75rem' },
+                            py: { xs: 1, sm: 0.5 },
                             '&:hover': {
                               backgroundColor: 'primary.main',
                               color: 'primary.contrastText',
