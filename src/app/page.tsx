@@ -7,13 +7,16 @@ import Testimonials from '@/components/Testimonials/Testimonials';
 import CallToActionBand from '@/components/CallToActionBand/CallToActionBand';
 
 export default function Home() {
+  // Feature flag for Additional Services section
+  const showAdditionalServices = process.env.NEXT_PUBLIC_SHOW_ADDITIONAL_SERVICES === 'true';
+
   return (
     <>
       <HeroSection />
       <FeaturedProjects />
       <ServicesPreview />
       <ProcessSection />
-      <AdditionalServices />
+      {showAdditionalServices && <AdditionalServices />}
       <Testimonials />
       <CallToActionBand />
     </>
