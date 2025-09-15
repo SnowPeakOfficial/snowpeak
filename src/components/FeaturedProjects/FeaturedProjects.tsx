@@ -122,12 +122,12 @@ const FeaturedProjects: React.FC = () => {
   return (
     <Box
       sx={{
-        py: { xs: 12, md: 16 },
+        py: { xs: 16, md: 20 }, // Increased padding to prevent clipping
         background: isDark
           ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
           : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'visible', // Changed to visible to prevent clipping
       }}
     >
       {/* Background Pattern */}
@@ -145,7 +145,7 @@ const FeaturedProjects: React.FC = () => {
         }}
       />
 
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2, overflow: 'visible' }}>
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
           <Typography
@@ -195,7 +195,7 @@ const FeaturedProjects: React.FC = () => {
           position: 'relative', 
           mb: { xs: 6, md: 8 },
           px: { xs: 4, md: 6 }, // Increased horizontal padding to prevent clipping
-          py: 3, // Increased vertical padding to prevent clipping
+          py: { xs: 6, md: 8 }, // Significantly increased vertical padding to prevent clipping
         }}>
           {/* Navigation Arrows */}
           <IconButton
@@ -271,7 +271,7 @@ const FeaturedProjects: React.FC = () => {
             sx={{
               overflow: 'visible', // Change to visible to prevent clipping
               width: '100%',
-              py: 3, // Increased padding for hover effects
+              py: { xs: 4, md: 6 }, // Significantly increased padding for hover effects
               position: 'relative',
             }}
           >
@@ -280,6 +280,7 @@ const FeaturedProjects: React.FC = () => {
               sx={{
                 overflow: 'hidden',
                 mx: { xs: 2, md: 3 }, // Add margin to create space for hover effects
+                position: 'relative',
               }}
             >
               <Box
@@ -289,6 +290,7 @@ const FeaturedProjects: React.FC = () => {
                   transition: isTransitioning ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
                   gap: { xs: 3, md: 4 },
                   px: { xs: 2, md: 3 }, // Add padding to the sliding container
+                  py: 2, // Add vertical padding to prevent clipping
                 }}
               >
               {projects.map((project, index) => {
