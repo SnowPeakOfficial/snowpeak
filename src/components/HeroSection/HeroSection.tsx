@@ -20,7 +20,6 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { COMPANY_INFO, COMPANY_STATS } from '@/data/constants';
-import m3Image from '@/assets/m3.jpg';
 
 const HeroSection: React.FC = () => {
   const theme = useTheme();
@@ -51,33 +50,6 @@ const HeroSection: React.FC = () => {
             ? 'radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)'
             : 'radial-gradient(circle at 25% 25%, rgba(57, 94, 202, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(132, 139, 216, 0.1) 0%, transparent 50%)',
           zIndex: 1,
-        }}
-      />
-
-      {/* Background Image */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: '50%',
-          backgroundImage: `url(${m3Image.src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'right top',
-          backgroundRepeat: 'no-repeat',
-          zIndex: 1,
-          '&::after': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: isDark
-              ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.05) 50%, transparent 100%)'
-              : 'linear-gradient(135deg, rgba(248, 250, 252, 0.2) 0%, rgba(248, 250, 252, 0.05) 50%, transparent 100%)',
-          },
         }}
       />
 
@@ -299,6 +271,44 @@ const HeroSection: React.FC = () => {
           {/* Right Content - Stats & Services Preview */}
           <Box sx={{ flex: { xs: '1', lg: '1' }, width: '100%' }}>
             <Box sx={{ position: 'relative' }}>
+              {/* Logo Display */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  mb: 4,
+                }}
+              >
+                <Box
+                  sx={{
+                    position: 'relative',
+                    width: { xs: '200px', md: '300px' },
+                    height: { xs: '200px', md: '300px' },
+                    borderRadius: '50%',
+                    background: isDark
+                      ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%)'
+                      : 'linear-gradient(135deg, rgba(57, 94, 202, 0.1) 0%, rgba(132, 139, 216, 0.1) 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backdropFilter: 'blur(10px)',
+                    border: `2px solid ${theme.palette.primary.main}40`,
+                    animation: 'float 6s ease-in-out infinite',
+                    '@keyframes float': {
+                      '0%, 100%': { transform: 'translateY(0px)' },
+                      '50%': { transform: 'translateY(-20px)' },
+                    },
+                  }}
+                >
+                  <Image
+                    src="/snowpeak-logo/vector/default.svg"
+                    alt={COMPANY_INFO.name}
+                    width={360}
+                    height={360}
+                    style={{ filter: isDark ? 'brightness(1.2)' : 'none' }}
+                  />
+                </Box>
+              </Box>
 
               {/* Stats Grid */}
               <Box
