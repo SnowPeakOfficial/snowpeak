@@ -164,7 +164,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       details: 'Using React Native or Flutter, we build apps that run smoothly on both platforms while providing a native-like experience, saving time and development cost.'
     },
     {
-      title: 'High-Performance & Smooth UX',
+      title: 'High-Performance & Smooth User Experience',
       description: 'Fast, responsive apps that delight users',
       icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'Our mobile apps are optimized for speed, responsive layouts, and smooth animations, ensuring users enjoy a seamless and engaging experience.'
@@ -176,10 +176,10 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       details: 'We implement offline storage, caching, and background sync so your users can access core features even when connectivity is limited.'
     },
     {
-      title: 'App Store Deployment',
-      description: 'Optimized submission and visibility for app stores',
+      title: 'Distribution & Updates',
+      description: 'Smooth deployment to app stores',
       icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'We handle the entire app store submission process, including metadata, screenshots, and compliance checks, helping your app reach your audience efficiently.'
+      details: 'We manage app store submissions, approvals, and update rollouts, ensuring your app reaches users quickly and stays up-to-date.'
     }
   ],
 
