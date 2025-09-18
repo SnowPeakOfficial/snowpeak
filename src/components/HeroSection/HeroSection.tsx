@@ -1,6 +1,6 @@
- 'use client';
+'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Container,
@@ -19,11 +19,77 @@ import {
 } from '@mui/icons-material';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { COMPANY_INFO, COMPANY_STATS } from '@/data/constants';
+
+// Mountain Layer Component
+const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity, zIndex }) => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  
+  return (
+    <Box
+      sx={{
+        position: 'absolute',
+        top: '25%',
+        width: '150%',
+        height: '75%',
+        background: `linear-gradient(to top, ${isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(57, 94, 202, 0.3)'} 0%, ${isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.1)'} 100%)`,
+        clipPath: zIndex === 3 
+          ? 'polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%)'
+          : zIndex === 2
+          ? 'polygon(0% 100%, 20% 70%, 35% 35%, 50% 60%, 70% 30%, 85% 65%, 100% 50%, 100% 100%)'
+          : 'polygon(0% 100%, 25% 80%, 45% 50%, 65% 75%, 85% 45%, 100% 70%, 100% 100%)',
+        pointerEvents: 'none',
+        zIndex: zIndex,
+        opacity: opacity,
+        filter: `drop-shadow(0 2px 8px ${isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(57, 94, 202, 0.2)'})`,
+        borderTop: `1px solid ${isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.15)'}`,
+      }}
+    />
+  );
+};
+
+// Peak Glow Component
+const PeakGlow: React.FC = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  
+  return (
+    <motion.div
+      animate={{
+        opacity: [0.3, 0.6, 0.3],
+        scale: [1, 1.1, 1],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      }}
+      style={{
+        position: 'absolute',
+        top: '30%',
+        left: '60%',
+        width: '80px',
+        height: '80px',
+        background: `radial-gradient(circle, ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(59, 130, 246, 0.2)'} 0%, transparent 70%)`,
+        borderRadius: '50%',
+        pointerEvents: 'none',
+        zIndex: 6,
+      }}
+    />
+  );
+};
 
 const HeroSection: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   return (
     <Box
@@ -52,6 +118,33 @@ const HeroSection: React.FC = () => {
           zIndex: 1,
         }}
       />
+
+      {/* Mountain Layers */}
+      <MountainLayer opacity={0.2} zIndex={1} />
+      <MountainLayer opacity={0.3} zIndex={2} />
+      <MountainLayer opacity={0.4} zIndex={3} />
+
+      {/* Peak Glow Effects */}
+      <PeakGlow />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '40%',
+          left: '20%',
+          width: '60px',
+          height: '60px',
+          background: `radial-gradient(circle, ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(59, 130, 246, 0.15)'} 0%, transparent 70%)`,
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 4,
+          animation: 'peakGlow 6s ease-in-out infinite',
+          '@keyframes peakGlow': {
+            '0%, 100%': { opacity: 0.2, transform: 'scale(1)' },
+            '50%': { opacity: 0.5, transform: 'scale(1.2)' },
+          },
+        }}
+      />
+
 
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
         <Box
