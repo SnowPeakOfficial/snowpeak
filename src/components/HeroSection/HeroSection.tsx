@@ -34,7 +34,7 @@ const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity,
         top: '25%',
         width: '150%',
         height: '75%',
-        background: `linear-gradient(to top, ${isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(57, 94, 202, 0.3)'} 0%, ${isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.1)'} 100%)`,
+        background: `linear-gradient(to top, ${isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.3)'} 0%, ${isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(57, 94, 202, 0.1)'} 100%)`,
         clipPath: zIndex === 3 
           ? 'polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%)'
           : zIndex === 2
@@ -43,8 +43,8 @@ const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity,
         pointerEvents: 'none',
         zIndex: zIndex,
         opacity: opacity,
-        filter: `drop-shadow(0 2px 8px ${isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(57, 94, 202, 0.2)'})`,
-        borderTop: `1px solid ${isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.15)'}`,
+        filter: `drop-shadow(0 2px 8px ${isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.2)'})`,
+        borderTop: `1px solid ${isDark ? 'rgba(59, 130, 246, 0.08)' : 'rgba(57, 94, 202, 0.15)'}`,
       }}
     />
   );
@@ -78,6 +78,208 @@ const PeakGlow: React.FC = () => {
         zIndex: 6,
       }}
     />
+  );
+};
+
+// Fuzzy White Snow Elements
+const FuzzySnowElements: React.FC = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  
+  return (
+    <>
+      {/* Large Snowflake Circle - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-100, window.innerHeight + 100],
+          x: [0, 30, -20, 10],
+          rotate: [0, 360],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 0,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-100px',
+          right: '12%',
+          width: '100px',
+          height: '100px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 30%, rgba(255, 255, 255, 0.1) 60%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(196, 181, 253, 0.8) 0%, rgba(221, 214, 254, 0.6) 30%, rgba(196, 181, 253, 0.3) 60%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(8px)',
+          boxShadow: isDark
+            ? '0 0 40px rgba(255, 255, 255, 0.3), 0 0 80px rgba(255, 255, 255, 0.1)'
+            : '0 0 40px rgba(139, 92, 246, 0.4), 0 0 80px rgba(132, 139, 216, 0.2)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Medium Snow Cluster - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-80, window.innerHeight + 80],
+          x: [0, -25, 15, -10],
+          scale: [1, 1.1, 0.9, 1],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 3,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-80px',
+          left: '5%',
+          width: '70px',
+          height: '50px',
+          background: isDark
+            ? 'radial-gradient(ellipse, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%)'
+            : 'radial-gradient(ellipse, rgba(221, 214, 254, 0.8) 0%, rgba(196, 181, 253, 0.6) 40%, rgba(221, 214, 254, 0.3) 70%, transparent 100%)',
+          borderRadius: '50px',
+          filter: 'blur(6px)',
+          boxShadow: isDark
+            ? '0 0 30px rgba(255, 255, 255, 0.2)'
+            : '0 0 30px rgba(132, 139, 216, 0.4)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snow Particle 1 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-60, window.innerHeight + 60],
+          x: [0, 20, -15, 5],
+          opacity: [0.6, 1, 0.8, 0.6],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 1,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-60px',
+          right: '20%',
+          width: '40px',
+          height: '40px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(196, 181, 253, 0.9) 0%, rgba(221, 214, 254, 0.7) 50%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(4px)',
+          boxShadow: isDark
+            ? '0 0 20px rgba(255, 255, 255, 0.4)'
+            : '0 0 20px rgba(139, 92, 246, 0.5)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snow Particle 2 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-40, window.innerHeight + 40],
+          x: [0, 15, -10, 8],
+          opacity: [0.4, 0.8, 0.6, 0.4],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 5,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-40px',
+          left: '15%',
+          width: '25px',
+          height: '25px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 70%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.5) 70%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(3px)',
+          boxShadow: isDark
+            ? '0 0 12px rgba(255, 255, 255, 0.3)'
+            : '0 0 12px rgba(132, 139, 216, 0.4)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snow Particle 3 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-50, window.innerHeight + 50],
+          x: [0, -12, 18, -5],
+          scale: [0.8, 1.1, 0.9, 0.8],
+        }}
+        transition={{
+          duration: 11,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 7,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-50px',
+          left: '25%',
+          width: '35px',
+          height: '35px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(196, 181, 253, 0.8) 0%, rgba(221, 214, 254, 0.5) 60%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(4px)',
+          boxShadow: isDark
+            ? '0 0 18px rgba(255, 255, 255, 0.2)'
+            : '0 0 18px rgba(139, 92, 246, 0.3)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Additional Small Snow Particle - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-30, window.innerHeight + 30],
+          x: [0, 25, -8, 12],
+          opacity: [0.5, 0.9, 0.7, 0.5],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 2,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-30px',
+          right: '35%',
+          width: '20px',
+          height: '20px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(2px)',
+          boxShadow: isDark
+            ? '0 0 10px rgba(255, 255, 255, 0.3)'
+            : '0 0 10px rgba(196, 181, 253, 0.5)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+    </>
   );
 };
 
@@ -118,6 +320,9 @@ const HeroSection: React.FC = () => {
           zIndex: 1,
         }}
       />
+
+      {/* Fuzzy White Snow Elements */}
+      <FuzzySnowElements />
 
       {/* Mountain Layers */}
       <MountainLayer opacity={0.2} zIndex={1} />
