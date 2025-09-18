@@ -72,15 +72,67 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
   }, [service.packages]);
 
-  const getWebDevFeatureImage = (featureTitle: string): string => {
-    const imageMap: Record<string, string> = {
-      'Custom Website Design': 'custom-website-design.jpg',
-      'SEO & Visibility': 'seo.jpg',
-      'Fast & Optimized Performance': 'performance.jpg',
-      'Content Management & Updates': 'content-management.jpg',
-      'Business Growth Ready': 'business-growth.jpg',
+  const getServiceFeatureImage = (serviceId: string, featureTitle: string): string => {
+    const serviceMaps: Record<string, { folder: string; images: Record<string, string> }> = {
+      'web-development': {
+        folder: 'web-dev',
+        images: {
+          'Custom Website Design': 'custom-website-design.jpg',
+          'SEO & Visibility': 'seo.jpg',
+          'Fast & Optimized Performance': 'performance.jpg',
+          'Content Management & Updates': 'content-management.jpg',
+          'Business Growth Ready': 'business-growth.jpg',
+        }
+      },
+      'web-applications': {
+        folder: 'web-app',
+        images: {
+          'Scalable & Robust Architecture': 'robust-architecture.jpg',
+          'Interactive & Real-time Features': 'real-time-features.jpg',
+          'Enterprise-Grade Security': 'security.jpg',
+          'Data & Analytics Integration': 'data-analytics.jpg',
+          'Business Efficiency & ROI': 'business-efficiency.jpg',
+        }
+      },
+      'mobile-applications': {
+        folder: 'mobile-apps',
+        images: {
+          'Cross-Platform Mobile Apps': 'cross-platform.jpg',
+          'High-Performance & Smooth User Experience': 'smooth-ux.jpg',
+          'Scalable & Future-Ready': 'scalable.jpg',
+          'Distribution & Updates': 'distribution.jpg',
+          'Customer Engagement & Retention': 'customer-engagement.jpg',
+        }
+      },
+      'browser-extensions': {
+        folder: 'browser-extensions',
+        images: {
+          'Cross-Browser Compatibility': 'cross-browser.jpg',
+          'Brand Visibility & Engagement': 'brand-visibility.jpg',
+          'Secure & Safe Integration': 'secure-safe.jpg',
+          'Distribution & Updates': 'distribution-updates.jpg',
+          'Market Differentiation': 'market-differentiation.jpg',
+        }
+      },
+      'maintenance-support': {
+        folder: 'maintenance-support',
+        images: {
+          'Proactive Monitoring': 'monitoring.jpg',
+          'Security & Updates': 'security.jpg',
+          'Performance Optimization': 'performance-optimizations.jpg',
+          'Ongoing Feature Support': 'ongoing-support.jpg',
+          'Peace of Mind for Your Business': 'peace-business.jpg',
+        }
+      }
     };
-    return `/assets/services/web-dev/${imageMap[featureTitle] || 'custom-website-design.jpg'}`;
+
+    const serviceMap = serviceMaps[serviceId];
+    if (!serviceMap) return '';
+    
+    const imageName = serviceMap.images[featureTitle];
+    if (!imageName) return '';
+    
+    return `/assets/services/${serviceMap.folder}/${imageName}`;
   };
 
   const handleImageError = (featureTitle: string) => {
@@ -761,14 +813,14 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                       }}
                     />
 
-                    {/* Feature Image for Web Development */}
-                    {service.id === 'web-development' ? (
+                    {/* Feature Images for All Services */}
+                    {getServiceFeatureImage(service.id, feature.title) ? (
                       <>
                         {/* Feature Image */}
                         <Box
                           component="img"
-                          src={getWebDevFeatureImage(feature.title)}
-                          alt={`${feature.title} - Professional web development feature`}
+                          src={getServiceFeatureImage(service.id, feature.title)}
+                          alt={`${feature.title} - Professional ${service.title.toLowerCase()} feature`}
                           onLoad={() => handleImageLoad(feature.title)}
                           onError={() => handleImageError(feature.title)}
                           sx={{
@@ -861,7 +913,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                         )}
                       </>
                     ) : (
-                      /* Default Feature Visual Content for other services */
+                      /* Default Feature Visual Content when no image is available */
                       <Box
                         sx={{
                           position: 'relative',
