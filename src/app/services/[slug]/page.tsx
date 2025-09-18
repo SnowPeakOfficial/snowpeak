@@ -57,6 +57,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const [selectedPackageIndex, setSelectedPackageIndex] = useState<number>(0);
+  const [imageLoadStates, setImageLoadStates] = useState<Record<string, boolean>>({});
   
   // Find the service by slug
   const service = SERVICES.find(s => s.id === params.slug);
@@ -70,6 +71,25 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     const popularIndex = service.packages.findIndex(pkg => pkg.popular);
     setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
   }, [service.packages]);
+
+  const getWebDevFeatureImage = (featureTitle: string): string => {
+    const imageMap: Record<string, string> = {
+      'Custom Website Design': 'custom-website-design.jpg',
+      'SEO & Visibility': 'seo.jpg',
+      'Fast & Optimized Performance': 'performance.jpg',
+      'Content Management & Updates': 'content-management.jpg',
+      'Business Growth Ready': 'business-growth.jpg',
+    };
+    return `/assets/services/web-dev/${imageMap[featureTitle] || 'custom-website-design.jpg'}`;
+  };
+
+  const handleImageError = (featureTitle: string) => {
+    setImageLoadStates(prev => ({ ...prev, [featureTitle]: false }));
+  };
+
+  const handleImageLoad = (featureTitle: string) => {
+    setImageLoadStates(prev => ({ ...prev, [featureTitle]: true }));
+  };
 
   const getServiceIcon = (iconName: string) => {
     const iconProps = {
@@ -741,80 +761,181 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                       }}
                     />
 
-                    {/* Feature Visual Content */}
-                    <Box
-                      sx={{
-                        position: 'relative',
-                        zIndex: 2,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        p: 4,
-                      }}
-                    >
-                      {/* Feature Icon */}
-                      <Box
-                        sx={{
-                          mb: 3,
-                          p: 3,
-                          borderRadius: '50%',
-                          background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
-                          border: `2px solid ${theme.palette.primary.main}40`,
-                          animation: 'float 3s ease-in-out infinite',
-                          '@keyframes float': {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                          },
-                        }}
-                      >
-                        {feature.icon}
-                      </Box>
+                    {/* Feature Image for Web Development */}
+                    {service.id === 'web-development' ? (
+                      <>
+                        {/* Feature Image */}
+                        <Box
+                          component="img"
+                          src={getWebDevFeatureImage(feature.title)}
+                          alt={`${feature.title} - Professional web development feature`}
+                          onLoad={() => handleImageLoad(feature.title)}
+                          onError={() => handleImageError(feature.title)}
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            zIndex: 2,
+                            display: imageLoadStates[feature.title] === false ? 'none' : 'block',
+                          }}
+                        />
 
-                      {/* Feature Mockup Elements */}
+                        {/* Fallback Content - shown when image fails to load */}
+                        {imageLoadStates[feature.title] === false && (
+                          <Box
+                            sx={{
+                              position: 'relative',
+                              zIndex: 2,
+                              height: '100%',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              p: 4,
+                            }}
+                          >
+                            {/* Feature Icon */}
+                            <Box
+                              sx={{
+                                mb: 3,
+                                p: 3,
+                                borderRadius: '50%',
+                                background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                                border: `2px solid ${theme.palette.primary.main}40`,
+                                animation: 'float 3s ease-in-out infinite',
+                                '@keyframes float': {
+                                  '0%, 100%': { transform: 'translateY(0px)' },
+                                  '50%': { transform: 'translateY(-10px)' },
+                                },
+                              }}
+                            >
+                              {feature.icon}
+                            </Box>
+
+                            {/* Feature Mockup Elements */}
+                            <Box
+                              sx={{
+                                width: '100%',
+                                maxWidth: '280px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 2,
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  height: '10px',
+                                  borderRadius: 1,
+                                  background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                                  opacity: 0.8,
+                                }}
+                              />
+                              <Box
+                                sx={{
+                                  height: '6px',
+                                  width: '70%',
+                                  borderRadius: 1,
+                                  background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                                }}
+                              />
+                              <Box
+                                sx={{
+                                  height: '6px',
+                                  width: '85%',
+                                  borderRadius: 1,
+                                  background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                                }}
+                              />
+                              
+                              {/* Feature-specific elements */}
+                              <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
+                                <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
+                                <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
+                                <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                              </Box>
+                            </Box>
+                          </Box>
+                        )}
+                      </>
+                    ) : (
+                      /* Default Feature Visual Content for other services */
                       <Box
                         sx={{
-                          width: '100%',
-                          maxWidth: '280px',
+                          position: 'relative',
+                          zIndex: 2,
+                          height: '100%',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: 2,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          p: 4,
                         }}
                       >
+                        {/* Feature Icon */}
                         <Box
                           sx={{
-                            height: '10px',
-                            borderRadius: 1,
-                            background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                            opacity: 0.8,
+                            mb: 3,
+                            p: 3,
+                            borderRadius: '50%',
+                            background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                            border: `2px solid ${theme.palette.primary.main}40`,
+                            animation: 'float 3s ease-in-out infinite',
+                            '@keyframes float': {
+                              '0%, 100%': { transform: 'translateY(0px)' },
+                              '50%': { transform: 'translateY(-10px)' },
+                            },
                           }}
-                        />
+                        >
+                          {feature.icon}
+                        </Box>
+
+                        {/* Feature Mockup Elements */}
                         <Box
                           sx={{
-                            height: '6px',
-                            width: '70%',
-                            borderRadius: 1,
-                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                            width: '100%',
+                            maxWidth: '280px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 2,
                           }}
-                        />
-                        <Box
-                          sx={{
-                            height: '6px',
-                            width: '85%',
-                            borderRadius: 1,
-                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
-                          }}
-                        />
-                        
-                        {/* Feature-specific elements */}
-                        <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
-                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
-                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
-                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                        >
+                          <Box
+                            sx={{
+                              height: '10px',
+                              borderRadius: 1,
+                              background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                              opacity: 0.8,
+                            }}
+                          />
+                          <Box
+                            sx={{
+                              height: '6px',
+                              width: '70%',
+                              borderRadius: 1,
+                              background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                            }}
+                          />
+                          <Box
+                            sx={{
+                              height: '6px',
+                              width: '85%',
+                              borderRadius: 1,
+                              background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                            }}
+                          />
+                          
+                          {/* Feature-specific elements */}
+                          <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
+                            <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
+                            <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
+                            <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                          </Box>
                         </Box>
                       </Box>
-                    </Box>
+                    )}
                   </Box>
                 </Box>
 
