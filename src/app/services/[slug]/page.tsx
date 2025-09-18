@@ -39,6 +39,9 @@ import {
   CloudDone,
   AutoFixHigh,
   Timeline,
+  Visibility,
+  People,
+  Verified,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -126,6 +129,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Easily update your content without technical skills',
       icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'Our websites come with intuitive content management systems, allowing you to add new pages, edit content, and manage blog posts with ease.'
+    },
+    {
+      title: 'Business Growth Ready',
+      description: 'Websites designed to convert visitors into customers',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'Beyond design and tech, we focus on clear calls-to-action, lead capture, and conversion strategies to help you grow your business online.'
     }
   ],
 
@@ -153,6 +162,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Track performance and make informed decisions',
       icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We include analytics and monitoring tools that provide insights on user behavior, app performance, and business metrics, enabling data-driven improvements.'
+    },
+    {
+      title: 'Business Efficiency & ROI',
+      description: 'Applications designed to streamline operations and cut costs',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'We don’t just build apps — we create solutions that save time, reduce overhead, and improve your bottom line.'
     }
   ],
 
@@ -170,16 +185,22 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       details: 'Our mobile apps are optimized for speed, responsive layouts, and smooth animations, ensuring users enjoy a seamless and engaging experience.'
     },
     {
-      title: 'Offline & Reliable Functionality',
-      description: 'Works even without an internet connection',
-      icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'We implement offline storage, caching, and background sync so your users can access core features even when connectivity is limited.'
+      title: 'Scalable & Future-Ready',
+      description: 'Apps that grow with your business and users',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We build apps with scalability in mind, making it easier to add new features, support more users, and adapt to evolving market needs.'
     },
     {
       title: 'Distribution & Updates',
       description: 'Smooth deployment to app stores',
       icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We manage app store submissions, approvals, and update rollouts, ensuring your app reaches users quickly and stays up-to-date.'
+    },
+    {
+      title: 'Customer Engagement & Retention',
+      description: 'Drive loyalty with direct user connections',
+      icon: <People sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'Mobile apps keep you closer to your customers with push notifications, personalized experiences, and features designed to increase engagement and retention.'
     }
   ],
 
@@ -191,10 +212,10 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       details: 'We develop extensions that work reliably across all major browsers, ensuring your users have the same seamless experience regardless of their preferred platform.'
     },
     {
-      title: 'Boost Productivity & Engagement',
-      description: 'Tools to automate tasks and enhance workflows',
-      icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'Extensions can automate repetitive tasks, provide quick access to important actions, and improve overall productivity for your users.'
+      title: 'Brand Visibility & Engagement',
+      description: 'Keep your business top-of-mind with a daily presence in users’ browsers',
+      icon: <Visibility sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Browser extensions aren’t just tools — they’re powerful brand touchpoints. We create extensions that increase customer engagement, strengthen brand awareness, and integrate seamlessly into users’ everyday online activities.'
     },
     {
       title: 'Secure & Safe Integration',
@@ -207,6 +228,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Smooth deployment to extension stores',
       icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We manage store submissions, approvals, and update rollouts, ensuring your extension reaches users quickly and stays up-to-date.'
+    },
+    {
+      title: 'Market Differentiation',
+      description: 'Stand out with unique features that users love',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'A browser extension can give your business a competitive edge, offering users convenience and functionality that sets you apart in your industry.'
     }
   ],
 
@@ -215,7 +242,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       title: 'Proactive Monitoring',
       description: 'Track uptime, performance, and potential issues 24/7',
       icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'We continuously monitor your website or app to detect problems before they affect users, ensuring reliability and stability.'
+      details: 'We continuously monitor your website or app to detect and fix issues before they affect users, ensuring reliability and stability.'
     },
     {
       title: 'Security & Updates',
@@ -234,6 +261,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Continuous improvements and new functionality',
       icon: <Code sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We help implement new features, tweak existing functionality, and ensure your digital product evolves with your business needs.'
+    },
+    {
+      title: 'Peace of Mind for Your Business',
+      description: 'Focus on growth while we handle the tech',
+      icon: <Verified sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'With our maintenance and support, you can invest your energy into running your business knowing your digital assets are always secure and optimized.'
     }
   ]
 };

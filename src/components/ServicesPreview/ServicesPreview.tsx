@@ -429,7 +429,7 @@ const ServicesPreview: React.FC = () => {
           </Typography>
           <Button
             component={Link}
-            href="/contact"
+            href="/services"
             variant="contained"
             size="large"
             endIcon={<ArrowForward />}
