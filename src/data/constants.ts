@@ -406,186 +406,54 @@ export const ADDITIONAL_SERVICES = [
 
 export const PORTFOLIO_PROJECTS = [
   {
-    id: 'restaurant-website',
-    title: 'Bella Vista Restaurant',
-    type: 'Website',
-    description: 'Modern restaurant website with online reservations, menu management, and event booking system.',
-    technologies: ['Next.js', 'TypeScript', 'Sanity CMS', 'Stripe', 'Vercel'],
-    features: [
-      'Interactive menu with dietary filters',
-      'Online reservation system',
-      'Event booking and catering',
-      'Photo gallery and virtual tour',
-      'Customer reviews integration',
-      'Multi-language support'
-    ],
-    status: 'Live',
-    users: '500+',
-    platforms: ['Web', 'Mobile Responsive'],
-    image: '/images/portfolio/bellavista-hero.jpg',
-    liveUrl: 'https://bellavista-restaurant.com',
-    featured: false,
-    metrics: {
-      monthlyReservations: {
-        value: '200+',
-        label: 'Monthly Reservations',
-        tooltip: 'Online reservations booked through the website each month',
-        type: 'business'
-      },
-      pageViews: {
-        value: '10K+',
-        label: 'Monthly Views',
-        tooltip: 'Monthly page views and website traffic',
-        type: 'traffic'
-      },
-      conversionRate: {
-        value: '8.5%',
-        label: 'Conversion Rate',
-        tooltip: 'Percentage of visitors who make a reservation',
-        type: 'performance'
-      }
-    },
-    challenge: 'Modernizing an established restaurant\'s online presence to increase reservations and customer engagement.',
-    solution: 'Built a visually stunning website with seamless reservation system and content management.',
-    outcome: 'Increased online reservations by 150% and improved customer engagement with 8.5% conversion rate.'
-  },
-  {
-    id: 'ecommerce-platform',
-    title: 'ModernShop Pro',
+    id: 'landtrip',
+    title: 'LandTrip',
     type: 'Web Application',
-    description: 'Full-stack e-commerce platform with advanced inventory management, payment processing, and analytics dashboard.',
-    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe', 'AWS', 'Redis'],
+    description: 'Specialized travel booking platform focusing exclusively on ground transportation routes for travelers who need simple transit booking without flight complexity. Features intuitive one-click booking, real-time schedules, and multi-modal transportation options. Successfully processing 500+ monthly bookings with 4.5/5 user satisfaction and expanding route network.',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Transit APIs', 'Stripe'],
     features: [
-      'Advanced product catalog with variants',
-      'Real-time inventory tracking',
-      'Multi-payment gateway integration',
-      'Admin dashboard with analytics',
-      'Customer account management',
-      'Order tracking and notifications'
+      'Route planning with transit options',
+      'One-click booking system',
+      'Real-time transit schedules',
+      'Multi-modal transportation',
+      'Trip management dashboard',
+      'Carbon footprint tracking'
     ],
     status: 'Live',
-    users: '1,000+',
+    users: '1,200+',
     platforms: ['Web', 'Mobile Responsive'],
-    image: '/images/portfolio/modernshop-hero.jpg',
-    liveUrl: 'https://modernshop-demo.vercel.app',
+    image: '/images/portfolio/landtrip-hero.jpg',
+    liveUrl: 'https://landtrip.com',
     featured: true,
     metrics: {
-      monthlyRevenue: {
-        value: '$50K+',
-        label: 'Monthly Revenue',
-        tooltip: 'Total monthly revenue processed through the platform',
-        type: 'revenue'
+      monthlyBookings: {
+        value: '500+',
+        label: 'Monthly Bookings',
+        tooltip: 'Monthly transit route bookings through the platform',
+        type: 'transactions'
       },
-      conversionRate: {
-        value: '3.2%',
-        label: 'Conversion Rate',
-        tooltip: 'Percentage of visitors who complete a purchase',
-        type: 'performance'
-      },
-      uptime: {
-        value: '99.9%',
-        label: 'Uptime',
-        tooltip: 'Platform availability and reliability percentage',
-        type: 'technical'
-      }
-    },
-    challenge: 'Building a scalable e-commerce solution that handles high traffic and complex inventory management.',
-    solution: 'Implemented microservices architecture with Redis caching and optimized database queries.',
-    outcome: 'Achieved 99.9% uptime with sub-2s page load times and processed over $50K in transactions.'
-  },
-  {
-    id: 'saas-dashboard',
-    title: 'DataInsight Pro',
-    type: 'Web Application',
-    description: 'SaaS analytics dashboard for small businesses with real-time data visualization and reporting.',
-    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Chart.js', 'AWS'],
-    features: [
-      'Real-time data visualization',
-      'Custom report generation',
-      'Multi-source data integration',
-      'Team collaboration tools',
-      'Automated insights and alerts',
-      'White-label customization'
-    ],
-    status: 'Live',
-    users: '150+',
-    platforms: ['Web', 'API'],
-    image: '/images/portfolio/datainsight-hero.jpg',
-    liveUrl: 'https://datainsight-pro.com',
-    featured: true,
-    metrics: {
-      activeUsers: {
+      routesCovered: {
         value: '150+',
-        label: 'Active Users',
-        tooltip: 'Monthly active business users on the platform',
-        type: 'users'
+        label: 'Routes Available',
+        tooltip: 'Number of transit routes available for booking',
+        type: 'coverage'
       },
-      mrr: {
-        value: '$15K+',
-        label: 'Monthly Revenue',
-        tooltip: 'Monthly recurring revenue from active subscriptions',
-        type: 'revenue'
-      },
-      churnRate: {
-        value: '3%',
-        label: 'Churn Rate',
-        tooltip: 'Monthly customer churn rate - industry leading low rate',
-        type: 'retention'
-      }
-    },
-    challenge: 'Building a comprehensive analytics platform that\'s powerful yet simple enough for small business owners.',
-    solution: 'Created intuitive drag-and-drop dashboard builder with pre-built templates and smart recommendations.',
-    outcome: 'Achieved $15K+ MRR with 3% churn rate and 72 NPS score from satisfied customers.'
-  },
-  {
-    id: 'fitness-tracker',
-    title: 'FitTrack Mobile',
-    type: 'Mobile Application',
-    description: 'Cross-platform fitness tracking app with workout plans, nutrition logging, and social features.',
-    technologies: ['React Native', 'TypeScript', 'Firebase', 'Expo', 'HealthKit'],
-    features: [
-      'Custom workout plan creation',
-      'Nutrition and calorie tracking',
-      'Progress photos and measurements',
-      'Social challenges and leaderboards',
-      'Wearable device integration',
-      'Offline workout mode'
-    ],
-    status: 'Live',
-    users: '2,500+',
-    platforms: ['iOS', 'Android'],
-    image: '/images/portfolio/fittrack-hero.jpg',
-    liveUrl: 'https://fittrack-app.com',
-    featured: false,
-    metrics: {
-      downloads: {
-        value: '5K+',
-        label: 'Downloads',
-        tooltip: 'Total app downloads across iOS and Android app stores',
-        type: 'downloads'
-      },
-      retention: {
-        value: '68%',
-        label: 'User Retention',
-        tooltip: '30-day user retention rate - users who continue using the app',
-        type: 'engagement'
-      },
-      rating: {
-        value: '4.6/5',
-        label: 'App Rating',
-        tooltip: 'Average rating across iOS App Store and Google Play Store',
+      userSatisfaction: {
+        value: '4.5/5',
+        label: 'User Rating',
+        tooltip: 'Average user satisfaction rating for booking experience',
         type: 'rating'
       }
     },
-    challenge: 'Creating an engaging fitness app that motivates users to maintain consistent workout routines.',
-    solution: 'Implemented gamification features, social challenges, and personalized workout recommendations.',
-    outcome: 'Achieved 68% user retention rate and 4.6/5 app store rating with active community engagement.'
+    challenge: 'Travelers needed a simple way to book ground transportation routes without the complexity of flight-based travel platforms.',
+    solution: 'Developed a specialized platform focusing exclusively on ground transit with intuitive one-click booking.',
+    outcome: 'Processed 500+ monthly bookings with 4.5/5 user satisfaction and expanding route network.'
   },
   {
     id: 'ilmtab',
     title: 'IlmTab',
     type: 'Browser Extension',
-    description: 'Islamic productivity browser extension with daily Quran verses, Hadith, prayer times, and spiritual tools.',
+    description: 'Comprehensive spiritual productivity browser extension that seamlessly integrates Islamic practices into daily browsing. Features prayer reminders, daily Quranic verses, authentic Hadith collections, and Islamic calendar integration. Achieving positive user feedback with 4.8/5 rating and growing user base across Chrome, Firefox, and Edge browsers.',
     technologies: ['TypeScript', 'React', 'Chrome APIs', 'Islamic APIs'],
     features: [
       'Daily Quran verses with translations',
@@ -625,48 +493,180 @@ export const PORTFOLIO_PROJECTS = [
     outcome: 'Positive user feedback with 4.8/5 rating and growing user base across multiple browsers.'
   },
   {
-    id: 'productivity-extension',
-    title: 'FocusFlow',
-    type: 'Browser Extension',
-    description: 'Productivity browser extension with website blocking, time tracking, and focus session management.',
-    technologies: ['TypeScript', 'React', 'Chrome APIs', 'IndexedDB'],
+    id: 'aqualog',
+    title: 'AquaLog',
+    type: 'Mobile Application',
+    description: 'Comprehensive aquarium management app designed for aquarium enthusiasts who need to track complex water chemistry and livestock health across multiple tanks. Features automated reminders, parameter tracking, and a comprehensive species database. Successfully helping over 1,500 aquarists maintain healthier tanks with intuitive mobile interface and community sharing features.',
+    technologies: ['React Native', 'TypeScript', 'Firebase', 'Expo'],
     features: [
-      'Smart website blocking with categories',
-      'Pomodoro timer with customizable intervals',
-      'Daily productivity analytics',
-      'Focus session tracking',
-      'Distraction alerts and notifications',
-      'Cross-device sync'
+      'Multiple tank tracking and management',
+      'Livestock inventory with species database',
+      'Water parameter logging and alerts',
+      'Maintenance scheduling and reminders',
+      'Photo gallery for tank progression',
+      'Community sharing and tips'
     ],
     status: 'Live',
-    users: '1,200+',
-    platforms: ['Chrome', 'Firefox', 'Edge'],
-    image: '/images/portfolio/focusflow-hero.jpg',
-    liveUrl: 'https://chrome.google.com/webstore/detail/focusflow',
-    featured: false,
+    users: '1,500+',
+    platforms: ['iOS', 'Android'],
+    image: '/images/portfolio/aqualog-hero.jpg',
+    liveUrl: 'https://aqualog-app.com',
+    featured: true,
     metrics: {
-      activeUsers: {
-        value: '1.2K+',
-        label: 'Active Users',
-        tooltip: 'Monthly active users across all browser platforms',
-        type: 'users'
+      downloads: {
+        value: '3K+',
+        label: 'Downloads',
+        tooltip: 'Total app downloads across iOS and Android app stores',
+        type: 'downloads'
+      },
+      retention: {
+        value: '75%',
+        label: 'User Retention',
+        tooltip: '30-day user retention rate - users who continue tracking their aquariums',
+        type: 'retention'
       },
       rating: {
         value: '4.7/5',
-        label: 'User Rating',
-        tooltip: 'Average rating from Chrome Web Store and Firefox Add-ons',
+        label: 'App Rating',
+        tooltip: 'Average rating across iOS App Store and Google Play Store',
         type: 'rating'
-      },
-      avgSessionTime: {
-        value: '45min',
-        label: 'Avg Session',
-        tooltip: 'Average focus session duration per user',
-        type: 'engagement'
       }
     },
-    challenge: 'Creating a non-intrusive productivity tool that actually helps users stay focused without being annoying.',
-    solution: 'Implemented smart blocking algorithms and gentle nudges rather than hard blocks.',
-    outcome: 'Users report 40% increase in productivity with 4.7/5 rating and high daily engagement.'
+    challenge: 'Aquarium enthusiasts needed a comprehensive tool to track complex water chemistry and livestock health across multiple tanks.',
+    solution: 'Created an intuitive mobile app with automated reminders, parameter tracking, and a comprehensive species database.',
+    outcome: 'Helped over 1,500 aquarists maintain healthier tanks with 75% user retention and 4.7/5 rating.'
+  },
+  {
+    id: 'colormebrie',
+    title: 'ColorMeBrie',
+    type: 'Website',
+    description: 'Professional e-commerce platform for content creator Brie to sell digital coloring books and build a creative community. Features engaging website design with community features, digital downloads, and social integration. Successfully generating $2.5K+ monthly sales with 6.2% conversion rate and growing community of 400+ active members.',
+    technologies: ['Next.js', 'TypeScript', 'Stripe', 'Sanity CMS'],
+    features: [
+      'E-commerce shop for coloring books',
+      'Digital download system',
+      'Community gallery and sharing',
+      'Artist blog and tutorials',
+      'Contact and commission forms',
+      'Social media integration'
+    ],
+    status: 'Live',
+    users: '800+',
+    platforms: ['Web', 'Mobile Responsive'],
+    image: '/images/portfolio/colormebrie-hero.jpg',
+    liveUrl: 'https://colormebrie.com',
+    featured: false,
+    metrics: {
+      monthlySales: {
+        value: '$2.5K+',
+        label: 'Monthly Sales',
+        tooltip: 'Monthly revenue from coloring book sales and commissions',
+        type: 'revenue'
+      },
+      conversionRate: {
+        value: '6.2%',
+        label: 'Conversion Rate',
+        tooltip: 'Percentage of visitors who purchase coloring books',
+        type: 'performance'
+      },
+      communityMembers: {
+        value: '400+',
+        label: 'Community Members',
+        tooltip: 'Active community members sharing and engaging with content',
+        type: 'users'
+      }
+    },
+    challenge: 'Content creator needed a professional platform to sell digital coloring books and build a creative community.',
+    solution: 'Built an engaging e-commerce website with community features, digital downloads, and social integration.',
+    outcome: 'Generated $2.5K+ monthly sales with 6.2% conversion rate and growing community of 400+ members.'
+  },
+  {
+    id: 'islamic-guidance',
+    title: 'Islamic Guidance',
+    type: 'Web Application',
+    description: 'Comprehensive spiritual platform providing Muslims with reliable, accessible daily Islamic guidance and Quranic study tools. Features authentic Islamic content, multiple translations, prayer times, and personalization features. Serving 2,000+ users with 85% daily engagement rate and positive community feedback for spiritual growth and learning.',
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Islamic APIs'],
+    features: [
+      'Daily Quran verses with multiple translations',
+      'Hadith collections and explanations',
+      'Islamic calendar and important dates',
+      'Prayer time calculations',
+      'Bookmarking and personal notes',
+      'Search functionality across content'
+    ],
+    status: 'Live',
+    users: '2,000+',
+    platforms: ['Web', 'Mobile Responsive'],
+    image: '/images/portfolio/islamic-guidance-hero.jpg',
+    liveUrl: 'https://islamic-guidance.com',
+    featured: true,
+    metrics: {
+      activeUsers: {
+        value: '2K+',
+        label: 'Active Users',
+        tooltip: 'Monthly active users seeking daily Islamic guidance',
+        type: 'users'
+      },
+      dailyEngagement: {
+        value: '85%',
+        label: 'Daily Engagement',
+        tooltip: 'Percentage of users who visit daily for spiritual content',
+        type: 'engagement'
+      },
+      contentViews: {
+        value: '50K+',
+        label: 'Monthly Views',
+        tooltip: 'Monthly verse and content views across the platform',
+        type: 'traffic'
+      }
+    },
+    challenge: 'Muslims needed a reliable, accessible platform for daily spiritual guidance and Quranic study.',
+    solution: 'Built a comprehensive web application with authentic Islamic content, multiple translations, and personalization features.',
+    outcome: 'Serving 2,000+ users with 85% daily engagement rate and positive community feedback.'
+  },
+  {
+    id: 'micahs-music',
+    title: 'Micah\'s Music',
+    type: 'Website',
+    description: 'Elegant professional website for music teacher and performer Micah to showcase talents and streamline booking for lessons and performances. Features integrated booking system, audio portfolio, and clear service descriptions. Successfully increased bookings by 60% with 25+ monthly bookings and improved professional credibility in the music education space.',
+    technologies: ['Next.js', 'TypeScript', 'Sanity CMS', 'Calendly'],
+    features: [
+      'Music portfolio and audio samples',
+      'Teaching service descriptions',
+      'Performance booking system',
+      'Event calendar and availability',
+      'Student testimonials',
+      'Contact and inquiry forms'
+    ],
+    status: 'Live',
+    users: '300+',
+    platforms: ['Web', 'Mobile Responsive'],
+    image: '/images/portfolio/micahs-music-hero.jpg',
+    liveUrl: 'https://micahsmusic.com',
+    featured: false,
+    metrics: {
+      monthlyBookings: {
+        value: '25+',
+        label: 'Monthly Bookings',
+        tooltip: 'Monthly performance and lesson bookings through the website',
+        type: 'business'
+      },
+      studentInquiries: {
+        value: '40+',
+        label: 'Student Inquiries',
+        tooltip: 'Monthly inquiries for music lessons and teaching services',
+        type: 'leads'
+      },
+      portfolioViews: {
+        value: '1.2K+',
+        label: 'Portfolio Views',
+        tooltip: 'Monthly views of music portfolio and audio samples',
+        type: 'traffic'
+      }
+    },
+    challenge: 'Music teacher needed a professional online presence to showcase talents and streamline booking for lessons and performances.',
+    solution: 'Created an elegant website with integrated booking system, audio portfolio, and clear service descriptions.',
+    outcome: 'Increased bookings by 60% with 25+ monthly bookings and improved professional credibility.'
   }
 ];
 
