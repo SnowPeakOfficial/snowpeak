@@ -50,12 +50,18 @@ const Testimonials: React.FC = () => {
           }}
         >
           {items.map((t) => (
-            <Card key={t.id} sx={{ borderRadius: 2, height: '100%', position: 'relative', zIndex: 2 }}>
-              <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
-                <Typography variant="body1" sx={{ mb: 2 }}>
-                  “{t.content}”
+            <Card key={t.id} sx={{ borderRadius: 2, height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ 
+                p: { xs: 2.5, md: 3 }, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                height: '100%',
+                justifyContent: 'space-between'
+              }}>
+                <Typography variant="body1" sx={{ mb: 3, flexGrow: 1 }}>
+                  &ldquo;{t.content}&rdquo;
                 </Typography>
-                <Stack direction="row" spacing={2} alignItems="center">
+                <Stack direction="row" spacing={2} alignItems="center" sx={{ mt: 'auto' }}>
                   <Avatar src={t.image} alt={t.name} />
                   <Box>
                     <Typography variant="body1" sx={{ fontWeight: 600 }}>
