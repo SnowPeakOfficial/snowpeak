@@ -233,6 +233,7 @@ const AboutPage: React.FC = () => {
                   xs: '1fr',
                   md: 'repeat(3, 1fr)',
                 },
+                gridTemplateRows: { md: '1fr' },
                 gap: 4,
                 maxWidth: '1000px',
                 mx: 'auto',
@@ -241,13 +242,15 @@ const AboutPage: React.FC = () => {
               {/* Waleed Card */}
               <Card
                 sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 3,
-                  p: 3,
                   textAlign: 'center',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
@@ -259,39 +262,62 @@ const AboutPage: React.FC = () => {
                   },
                 }}
               >
-                <Avatar
+                <Box
                   sx={{
-                    width: 80,
-                    height: 80,
-                    mx: 'auto',
-                    mb: 2,
-                    backgroundColor: 'secondary.main',
-                    fontSize: '1.5rem',
+                    p: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <Business />
-                </Avatar>
-                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                  Waleed Amray
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 2, color: 'secondary.main', fontWeight: 500 }}>
-                  Co-Founder - Strategic Operations
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  Drives strategy, client growth, and ensures every creative vision aligns with business goals.
-                </Typography>
+                  <Box>
+                    <Avatar
+                      sx={{
+                        width: 80,
+                        height: 80,
+                        mx: 'auto',
+                        mb: 2,
+                        backgroundColor: 'secondary.main',
+                        fontSize: '1.5rem',
+                      }}
+                    >
+                      <Business />
+                    </Avatar>
+                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                      Waleed Amray
+                    </Typography>
+                    <Typography variant="body2" sx={{ mb: 2, color: 'secondary.main', fontWeight: 500 }}>
+                      Chief Operating Officer
+                    </Typography>
+                  </Box>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'text.secondary',
+                      flex: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      minHeight: '3rem',
+                    }}
+                  >
+                    Drives strategy, client growth, and ensures every creative vision aligns with business goals.
+                  </Typography>
+                </Box>
               </Card>
 
               {/* Safiuddin Card */}
               <Card
                 sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 3,
-                  p: 3,
                   textAlign: 'center',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
@@ -303,39 +329,62 @@ const AboutPage: React.FC = () => {
                   },
                 }}
               >
-                <Avatar
+                <Box
                   sx={{
-                    width: 80,
-                    height: 80,
-                    mx: 'auto',
-                    mb: 2,
-                    backgroundColor: 'primary.main',
-                    fontSize: '1.5rem',
+                    p: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <Code />
-                </Avatar>
-                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                  Safiuddin Ahmed Mohammad
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
-                  Co-Founder - Technical Architect
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  Designs and builds thoughtful digital experiences — from the first line of code to final polish.
-                </Typography>
+                  <Box>
+                    <Avatar
+                      sx={{
+                        width: 80,
+                        height: 80,
+                        mx: 'auto',
+                        mb: 2,
+                        backgroundColor: 'primary.main',
+                        fontSize: '1.5rem',
+                      }}
+                    >
+                      <Code />
+                    </Avatar>
+                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                      Safiuddin Ahmed Mohammad
+                    </Typography>
+                    <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
+                      Chief Technology Officer
+                    </Typography>
+                  </Box>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'text.secondary',
+                      flex: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      minHeight: '3rem',
+                    }}
+                  >
+                    Designs and builds thoughtful digital experiences — from the first line of code to final polish.
+                  </Typography>
+                </Box>
               </Card>
 
               {/* Kevin Tran Card */}
               <Card
                 sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 3,
-                  p: 3,
                   textAlign: 'center',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
@@ -347,27 +396,48 @@ const AboutPage: React.FC = () => {
                   },
                 }}
               >
-                <Avatar
+                <Box
                   sx={{
-                    width: 80,
-                    height: 80,
-                    mx: 'auto',
-                    mb: 2,
-                    backgroundColor: 'primary.main',
-                    fontSize: '1.5rem',
+                    p: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <Code />
-                </Avatar>
-                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                  Kevin Tran
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
-                  Co-Founder - Technical Architect
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  Brings extensive experience in building robust software solutions with a focus on scalability and performance.
-                </Typography>
+                  <Box>
+                    <Avatar
+                      sx={{
+                        width: 80,
+                        height: 80,
+                        mx: 'auto',
+                        mb: 2,
+                        backgroundColor: 'primary.main',
+                        fontSize: '1.5rem',
+                      }}
+                    >
+                      <Code />
+                    </Avatar>
+                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                      Kevin Tran
+                    </Typography>
+                    <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
+                      Chief Information Officer
+                    </Typography>
+                  </Box>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'text.secondary',
+                      flex: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      minHeight: '3rem',
+                    }}
+                  >
+                    Brings extensive experience in building robust software solutions with a focus on scalability and performance.
+                  </Typography>
+                </Box>
               </Card>
             </Box>
           </Container>
