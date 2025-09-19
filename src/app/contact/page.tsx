@@ -203,7 +203,7 @@ const ContactPage: React.FC = () => {
                   fontSize: 'clamp(2rem, 4vw + 0.5rem, 3rem)',
                 }}
               >
-                Get Started Today
+                Ready to bring your vision to life?
               </Typography>
               <Typography
                 variant="h6"
@@ -215,7 +215,7 @@ const ContactPage: React.FC = () => {
                   fontSize: 'clamp(1rem, 1.5vw + 0.25rem, 1.25rem)',
                 }}
               >
-                Ready to bring your vision to life? Get a free consultation and custom proposal.
+                Get a free consultation and custom proposal.
               </Typography>
             </Box>
 
