@@ -368,11 +368,76 @@ const PortfolioPage: React.FC = () => {
                         mb: 3,
                         color: 'text.secondary',
                         lineHeight: 1.6,
-                        flexGrow: 1,
+                        height: '4.8rem', // Fixed height for 3 lines
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
                       }}
                     >
                       {project.description}
                     </Typography>
+
+                    {/* Challenge, Solution, Outcome */}
+                    {project.challenge && (
+                      <Box sx={{ mb: 3, height: '16rem', overflow: 'hidden' }}>
+                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
+                          Challenge:
+                        </Typography>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary', 
+                            mb: 2, 
+                            lineHeight: 1.5,
+                            height: '3rem',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
+                          {project.challenge}
+                        </Typography>
+                        
+                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
+                          Solution:
+                        </Typography>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary', 
+                            mb: 2, 
+                            lineHeight: 1.5,
+                            height: '3rem',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
+                          {project.solution}
+                        </Typography>
+                        
+                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
+                          Outcome:
+                        </Typography>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary', 
+                            lineHeight: 1.5,
+                            height: '3rem',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
+                          {project.outcome}
+                        </Typography>
+                      </Box>
+                    )}
 
                     {/* Key Metrics */}
                     {project.metrics && (
