@@ -682,11 +682,10 @@ const HeroSection: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/snowpeak-logo/vector/default.svg"
+                    src={isDark ? "/snowpeak-logo/vector/default-white.svg" : "/snowpeak-logo/vector/default.svg"}
                     alt={COMPANY_INFO.name}
                     width={360}
                     height={360}
-                    style={{ filter: isDark ? 'brightness(1.2)' : 'none' }}
                   />
                 </Box>
               </Box>

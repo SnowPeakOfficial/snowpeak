@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
           <Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 1 }}>
               <Image
-                src="/snowpeak-logo/vector/defaultLandscape.svg"
+                src={isDark ? "/snowpeak-logo/vector/defaultLandscape-white.svg" : "/snowpeak-logo/vector/defaultLandscape.svg"}
                 alt={COMPANY_INFO.name}
                 width={300}
                 height={300}

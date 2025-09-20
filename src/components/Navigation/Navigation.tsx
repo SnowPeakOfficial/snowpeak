@@ -303,7 +303,7 @@ const Navigation: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/snowpeak-logo/vector/defaultLandscape.svg"
+                    src={mode === 'dark' ? "/snowpeak-logo/vector/defaultLandscape-white.svg" : "/snowpeak-logo/vector/defaultLandscape.svg"}
                     alt={COMPANY_INFO.name}
                     width={240}
                     height={80}
