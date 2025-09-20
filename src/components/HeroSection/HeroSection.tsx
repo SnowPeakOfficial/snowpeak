@@ -109,12 +109,12 @@ const FuzzySnowElements: React.FC = () => {
           height: '20px',
           background: isDark
             ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
-            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
           borderRadius: '50%',
           filter: 'blur(2px)',
           boxShadow: isDark
             ? '0 0 10px rgba(255, 255, 255, 0.3)'
-            : '0 0 10px rgba(196, 181, 253, 0.5)',
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -141,12 +141,12 @@ const FuzzySnowElements: React.FC = () => {
           height: '20px',
           background: isDark
             ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
-            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
           borderRadius: '50%',
           filter: 'blur(2px)',
           boxShadow: isDark
             ? '0 0 10px rgba(255, 255, 255, 0.3)'
-            : '0 0 10px rgba(196, 181, 253, 0.5)',
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -173,12 +173,12 @@ const FuzzySnowElements: React.FC = () => {
           height: '20px',
           background: isDark
             ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
-            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
           borderRadius: '50%',
           filter: 'blur(2px)',
           boxShadow: isDark
             ? '0 0 10px rgba(255, 255, 255, 0.3)'
-            : '0 0 10px rgba(196, 181, 253, 0.5)',
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -205,12 +205,12 @@ const FuzzySnowElements: React.FC = () => {
           height: '20px',
           background: isDark
             ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
-            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
           borderRadius: '50%',
           filter: 'blur(2px)',
           boxShadow: isDark
             ? '0 0 10px rgba(255, 255, 255, 0.3)'
-            : '0 0 10px rgba(196, 181, 253, 0.5)',
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -237,18 +237,18 @@ const FuzzySnowElements: React.FC = () => {
           height: '20px',
           background: isDark
             ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
-            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
           borderRadius: '50%',
           filter: 'blur(2px)',
           boxShadow: isDark
             ? '0 0 10px rgba(255, 255, 255, 0.3)'
-            : '0 0 10px rgba(196, 181, 253, 0.5)',
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
       />
 
-      {/* Additional Small Snow Particle - Falling Animation */}
+      {/* Small Snowflake 6 - Falling Animation */}
       <motion.div
         animate={{
           y: [-30, window.innerHeight + 30],
@@ -269,12 +269,144 @@ const FuzzySnowElements: React.FC = () => {
           height: '20px',
           background: isDark
             ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
-            : 'radial-gradient(circle, rgba(221, 214, 254, 0.9) 0%, rgba(196, 181, 253, 0.6) 70%, transparent 100%)',
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
           borderRadius: '50%',
           filter: 'blur(2px)',
           boxShadow: isDark
             ? '0 0 10px rgba(255, 255, 255, 0.3)'
-            : '0 0 10px rgba(196, 181, 253, 0.5)',
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snowflake 7 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-70, window.innerHeight + 70],
+          x: [0, -18, 22, -8],
+          rotate: [0, 180, 360],
+          opacity: [0.3, 0.7, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 13,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 4,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-70px',
+          left: '8%',
+          width: '20px',
+          height: '20px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(2px)',
+          boxShadow: isDark
+            ? '0 0 10px rgba(255, 255, 255, 0.3)'
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snowflake 8 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-90, window.innerHeight + 90],
+          x: [0, 35, -12, 18],
+          scale: [0.9, 1.2, 0.8, 0.9],
+          opacity: [0.4, 0.9, 0.6, 0.4],
+        }}
+        transition={{
+          duration: 16,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 6,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-90px',
+          right: '8%',
+          width: '20px',
+          height: '20px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(2px)',
+          boxShadow: isDark
+            ? '0 0 10px rgba(255, 255, 255, 0.3)'
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snowflake 9 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-45, window.innerHeight + 45],
+          x: [0, -20, 28, -15],
+          rotate: [0, -180, -360],
+          opacity: [0.6, 0.8, 0.9, 0.6],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 8,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-45px',
+          left: '35%',
+          width: '20px',
+          height: '20px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(2px)',
+          boxShadow: isDark
+            ? '0 0 10px rgba(255, 255, 255, 0.3)'
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Small Snowflake 10 - Falling Animation */}
+      <motion.div
+        animate={{
+          y: [-65, window.innerHeight + 65],
+          x: [0, 15, -25, 10],
+          scale: [1, 0.7, 1.3, 1],
+          opacity: [0.5, 1, 0.4, 0.5],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 9,
+        }}
+        style={{
+          position: 'absolute',
+          top: '-65px',
+          right: '45%',
+          width: '20px',
+          height: '20px',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 70%, transparent 100%)',
+          borderRadius: '50%',
+          filter: 'blur(2px)',
+          boxShadow: isDark
+            ? '0 0 10px rgba(255, 255, 255, 0.3)'
+            : '0 0 10px rgba(0, 0, 0, 0.3)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
