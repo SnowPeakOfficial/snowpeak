@@ -50,36 +50,6 @@ const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity,
   );
 };
 
-// Peak Glow Component
-const PeakGlow: React.FC = () => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
-  
-  return (
-    <motion.div
-      animate={{
-        opacity: [0.3, 0.6, 0.3],
-        scale: [1, 1.1, 1],
-      }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
-      style={{
-        position: 'absolute',
-        top: '30%',
-        left: '60%',
-        width: '80px',
-        height: '80px',
-        background: `radial-gradient(circle, ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(59, 130, 246, 0.2)'} 0%, transparent 70%)`,
-        borderRadius: '50%',
-        pointerEvents: 'none',
-        zIndex: 6,
-      }}
-    />
-  );
-};
 
 // Fuzzy White Snow Elements
 const FuzzySnowElements: React.FC = () => {
@@ -461,26 +431,7 @@ const HeroSection: React.FC = () => {
       <MountainLayer opacity={0.3} zIndex={2} />
       <MountainLayer opacity={0.4} zIndex={3} />
 
-      {/* Peak Glow Effects */}
-      <PeakGlow />
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '40%',
-          left: '20%',
-          width: '60px',
-          height: '60px',
-          background: `radial-gradient(circle, ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(59, 130, 246, 0.15)'} 0%, transparent 70%)`,
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 4,
-          animation: 'peakGlow 6s ease-in-out infinite',
-          '@keyframes peakGlow': {
-            '0%, 100%': { opacity: 0.2, transform: 'scale(1)' },
-            '50%': { opacity: 0.5, transform: 'scale(1.2)' },
-          },
-        }}
-      />
+      {/* Peak Glow Effects - Removed to eliminate glare behind logo */}
 
 
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
