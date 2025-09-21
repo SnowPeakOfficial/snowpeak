@@ -540,7 +540,7 @@ const ContactPage: React.FC = () => {
       <CalendlyModal
         open={isCalendlyModalOpen}
         onClose={() => setIsCalendlyModalOpen(false)}
-        calendlyUrl="https://calendly.com/turtles2149/30min"
+        calendlyUrl={CONTACT_INFO.calendlyUrl}
       />
     </>
   );

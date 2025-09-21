@@ -3,7 +3,7 @@ export const COMPANY_INFO = {
   name: 'SnowPeak',
   tagline: 'Build Beyond the Summit',
   description: 'We create exceptional websites, web applications, mobile apps, and browser extensions while providing comprehensive maintenance and support to help businesses reach new heights.',
-  email: 'hello@snowpeak.ca',
+  email: 'snowpeaksolutions@gmail.com',
   phone: '+1 (647) 786-2161',
   location: 'Canada',
   founded: '2025',
@@ -409,7 +409,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 'landtrip',
     title: 'LandTrip',
     type: 'Web Application',
-    description: 'Specialized travel booking platform focusing exclusively on ground transportation routes for travelers who need simple transit booking without flight complexity. Features intuitive one-click booking, real-time schedules, and multi-modal transportation options. Successfully processing 500+ monthly bookings with 4.5/5 user satisfaction and expanding route network.',
+    description: 'Specialized travel booking platform for ground transportation routes with one-click booking and real-time schedules.',
     technologies: ['React', 'TypeScript', 'Node.js', 'Transit APIs', 'Stripe'],
     features: [
       'Route planning with transit options',
@@ -453,7 +453,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 'ilmtab',
     title: 'IlmTab',
     type: 'Browser Extension',
-    description: 'Comprehensive spiritual productivity browser extension that seamlessly integrates Islamic practices into daily browsing. Features prayer reminders, daily Quranic verses, authentic Hadith collections, and Islamic calendar integration. Achieving positive user feedback with 4.8/5 rating and growing user base across Chrome, Firefox, and Edge browsers.',
+    description: 'Spiritual productivity browser extension integrating Islamic practices into daily browsing with prayer reminders and Quranic verses.',
     technologies: ['TypeScript', 'React', 'Chrome APIs', 'Islamic APIs'],
     features: [
       'Daily Quran verses with translations',
@@ -496,7 +496,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 'aqualog',
     title: 'AquaLog',
     type: 'Mobile Application',
-    description: 'Comprehensive aquarium management app designed for aquarium enthusiasts who need to track complex water chemistry and livestock health across multiple tanks. Features automated reminders, parameter tracking, and a comprehensive species database. Successfully helping over 1,500 aquarists maintain healthier tanks with intuitive mobile interface and community sharing features.',
+    description: 'Comprehensive aquarium management app for tracking water chemistry and livestock health across multiple tanks.',
     technologies: ['React Native', 'TypeScript', 'Firebase', 'Expo'],
     features: [
       'Multiple tank tracking and management',
@@ -540,7 +540,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 'colormebrie',
     title: 'ColorMeBrie',
     type: 'Website',
-    description: 'Professional e-commerce platform for content creator Brie to sell digital coloring books and build a creative community. Features engaging website design with community features, digital downloads, and social integration. Successfully generating $2.5K+ monthly sales with 6.2% conversion rate and growing community of 400+ active members.',
+    description: 'Professional e-commerce platform for selling digital coloring books with community features and social integration.',
     technologies: ['Next.js', 'TypeScript', 'Stripe', 'Sanity CMS'],
     features: [
       'E-commerce shop for coloring books',
@@ -584,7 +584,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 'islamic-guidance',
     title: 'Islamic Guidance',
     type: 'Web Application',
-    description: 'Comprehensive spiritual platform providing Muslims with reliable, accessible daily Islamic guidance and Quranic study tools. Features authentic Islamic content, multiple translations, prayer times, and personalization features. Serving 2,000+ users with 85% daily engagement rate and positive community feedback for spiritual growth and learning.',
+    description: 'Comprehensive spiritual platform providing Muslims with daily Islamic guidance and Quranic study tools.',
     technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Islamic APIs'],
     features: [
       'Daily Quran verses with multiple translations',
@@ -628,7 +628,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 'micahs-music',
     title: 'Micah\'s Music',
     type: 'Website',
-    description: 'Elegant professional website for music teacher and performer Micah to showcase talents and streamline booking for lessons and performances. Features integrated booking system, audio portfolio, and clear service descriptions. Successfully increased bookings by 60% with 25+ monthly bookings and improved professional credibility in the music education space.',
+    description: 'Elegant professional website for music teacher showcasing talents with integrated booking system for lessons and performances.',
     technologies: ['Next.js', 'TypeScript', 'Sanity CMS', 'Calendly'],
     features: [
       'Music portfolio and audio samples',
@@ -787,6 +787,7 @@ export const CONTACT_INFO = {
   phone: COMPANY_INFO.phone,
   address: 'Toronto, Ontario, Canada',
   hours: 'Monday - Friday: 9:00 AM - 6:00 PM EST',
+  calendlyUrl: 'https://calendly.com/snowpeaksolutions/30min',
   social: {
     linkedin: 'https://linkedin.com/company/snowpeak',
     github: 'https://github.com/snowpeak',

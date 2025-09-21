@@ -60,6 +60,7 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
     };
   }, [open, onClose]);
 
+
   return (
     <Dialog
       open={open}
@@ -67,16 +68,17 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
       maxWidth={false}
       PaperProps={{
         sx: {
-          width: isMobile ? '95vw' : '90vw',
-          height: isMobile ? '90vh' : '85vh',
-          maxWidth: '1000px',
-          maxHeight: '800px',
+          width: isMobile ? '95vw' : '85vw',
+          height: isMobile ? '95vh' : '90vh',
+          maxWidth: '1200px',
+          maxHeight: '1000px',
           borderRadius: 3,
           overflow: 'hidden',
           background: theme.palette.mode === 'dark'
             ? 'rgba(30, 41, 59, 0.95)'
             : 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(10px)',
+          margin: 'auto',
         },
       }}
       BackdropProps={{
@@ -125,20 +127,26 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              paddingTop: 8, // Increased top padding for better spacing
               backgroundColor: theme.palette.mode === 'dark'
                 ? 'rgba(30, 41, 59, 0.9)'
                 : 'rgba(255, 255, 255, 0.9)',
               zIndex: 5,
             }}
           >
-            <CircularProgress size={40} />
+            <CircularProgress 
+              size={40} 
+              sx={{
+                color: theme.palette.primary.main, // Use theme primary color (#395ECA)
+              }}
+            />
           </Box>
         )}
 
         {/* Calendly Iframe */}
         <Box
           component="iframe"
-          src={`${calendlyUrl}?embed_domain=${typeof window !== 'undefined' ? window.location.hostname : ''}&embed_type=Inline`}
+          src={`${calendlyUrl}?embed_domain=${typeof window !== 'undefined' ? window.location.hostname : ''}&embed_type=Inline&primary_color=395ECA&text_color=000000&background_color=ffffff&hide_loading=1&hide_gdpr_banner=1`}
           sx={{
             width: '100%',
             height: '100%',
