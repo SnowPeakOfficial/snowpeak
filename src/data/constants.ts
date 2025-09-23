@@ -3,7 +3,7 @@ export const COMPANY_INFO = {
   name: 'SnowPeak',
   tagline: 'Build Beyond the Summit',
   description: 'We create exceptional websites, web applications, mobile apps, and browser extensions while providing comprehensive maintenance and support to help businesses reach new heights.',
-  email: 'snowpeaksolutions@gmail.com',
+  email: 'snowpeak.contact@gmail.com',
   phone: '+1 (647) 786-2161',
   location: 'Canada',
   founded: '2025',
@@ -787,7 +787,7 @@ export const CONTACT_INFO = {
   phone: COMPANY_INFO.phone,
   address: 'Toronto, Ontario, Canada',
   hours: 'Monday - Friday: 9:00 AM - 6:00 PM EST',
-  calendlyUrl: 'https://calendly.com/snowpeaksolutions/30min',
+  calendlyUrl: 'https://calendly.com/snowpeak-contact/30min',
   social: {
     linkedin: 'https://linkedin.com/company/snowpeak',
     github: 'https://github.com/snowpeak',

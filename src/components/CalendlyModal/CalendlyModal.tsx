@@ -38,15 +38,13 @@ const CalendlyModal: React.FC<CalendlyModalProps> = ({
     setIsLoading(false);
   };
 
-  // Listen for Calendly events to auto-close modal when booking is complete
+  // Listen for Calendly events (keeping for potential analytics or other purposes)
   useEffect(() => {
     const handleCalendlyEvent = (e: MessageEvent) => {
       if (e.data.event && e.data.event.indexOf('calendly') === 0) {
         if (e.data.event === 'calendly.event_scheduled') {
-          // Close modal after successful booking
-          setTimeout(() => {
-            onClose();
-          }, 2000); // Give user time to see confirmation
+          // Event scheduled - confirmation screen will remain visible until user manually closes
+          console.log('Calendly event scheduled - confirmation screen will stay open');
         }
       }
     };

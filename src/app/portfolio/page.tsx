@@ -290,20 +290,6 @@ const PortfolioPage: React.FC = () => {
                   </Box>
 
                   <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    {/* Project Type */}
-                    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
-                      <Chip 
-                        label={project.type} 
-                        size="small" 
-                        sx={{
-                          backgroundColor: typeColors.bg,
-                          color: typeColors.color,
-                          border: `1px solid ${typeColors.border}40`,
-                          fontWeight: 600,
-                        }}
-                      />
-                    </Stack>
-
                     {/* Business Logo */}
                       <Box
                         sx={{
@@ -364,8 +350,22 @@ const PortfolioPage: React.FC = () => {
                       {project.description}
                     </Typography>
 
+                    {/* Project Type */}
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 2 }}>
+                      <Chip 
+                        label={project.type} 
+                        size="small" 
+                        sx={{
+                          backgroundColor: typeColors.bg,
+                          color: typeColors.color,
+                          border: `1px solid ${typeColors.border}40`,
+                          fontWeight: 600,
+                        }}
+                      />
+                    </Box>
+
                     {/* CTA Buttons */}
-                    <Stack direction="row" spacing={1} sx={{ mt: 'auto' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 'auto' }}>
                       {project.liveUrl && (
                         <Button
                           component={Link}
@@ -386,7 +386,7 @@ const PortfolioPage: React.FC = () => {
                           View Live
                         </Button>
                       )}
-                    </Stack>
+                    </Box>
 
                   </CardContent>
                 </Card>
