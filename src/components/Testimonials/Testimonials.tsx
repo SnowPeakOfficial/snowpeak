@@ -12,8 +12,8 @@ const Testimonials: React.FC = () => {
         py: { xs: 8, md: 12 },
         background: (theme) =>
           theme.palette.mode === 'dark'
-            ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
-            : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
+            ? 'linear-gradient(135deg, #1E293B 0%, #334155 50%, #1E293B 100%)'
+            : 'linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #F1F5F9 100%)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -27,8 +27,8 @@ const Testimonials: React.FC = () => {
           bottom: 0,
           backgroundImage: (theme) =>
             theme.palette.mode === 'dark'
-              ? 'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)'
-              : 'radial-gradient(circle at 30% 20%, rgba(57, 94, 202, 0.05) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(132, 139, 216, 0.05) 0%, transparent 50%)',
+              ? 'radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)'
+              : 'radial-gradient(circle at 20% 80%, rgba(57, 94, 202, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(132, 139, 216, 0.05) 0%, transparent 50%)',
           zIndex: 1,
         }}
       />
@@ -50,12 +50,18 @@ const Testimonials: React.FC = () => {
           }}
         >
           {items.map((t) => (
-            <Card key={t.id} sx={{ borderRadius: 2, height: '100%', position: 'relative', zIndex: 2 }}>
-              <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
-                <Typography variant="body1" sx={{ mb: 2 }}>
-                  “{t.content}”
+            <Card key={t.id} sx={{ borderRadius: 2, height: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ 
+                p: { xs: 2.5, md: 3 }, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                height: '100%',
+                justifyContent: 'space-between'
+              }}>
+                <Typography variant="body1" sx={{ mb: 3, flexGrow: 1 }}>
+                  &ldquo;{t.content}&rdquo;
                 </Typography>
-                <Stack direction="row" spacing={2} alignItems="center">
+                <Stack direction="row" spacing={2} alignItems="center" sx={{ mt: 'auto' }}>
                   <Avatar src={t.image} alt={t.name} />
                   <Box>
                     <Typography variant="body1" sx={{ fontWeight: 600 }}>

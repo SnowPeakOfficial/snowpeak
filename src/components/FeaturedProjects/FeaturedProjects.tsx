@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Box, 
   Container, 
@@ -11,6 +11,7 @@ import {
   Stack, 
   Button, 
   useTheme,
+  useMediaQuery,
   IconButton,
   Fade,
   Tooltip
@@ -31,13 +32,70 @@ import { PORTFOLIO_PROJECTS } from '@/data/constants';
 const FeaturedProjects: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
+  
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   
   // Use all projects
-  const projects = PORTFOLIO_PROJECTS;
-  const projectsPerView = 3;
-  const maxIndex = Math.max(0, projects.length - projectsPerView);
+  const originalProjects = PORTFOLIO_PROJECTS;
+  
+  // Responsive projects per view
+  const getProjectsPerView = () => {
+    if (isMobile) return 1;
+    if (isTablet) return 2;
+    return 3;
+  };
+  
+  const [projectsPerView, setProjectsPerView] = useState(getProjectsPerView());
+  
+  // Update projectsPerView when screen size changes
+  useEffect(() => {
+    setProjectsPerView(getProjectsPerView());
+  }, [isMobile, isTablet]);
+  
+  // Create infinite carousel by duplicating projects at beginning and end
+  const projects = [
+    ...originalProjects.slice(-projectsPerView), // Last few projects at the beginning
+    ...originalProjects, // Original projects
+    ...originalProjects.slice(0, projectsPerView), // First few projects at the end
+  ];
+  
+  // Start at the first "real" project (after the duplicated ones)
+  const [realIndex, setRealIndex] = useState(projectsPerView);
+  
+  // Update realIndex when projectsPerView changes
+  useEffect(() => {
+    setRealIndex(projectsPerView);
+  }, [projectsPerView]);
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrevious();
+    }
+  };
 
   const handlePrevious = () => {
     setCurrentIndex(prev => {
@@ -92,12 +150,12 @@ const FeaturedProjects: React.FC = () => {
   return (
     <Box
       sx={{
-        py: { xs: 12, md: 16 },
+        py: { xs: 16, md: 20 }, // Increased padding to prevent clipping
         background: isDark
           ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
           : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%)',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'visible', // Changed to visible to prevent clipping
       }}
     >
       {/* Background Pattern */}
@@ -115,7 +173,7 @@ const FeaturedProjects: React.FC = () => {
         }}
       />
 
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2, overflow: 'visible' }}>
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
           <Typography
@@ -160,6 +218,13 @@ const FeaturedProjects: React.FC = () => {
           </Typography>
         </Box>
 
+        {/* Carousel Container */}
+        <Box sx={{ 
+          position: 'relative', 
+          mb: { xs: 6, md: 8 },
+          px: { xs: 4, md: 6 }, // Increased horizontal padding to prevent clipping
+          py: { xs: 6, md: 8 }, // Significantly increased vertical padding to prevent clipping
+        }}>
         {/* Simple Carousel Container */}
         <Box sx={{ position: 'relative', mb: { xs: 6, md: 8 } }}>
           {/* Navigation Arrows */}
@@ -213,6 +278,9 @@ const FeaturedProjects: React.FC = () => {
               gap: 3,
               px: 2,
             }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {projects.slice(currentIndex, currentIndex + 3).map((project, index) => {
               const typeColors = getProjectTypeColor(project.type);
@@ -367,7 +435,6 @@ const FeaturedProjects: React.FC = () => {
                         {project.title.charAt(0)}
                       </Box>
                     </Box>
-
                     {/* Project Title */}
                     <Typography
                       variant="h5"

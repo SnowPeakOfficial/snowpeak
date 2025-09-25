@@ -25,6 +25,7 @@ import {
 } from '@mui/icons-material';
  
 import { CONTACT_INFO } from '@/data/constants';
+import { CalendlyModal } from '@/components';
 
 interface FormData {
   name: string;
@@ -55,6 +56,8 @@ const ContactPage: React.FC = () => {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+
+  const [isCalendlyModalOpen, setIsCalendlyModalOpen] = useState(false);
 
   const projectTypes = [
     'Website',
@@ -203,7 +206,7 @@ const ContactPage: React.FC = () => {
                   fontSize: 'clamp(2rem, 4vw + 0.5rem, 3rem)',
                 }}
               >
-                Get Started Today
+                Ready to bring your vision to life?
               </Typography>
               <Typography
                 variant="h6"
@@ -215,7 +218,7 @@ const ContactPage: React.FC = () => {
                   fontSize: 'clamp(1rem, 1.5vw + 0.25rem, 1.25rem)',
                 }}
               >
-                Ready to bring your vision to life? Get a free consultation and custom proposal.
+                Get a free consultation and custom proposal.
               </Typography>
             </Box>
 
@@ -436,17 +439,24 @@ const ContactPage: React.FC = () => {
                               <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                 Book a Call
                               </Typography>
-                              <MuiLink
-                                href="#"
+                              <Button
+                                variant="text"
+                                size="small"
+                                onClick={() => setIsCalendlyModalOpen(true)}
                                 sx={{
                                   color: 'primary.main',
-                                  textDecoration: 'none',
                                   fontSize: '0.875rem',
-                                  '&:hover': { textDecoration: 'underline' },
+                                  textTransform: 'none',
+                                  p: 0,
+                                  minWidth: 'auto',
+                                  '&:hover': {
+                                    backgroundColor: 'transparent',
+                                    textDecoration: 'underline',
+                                  },
                                 }}
                               >
                                 Schedule a Meeting
-                              </MuiLink>
+                              </Button>
                             </Box>
                           </Box>
                         </Stack>
@@ -525,6 +535,13 @@ const ContactPage: React.FC = () => {
           {submitStatus.message}
         </Alert>
       </Snackbar>
+
+      {/* Calendly Modal */}
+      <CalendlyModal
+        open={isCalendlyModalOpen}
+        onClose={() => setIsCalendlyModalOpen(false)}
+        calendlyUrl={CONTACT_INFO.calendlyUrl}
+      />
     </>
   );
 };

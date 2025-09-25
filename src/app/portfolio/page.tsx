@@ -290,30 +290,6 @@ const PortfolioPage: React.FC = () => {
                   </Box>
 
                   <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    {/* Project Type and Status */}
-                    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
-                      <Chip 
-                        label={project.type} 
-                        size="small" 
-                        sx={{
-                          backgroundColor: typeColors.bg,
-                          color: typeColors.color,
-                          border: `1px solid ${typeColors.border}40`,
-                          fontWeight: 600,
-                        }}
-                      />
-                      <Chip 
-                        label={project.status} 
-                        size="small" 
-                        sx={{
-                          backgroundColor: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.1)',
-                          color: 'success.main',
-                          border: `1px solid ${theme.palette.success.main}40`,
-                          fontWeight: 600,
-                        }}
-                      />
-                    </Stack>
-
                     {/* Business Logo */}
                       <Box
                         sx={{
@@ -368,122 +344,28 @@ const PortfolioPage: React.FC = () => {
                         mb: 3,
                         color: 'text.secondary',
                         lineHeight: 1.6,
-                        height: '4.8rem', // Fixed height for 3 lines
-                        overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
+                        flexGrow: 1,
                       }}
                     >
                       {project.description}
                     </Typography>
 
-                    {/* Challenge, Solution, Outcome */}
-                    {project.challenge && (
-                      <Box sx={{ mb: 3, height: '16rem', overflow: 'hidden' }}>
-                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
-                          Challenge:
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          sx={{ 
-                            color: 'text.secondary', 
-                            mb: 2, 
-                            lineHeight: 1.5,
-                            height: '3rem',
-                            overflow: 'hidden',
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                        >
-                          {project.challenge}
-                        </Typography>
-                        
-                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
-                          Solution:
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          sx={{ 
-                            color: 'text.secondary', 
-                            mb: 2, 
-                            lineHeight: 1.5,
-                            height: '3rem',
-                            overflow: 'hidden',
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                        >
-                          {project.solution}
-                        </Typography>
-                        
-                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
-                          Outcome:
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          sx={{ 
-                            color: 'text.secondary', 
-                            lineHeight: 1.5,
-                            height: '3rem',
-                            overflow: 'hidden',
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                        >
-                          {project.outcome}
-                        </Typography>
-                      </Box>
-                    )}
-
-                    {/* Key Metrics */}
-                    {project.metrics && (
-                      <Box sx={{ mb: 3 }}>
-                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
-                          Key Metrics:
-                        </Typography>
-                        <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1 }}>
-                          {Object.entries(project.metrics).map(([key, metric]) => (
-                            <Tooltip
-                              key={key}
-                              title={metric.tooltip}
-                              arrow
-                              placement="top"
-                            >
-                              <Box
-                                sx={{
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: 0.5,
-                                  px: 1.5,
-                                  py: 0.75,
-                                  borderRadius: 1,
-                                  backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
-                                  border: `1px solid ${theme.palette.primary.main}20`,
-                                  cursor: 'help',
-                                  transition: 'all 0.2s ease',
-                                  '&:hover': {
-                                    backgroundColor: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
-                                    transform: 'scale(1.05)',
-                                  },
-                                }}
-                              >
-                                {getMetricIcon(metric.type)}
-                                <Typography variant="caption" sx={{ fontWeight: 600, color: 'primary.main' }}>
-                                  {metric.value}
-                                </Typography>
-                              </Box>
-                            </Tooltip>
-                          ))}
-                        </Stack>
-                      </Box>
-                    )}
+                    {/* Project Type */}
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 2 }}>
+                      <Chip 
+                        label={project.type} 
+                        size="small" 
+                        sx={{
+                          backgroundColor: typeColors.bg,
+                          color: typeColors.color,
+                          border: `1px solid ${typeColors.border}40`,
+                          fontWeight: 600,
+                        }}
+                      />
+                    </Box>
 
                     {/* CTA Buttons */}
-                    <Stack direction="row" spacing={1} sx={{ mt: 'auto' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 'auto' }}>
                       {project.liveUrl && (
                         <Button
                           component={Link}
@@ -504,7 +386,8 @@ const PortfolioPage: React.FC = () => {
                           View Live
                         </Button>
                       )}
-                    </Stack>
+                    </Box>
+
                   </CardContent>
                 </Card>
               );

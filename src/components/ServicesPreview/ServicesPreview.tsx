@@ -174,40 +174,18 @@ const ServicesPreview: React.FC = () => {
             const finalSelectedIndex = selectedIndex !== -1 ? selectedIndex : 0;
             
             return (
-              <Box key={service.id} sx={{ position: 'relative' }}>
-                {/* Most Popular Badge */}
-                {service.id === 'web-applications' && (
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: -8,
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      zIndex: 10,
-                    }}
-                  >
-                    <Chip
-                      label="Most Popular"
-                      size="small"
-                      sx={{
-                        background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                        color: 'white',
-                        fontWeight: 600,
-                        fontSize: '0.75rem',
-                        boxShadow: isDark
-                          ? '0 0.5rem 1rem rgba(0, 0, 0, 0.3)'
-                          : '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-                      }}
-                    />
-                  </Box>
-                )}
-
-
+              <Box 
+                key={service.id} 
+                sx={{ 
+                  position: 'relative',
+                }}
+              >
                 <Card
                   sx={{
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
+                    position: 'relative',
                     background: isDark
                       ? 'rgba(30, 41, 59, 0.8)'
                       : 'rgba(255, 255, 255, 0.8)',
@@ -226,6 +204,33 @@ const ServicesPreview: React.FC = () => {
                     },
                   }}
                 >
+                  {/* Most Popular Badge */}
+                  {service.id === 'web-applications' && (
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 4,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        zIndex: 10,
+                      }}
+                    >
+                      <Chip
+                        label="Most Popular"
+                        size="small"
+                        sx={{
+                          background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
+                          color: 'white',
+                          fontWeight: 600,
+                          fontSize: '0.75rem',
+                          boxShadow: isDark
+                            ? '0 0.25rem 0.5rem rgba(0, 0, 0, 0.15)'
+                            : '0 0.25rem 0.5rem rgba(0, 0, 0, 0.08)',
+                        }}
+                      />
+                    </Box>
+                  )}
+
                   <CardContent sx={{ 
                     p: { xs: 2, sm: 3, md: 4 }, 
                     flexGrow: 1,
@@ -392,7 +397,7 @@ const ServicesPreview: React.FC = () => {
                     {/* CTA Button */}
                     <Button
                       component={Link}
-                      href="/contact"
+                      href={`/services/${service.id}`}
                       variant="outlined"
                       fullWidth
                       endIcon={<ArrowForward />}
@@ -407,7 +412,7 @@ const ServicesPreview: React.FC = () => {
                         },
                       }}
                     >
-                      Get Started
+                      Learn More
                     </Button>
                   </CardContent>
                 </Card>
