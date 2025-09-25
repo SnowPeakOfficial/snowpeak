@@ -13,16 +13,11 @@ import {
   useTheme,
   useMediaQuery,
   IconButton,
-  Fade,
-  Tooltip
+  Fade
 } from '@mui/material';
 import { 
   ArrowForward, 
   Launch, 
-  Star,
-  TrendingUp,
-  People,
-  Code,
   ChevronLeft,
   ChevronRight
 } from '@mui/icons-material';
@@ -37,7 +32,6 @@ const FeaturedProjects: React.FC = () => {
   
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   
@@ -56,7 +50,7 @@ const FeaturedProjects: React.FC = () => {
   // Update projectsPerView when screen size changes
   useEffect(() => {
     setProjectsPerView(getProjectsPerView());
-  }, [isMobile, isTablet]);
+  }, [isMobile, isTablet, getProjectsPerView]);
   
   // Create infinite carousel by duplicating projects at beginning and end
   const projects = [
@@ -64,14 +58,6 @@ const FeaturedProjects: React.FC = () => {
     ...originalProjects, // Original projects
     ...originalProjects.slice(0, projectsPerView), // First few projects at the end
   ];
-  
-  // Start at the first "real" project (after the duplicated ones)
-  const [realIndex, setRealIndex] = useState(projectsPerView);
-  
-  // Update realIndex when projectsPerView changes
-  useEffect(() => {
-    setRealIndex(projectsPerView);
-  }, [projectsPerView]);
 
   // Calculate max index for carousel navigation
   const maxIndex = Math.max(0, projects.length - 3); // Always show 3 cards
@@ -133,22 +119,6 @@ const FeaturedProjects: React.FC = () => {
     }
   };
 
-  const getMetricIcon = (key: string) => {
-    switch (key) {
-      case 'downloads':
-      case 'transactions':
-      case 'mrr':
-        return <TrendingUp sx={{ fontSize: '1rem' }} />;
-      case 'users':
-      case 'activeUsers':
-      case 'retention':
-        return <People sx={{ fontSize: '1rem' }} />;
-      case 'rating':
-        return <Star sx={{ fontSize: '1rem' }} />;
-      default:
-        return <Code sx={{ fontSize: '1rem' }} />;
-    }
-  };
 
   return (
     <Box
@@ -283,7 +253,7 @@ const FeaturedProjects: React.FC = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {projects.slice(currentIndex, currentIndex + 3).map((project, index) => {
+            {projects.slice(currentIndex, currentIndex + 3).map((project) => {
               const typeColors = getProjectTypeColor(project.type);
               const isHovered = hoveredProject === project.id;
               

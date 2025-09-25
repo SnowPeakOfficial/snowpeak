@@ -35,7 +35,7 @@ const CallToActionBand: React.FC = () => {
               fontSize: { xs: '1.125rem', md: '1.25rem' },
             }}
           >
-            Let's craft something remarkable together.
+            Let&apos;s craft something remarkable together.
           </Typography>
           <Button component={Link} href="/contact" size="large" variant="contained" sx={{
             backgroundColor: 'rgba(255,255,255,0.15)',
