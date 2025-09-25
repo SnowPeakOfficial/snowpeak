@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -27,6 +27,26 @@ import { SERVICES } from '@/data/constants';
 const ServicesPage: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const [imageLoadStates, setImageLoadStates] = useState<Record<string, boolean>>({});
+
+  const getServiceImagePath = (serviceId: string): string => {
+    const imageMap: Record<string, string> = {
+      'web-development': 'web-dev-main.jpg',
+      'web-applications': 'web-app-main.jpg',
+      'mobile-applications': 'mobile-dev-main.jpg',
+      'browser-extensions': 'browser-main.jpg',
+      'maintenance-support': 'support-main.jpg',
+    };
+    return `/assets/services/${imageMap[serviceId] || 'web-dev-main.jpg'}`;
+  };
+
+  const handleImageError = (serviceId: string) => {
+    setImageLoadStates(prev => ({ ...prev, [serviceId]: false }));
+  };
+
+  const handleImageLoad = (serviceId: string) => {
+    setImageLoadStates(prev => ({ ...prev, [serviceId]: true }));
+  };
 
   const getServiceIcon = (iconName: string) => {
     const iconProps = {
@@ -229,95 +249,119 @@ const ServicesPage: React.FC = () => {
                       },
                     }}
                   >
-                    {/* Background Pattern */}
+                    {/* Service Image */}
                     <Box
+                      component="img"
+                      src={getServiceImagePath(service.id)}
+                      alt={`${service.title} - Professional ${service.title.toLowerCase()} services`}
+                      onLoad={() => handleImageLoad(service.id)}
+                      onError={() => handleImageError(service.id)}
                       sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
                         position: 'absolute',
                         top: 0,
                         left: 0,
-                        right: 0,
-                        bottom: 0,
-                        backgroundImage: isDark
-                          ? 'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)'
-                          : 'radial-gradient(circle at 30% 20%, rgba(57, 94, 202, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(132, 139, 216, 0.1) 0%, transparent 50%)',
                         zIndex: 1,
+                        display: imageLoadStates[service.id] === false ? 'none' : 'block',
                       }}
                     />
 
-                    {/* Service Mockup Content */}
-                    <Box
-                      sx={{
-                        position: 'relative',
-                        zIndex: 2,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        p: 4,
-                      }}
-                    >
-                      {/* Animated Service Icon */}
-                      <Box
-                        sx={{
-                          mb: 4,
-                          p: 3,
-                          borderRadius: '50%',
-                          background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
-                          border: `2px solid ${theme.palette.primary.main}40`,
-                          animation: 'float 3s ease-in-out infinite',
-                          '@keyframes float': {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                          },
-                        }}
-                      >
-                        {getServiceIcon(service.icon)}
-                      </Box>
+                    {/* Fallback Content - shown when image fails to load */}
+                    {imageLoadStates[service.id] === false && (
+                      <>
+                        {/* Background Pattern */}
+                        <Box
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundImage: isDark
+                              ? 'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)'
+                              : 'radial-gradient(circle at 30% 20%, rgba(57, 94, 202, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(132, 139, 216, 0.1) 0%, transparent 50%)',
+                            zIndex: 1,
+                          }}
+                        />
 
-                      {/* Service Preview Elements */}
-                      <Box
-                        sx={{
-                          width: '100%',
-                          maxWidth: '300px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: 2,
-                        }}
-                      >
+                        {/* Service Mockup Content */}
                         <Box
                           sx={{
-                            height: '8px',
-                            borderRadius: 1,
-                            background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                            opacity: 0.8,
+                            position: 'relative',
+                            zIndex: 2,
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            p: 4,
                           }}
-                        />
-                        <Box
-                          sx={{
-                            height: '6px',
-                            width: '70%',
-                            borderRadius: 1,
-                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
-                          }}
-                        />
-                        <Box
-                          sx={{
-                            height: '6px',
-                            width: '85%',
-                            borderRadius: 1,
-                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
-                          }}
-                        />
-                        
-                        {/* Service-specific elements */}
-                        <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
-                          <Box sx={{ width: '60px', height: '40px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
-                          <Box sx={{ width: '60px', height: '40px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
-                          <Box sx={{ width: '60px', height: '40px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                        >
+                          {/* Animated Service Icon */}
+                          <Box
+                            sx={{
+                              mb: 4,
+                              p: 3,
+                              borderRadius: '50%',
+                              background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                              border: `2px solid ${theme.palette.primary.main}40`,
+                              animation: 'float 3s ease-in-out infinite',
+                              '@keyframes float': {
+                                '0%, 100%': { transform: 'translateY(0px)' },
+                                '50%': { transform: 'translateY(-10px)' },
+                              },
+                            }}
+                          >
+                            {getServiceIcon(service.icon)}
+                          </Box>
+
+                          {/* Service Preview Elements */}
+                          <Box
+                            sx={{
+                              width: '100%',
+                              maxWidth: '300px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: 2,
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                height: '8px',
+                                borderRadius: 1,
+                                background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                                opacity: 0.8,
+                              }}
+                            />
+                            <Box
+                              sx={{
+                                height: '6px',
+                                width: '70%',
+                                borderRadius: 1,
+                                background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                              }}
+                            />
+                            <Box
+                              sx={{
+                                height: '6px',
+                                width: '85%',
+                                borderRadius: 1,
+                                background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                              }}
+                            />
+                            
+                            {/* Service-specific elements */}
+                            <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
+                              <Box sx={{ width: '60px', height: '40px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
+                              <Box sx={{ width: '60px', height: '40px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
+                              <Box sx={{ width: '60px', height: '40px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                            </Box>
+                          </Box>
                         </Box>
-                      </Box>
-                    </Box>
+                      </>
+                    )}
                   </Box>
                 </Box>
 
