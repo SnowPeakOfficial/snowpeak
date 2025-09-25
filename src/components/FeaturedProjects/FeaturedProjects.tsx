@@ -73,6 +73,9 @@ const FeaturedProjects: React.FC = () => {
     setRealIndex(projectsPerView);
   }, [projectsPerView]);
 
+  // Calculate max index for carousel navigation
+  const maxIndex = Math.max(0, projects.length - 3); // Always show 3 cards
+
   // Touch handlers for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -225,8 +228,6 @@ const FeaturedProjects: React.FC = () => {
           px: { xs: 4, md: 6 }, // Increased horizontal padding to prevent clipping
           py: { xs: 6, md: 8 }, // Significantly increased vertical padding to prevent clipping
         }}>
-        {/* Simple Carousel Container */}
-        <Box sx={{ position: 'relative', mb: { xs: 6, md: 8 } }}>
           {/* Navigation Arrows */}
           <IconButton
             onClick={handlePrevious}
