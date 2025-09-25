@@ -225,7 +225,7 @@ const AboutPage: React.FC = () => {
               </Typography>
             </Box>
 
-            {/* Team Cards Grid */}
+             {/* Team Cards Grid */}
             <Box
               sx={{
                 display: 'grid',
@@ -233,7 +233,6 @@ const AboutPage: React.FC = () => {
                   xs: '1fr',
                   md: 'repeat(3, 1fr)',
                 },
-                gridTemplateRows: { md: '1fr' },
                 gap: 4,
                 maxWidth: '1000px',
                 mx: 'auto',
@@ -242,15 +241,13 @@ const AboutPage: React.FC = () => {
               {/* Safiuddin Card */}
               <Card
                 sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 3,
+                  p: 3,
                   textAlign: 'center',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
@@ -262,7 +259,7 @@ const AboutPage: React.FC = () => {
                   },
                 }}
               >
-                <Box
+                <Avatar
                   sx={{
                     width: 80,
                     height: 80,
@@ -288,15 +285,13 @@ const AboutPage: React.FC = () => {
               {/* Waleed Card */}
               <Card
                 sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 3,
+                  p: 3,
                   textAlign: 'center',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
@@ -308,7 +303,7 @@ const AboutPage: React.FC = () => {
                   },
                 }}
               >
-                <Box
+                <Avatar
                   sx={{
                     width: 80,
                     height: 80,
@@ -334,15 +329,13 @@ const AboutPage: React.FC = () => {
               {/* Kevin Tran Card */}
               <Card
                 sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
                   background: isDark
                     ? 'rgba(30, 41, 59, 0.8)'
                     : 'rgba(255, 255, 255, 0.8)',
                   backdropFilter: 'blur(10px)',
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 3,
+                  p: 3,
                   textAlign: 'center',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
@@ -354,13 +347,14 @@ const AboutPage: React.FC = () => {
                   },
                 }}
               >
-                <Box
+                <Avatar
                   sx={{
-                    p: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    justifyContent: 'space-between',
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 2,
+                    backgroundColor: 'primary.main',
+                    fontSize: '1.5rem',
                   }}
                 >
                   <Code />

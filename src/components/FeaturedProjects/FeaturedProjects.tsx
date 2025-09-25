@@ -382,8 +382,8 @@ const FeaturedProjects: React.FC = () => {
                   </Box>
 
                   <CardContent sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    {/* Project Type and Status */}
-                    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
+                    {/* Project Type */}
+                    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
                       <Chip 
                         label={project.type} 
                         size="small" 
@@ -391,16 +391,6 @@ const FeaturedProjects: React.FC = () => {
                           backgroundColor: typeColors.bg,
                           color: typeColors.color,
                           border: `1px solid ${typeColors.border}40`,
-                          fontWeight: 600,
-                        }}
-                      />
-                      <Chip 
-                        label={project.status} 
-                        size="small" 
-                        sx={{
-                          backgroundColor: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.1)',
-                          color: 'success.main',
-                          border: `1px solid ${theme.palette.success.main}40`,
                           fontWeight: 600,
                         }}
                       />
@@ -467,48 +457,9 @@ const FeaturedProjects: React.FC = () => {
                       {project.description}
                     </Typography>
 
-                    {/* Key Metrics */}
-                    {project.metrics && (
-                      <Box sx={{ mb: 2 }}>
-                        <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1 }}>
-                          {Object.entries(project.metrics).slice(0, 2).map(([key, metric]) => (
-                            <Tooltip
-                              key={key}
-                              title={metric.tooltip}
-                              arrow
-                              placement="top"
-                            >
-                              <Box
-                                sx={{
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: 0.5,
-                                  px: 1,
-                                  py: 0.5,
-                                  borderRadius: 1,
-                                  backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
-                                  border: `1px solid ${theme.palette.primary.main}20`,
-                                  cursor: 'help',
-                                  transition: 'all 0.2s ease',
-                                  '&:hover': {
-                                    backgroundColor: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
-                                    transform: 'scale(1.05)',
-                                  },
-                                }}
-                              >
-                                {getMetricIcon(metric.type)}
-                                <Typography variant="caption" sx={{ fontWeight: 600, color: 'primary.main' }}>
-                                  {metric.value}
-                                </Typography>
-                              </Box>
-                            </Tooltip>
-                          ))}
-                        </Stack>
-                      </Box>
-                    )}
 
-                    {/* CTA Buttons */}
-                    <Stack direction="row" spacing={1} sx={{ mt: 'auto' }}>
+                    {/* CTA Button */}
+                    <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center' }}>
                       {project.liveUrl && (
                         <Button
                           component={Link}
@@ -529,23 +480,7 @@ const FeaturedProjects: React.FC = () => {
                           View Live
                         </Button>
                       )}
-                      <Button
-                        component={Link}
-                        href="/portfolio"
-                        variant="outlined"
-                        size="small"
-                        sx={{
-                          borderColor: 'primary.main',
-                          color: 'primary.main',
-                          '&:hover': {
-                            backgroundColor: 'primary.main',
-                            color: 'primary.contrastText',
-                          },
-                        }}
-                      >
-                        Details
-                      </Button>
-                    </Stack>
+                    </Box>
                   </CardContent>
                 </Card>
               );
