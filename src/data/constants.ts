@@ -790,8 +790,10 @@ export const CONTACT_INFO = {
   calendlyUrl: 'https://calendly.com/snowpeak-contact/30min',
   social: {
     linkedin: 'https://linkedin.com/company/snowpeak',
-    github: 'https://github.com/snowpeak',
     twitter: 'https://twitter.com/snowpeak',
+    tiktok: 'https://tiktok.com/@snowpeak',
+    instagram: 'https://instagram.com/snowpeak',
+    facebook: 'https://facebook.com/snowpeak',
   },
 };
 

@@ -39,6 +39,9 @@ import {
   CloudDone,
   AutoFixHigh,
   Timeline,
+  Visibility,
+  People,
+  Verified,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -54,6 +57,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const [selectedPackageIndex, setSelectedPackageIndex] = useState<number>(0);
+  const [imageLoadStates, setImageLoadStates] = useState<Record<string, boolean>>({});
   
   // Find the service by slug
   const service = SERVICES.find(s => s.id === params.slug);
@@ -67,6 +71,77 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     const popularIndex = service.packages.findIndex(pkg => pkg.popular);
     setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
   }, [service.packages]);
+
+  const getServiceFeatureImage = (serviceId: string, featureTitle: string): string => {
+    const serviceMaps: Record<string, { folder: string; images: Record<string, string> }> = {
+      'web-development': {
+        folder: 'web-dev',
+        images: {
+          'Custom Website Design': 'custom-website-design.jpg',
+          'SEO & Visibility': 'seo.jpg',
+          'Fast & Optimized Performance': 'performance.jpg',
+          'Content Management & Updates': 'content-management.jpg',
+          'Business Growth Ready': 'business-growth.jpg',
+        }
+      },
+      'web-applications': {
+        folder: 'web-app',
+        images: {
+          'Scalable & Robust Architecture': 'robust-architecture.jpg',
+          'Interactive & Real-time Features': 'real-time-features.jpg',
+          'Enterprise-Grade Security': 'security.jpg',
+          'Data & Analytics Integration': 'data-analytics.jpg',
+          'Business Efficiency & ROI': 'business-efficiency.jpg',
+        }
+      },
+      'mobile-applications': {
+        folder: 'mobile-apps',
+        images: {
+          'Cross-Platform Mobile Apps': 'cross-platform.jpg',
+          'High-Performance & Smooth User Experience': 'smooth-ux.jpg',
+          'Scalable & Future-Ready': 'scalable.jpg',
+          'Distribution & Updates': 'distribution.jpg',
+          'Customer Engagement & Retention': 'customer-engagement.jpg',
+        }
+      },
+      'browser-extensions': {
+        folder: 'browser-extensions',
+        images: {
+          'Cross-Browser Compatibility': 'cross-browser.jpg',
+          'Brand Visibility & Engagement': 'brand-visibility.jpg',
+          'Secure & Safe Integration': 'secure-safe.jpg',
+          'Distribution & Updates': 'distribution-updates.jpg',
+          'Market Differentiation': 'market-differentiation.jpg',
+        }
+      },
+      'maintenance-support': {
+        folder: 'maintenance-support',
+        images: {
+          'Proactive Monitoring': 'monitoring.jpg',
+          'Security & Updates': 'security.jpg',
+          'Performance Optimization': 'performance-optimizations.jpg',
+          'Ongoing Feature Support': 'ongoing-support.jpg',
+          'Peace of Mind for Your Business': 'peace-business.jpg',
+        }
+      }
+    };
+
+    const serviceMap = serviceMaps[serviceId];
+    if (!serviceMap) return '';
+    
+    const imageName = serviceMap.images[featureTitle];
+    if (!imageName) return '';
+    
+    return `/assets/services/${serviceMap.folder}/${imageName}`;
+  };
+
+  const handleImageError = (featureTitle: string) => {
+    setImageLoadStates(prev => ({ ...prev, [featureTitle]: false }));
+  };
+
+  const handleImageLoad = (featureTitle: string) => {
+    setImageLoadStates(prev => ({ ...prev, [featureTitle]: true }));
+  };
 
   const getServiceIcon = (iconName: string) => {
     const iconProps = {
@@ -126,6 +201,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Easily update your content without technical skills',
       icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'Our websites come with intuitive content management systems, allowing you to add new pages, edit content, and manage blog posts with ease.'
+    },
+    {
+      title: 'Business Growth Ready',
+      description: 'Websites designed to convert visitors into customers',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'Beyond design and tech, we focus on clear calls-to-action, lead capture, and conversion strategies to help you grow your business online.'
     }
   ],
 
@@ -153,6 +234,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Track performance and make informed decisions',
       icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We include analytics and monitoring tools that provide insights on user behavior, app performance, and business metrics, enabling data-driven improvements.'
+    },
+    {
+      title: 'Business Efficiency & ROI',
+      description: 'Applications designed to streamline operations and cut costs',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'We don’t just build apps — we create solutions that save time, reduce overhead, and improve your bottom line.'
     }
   ],
 
@@ -164,22 +251,28 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       details: 'Using React Native or Flutter, we build apps that run smoothly on both platforms while providing a native-like experience, saving time and development cost.'
     },
     {
-      title: 'High-Performance & Smooth UX',
+      title: 'High-Performance & Smooth User Experience',
       description: 'Fast, responsive apps that delight users',
       icon: <Speed sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'Our mobile apps are optimized for speed, responsive layouts, and smooth animations, ensuring users enjoy a seamless and engaging experience.'
     },
     {
-      title: 'Offline & Reliable Functionality',
-      description: 'Works even without an internet connection',
-      icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'We implement offline storage, caching, and background sync so your users can access core features even when connectivity is limited.'
+      title: 'Scalable & Future-Ready',
+      description: 'Apps that grow with your business and users',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'We build apps with scalability in mind, making it easier to add new features, support more users, and adapt to evolving market needs.'
     },
     {
-      title: 'App Store Deployment',
-      description: 'Optimized submission and visibility for app stores',
+      title: 'Distribution & Updates',
+      description: 'Smooth deployment to app stores',
       icon: <TrendingUp sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'We handle the entire app store submission process, including metadata, screenshots, and compliance checks, helping your app reach your audience efficiently.'
+      details: 'We manage app store submissions, approvals, and update rollouts, ensuring your app reaches users quickly and stays up-to-date.'
+    },
+    {
+      title: 'Customer Engagement & Retention',
+      description: 'Drive loyalty with direct user connections',
+      icon: <People sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'Mobile apps keep you closer to your customers with push notifications, personalized experiences, and features designed to increase engagement and retention.'
     }
   ],
 
@@ -191,10 +284,10 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       details: 'We develop extensions that work reliably across all major browsers, ensuring your users have the same seamless experience regardless of their preferred platform.'
     },
     {
-      title: 'Boost Productivity & Engagement',
-      description: 'Tools to automate tasks and enhance workflows',
-      icon: <AutoFixHigh sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'Extensions can automate repetitive tasks, provide quick access to important actions, and improve overall productivity for your users.'
+      title: 'Brand Visibility & Engagement',
+      description: 'Keep your business top-of-mind with a daily presence in users’ browsers',
+      icon: <Visibility sx={{ fontSize: '3rem', color: 'primary.main' }} />,
+      details: 'Browser extensions aren’t just tools — they’re powerful brand touchpoints. We create extensions that increase customer engagement, strengthen brand awareness, and integrate seamlessly into users’ everyday online activities.'
     },
     {
       title: 'Secure & Safe Integration',
@@ -207,6 +300,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Smooth deployment to extension stores',
       icon: <CloudDone sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We manage store submissions, approvals, and update rollouts, ensuring your extension reaches users quickly and stays up-to-date.'
+    },
+    {
+      title: 'Market Differentiation',
+      description: 'Stand out with unique features that users love',
+      icon: <TrendingUp sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'A browser extension can give your business a competitive edge, offering users convenience and functionality that sets you apart in your industry.'
     }
   ],
 
@@ -215,7 +314,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       title: 'Proactive Monitoring',
       description: 'Track uptime, performance, and potential issues 24/7',
       icon: <Analytics sx={{ fontSize: '3rem', color: 'primary.main' }} />,
-      details: 'We continuously monitor your website or app to detect problems before they affect users, ensuring reliability and stability.'
+      details: 'We continuously monitor your website or app to detect and fix issues before they affect users, ensuring reliability and stability.'
     },
     {
       title: 'Security & Updates',
@@ -234,6 +333,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       description: 'Continuous improvements and new functionality',
       icon: <Code sx={{ fontSize: '3rem', color: 'primary.main' }} />,
       details: 'We help implement new features, tweak existing functionality, and ensure your digital product evolves with your business needs.'
+    },
+    {
+      title: 'Peace of Mind for Your Business',
+      description: 'Focus on growth while we handle the tech',
+      icon: <Verified sx={{ fontSize: '3rem', color: 'secondary.main' }} />,
+      details: 'With our maintenance and support, you can invest your energy into running your business knowing your digital assets are always secure and optimized.'
     }
   ]
 };
@@ -708,80 +813,181 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
                       }}
                     />
 
-                    {/* Feature Visual Content */}
-                    <Box
-                      sx={{
-                        position: 'relative',
-                        zIndex: 2,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        p: 4,
-                      }}
-                    >
-                      {/* Feature Icon */}
-                      <Box
-                        sx={{
-                          mb: 3,
-                          p: 3,
-                          borderRadius: '50%',
-                          background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
-                          border: `2px solid ${theme.palette.primary.main}40`,
-                          animation: 'float 3s ease-in-out infinite',
-                          '@keyframes float': {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                          },
-                        }}
-                      >
-                        {feature.icon}
-                      </Box>
+                    {/* Feature Images for All Services */}
+                    {getServiceFeatureImage(service.id, feature.title) ? (
+                      <>
+                        {/* Feature Image */}
+                        <Box
+                          component="img"
+                          src={getServiceFeatureImage(service.id, feature.title)}
+                          alt={`${feature.title} - Professional ${service.title.toLowerCase()} feature`}
+                          onLoad={() => handleImageLoad(feature.title)}
+                          onError={() => handleImageError(feature.title)}
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            zIndex: 2,
+                            display: imageLoadStates[feature.title] === false ? 'none' : 'block',
+                          }}
+                        />
 
-                      {/* Feature Mockup Elements */}
+                        {/* Fallback Content - shown when image fails to load */}
+                        {imageLoadStates[feature.title] === false && (
+                          <Box
+                            sx={{
+                              position: 'relative',
+                              zIndex: 2,
+                              height: '100%',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              p: 4,
+                            }}
+                          >
+                            {/* Feature Icon */}
+                            <Box
+                              sx={{
+                                mb: 3,
+                                p: 3,
+                                borderRadius: '50%',
+                                background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                                border: `2px solid ${theme.palette.primary.main}40`,
+                                animation: 'float 3s ease-in-out infinite',
+                                '@keyframes float': {
+                                  '0%, 100%': { transform: 'translateY(0px)' },
+                                  '50%': { transform: 'translateY(-10px)' },
+                                },
+                              }}
+                            >
+                              {feature.icon}
+                            </Box>
+
+                            {/* Feature Mockup Elements */}
+                            <Box
+                              sx={{
+                                width: '100%',
+                                maxWidth: '280px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 2,
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  height: '10px',
+                                  borderRadius: 1,
+                                  background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                                  opacity: 0.8,
+                                }}
+                              />
+                              <Box
+                                sx={{
+                                  height: '6px',
+                                  width: '70%',
+                                  borderRadius: 1,
+                                  background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                                }}
+                              />
+                              <Box
+                                sx={{
+                                  height: '6px',
+                                  width: '85%',
+                                  borderRadius: 1,
+                                  background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                                }}
+                              />
+                              
+                              {/* Feature-specific elements */}
+                              <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
+                                <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
+                                <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
+                                <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                              </Box>
+                            </Box>
+                          </Box>
+                        )}
+                      </>
+                    ) : (
+                      /* Default Feature Visual Content when no image is available */
                       <Box
                         sx={{
-                          width: '100%',
-                          maxWidth: '280px',
+                          position: 'relative',
+                          zIndex: 2,
+                          height: '100%',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: 2,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          p: 4,
                         }}
                       >
+                        {/* Feature Icon */}
                         <Box
                           sx={{
-                            height: '10px',
-                            borderRadius: 1,
-                            background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                            opacity: 0.8,
+                            mb: 3,
+                            p: 3,
+                            borderRadius: '50%',
+                            background: `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                            border: `2px solid ${theme.palette.primary.main}40`,
+                            animation: 'float 3s ease-in-out infinite',
+                            '@keyframes float': {
+                              '0%, 100%': { transform: 'translateY(0px)' },
+                              '50%': { transform: 'translateY(-10px)' },
+                            },
                           }}
-                        />
+                        >
+                          {feature.icon}
+                        </Box>
+
+                        {/* Feature Mockup Elements */}
                         <Box
                           sx={{
-                            height: '6px',
-                            width: '70%',
-                            borderRadius: 1,
-                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                            width: '100%',
+                            maxWidth: '280px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 2,
                           }}
-                        />
-                        <Box
-                          sx={{
-                            height: '6px',
-                            width: '85%',
-                            borderRadius: 1,
-                            background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
-                          }}
-                        />
-                        
-                        {/* Feature-specific elements */}
-                        <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
-                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
-                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
-                          <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                        >
+                          <Box
+                            sx={{
+                              height: '10px',
+                              borderRadius: 1,
+                              background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                              opacity: 0.8,
+                            }}
+                          />
+                          <Box
+                            sx={{
+                              height: '6px',
+                              width: '70%',
+                              borderRadius: 1,
+                              background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                            }}
+                          />
+                          <Box
+                            sx={{
+                              height: '6px',
+                              width: '85%',
+                              borderRadius: 1,
+                              background: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(71, 85, 105, 0.3)',
+                            }}
+                          />
+                          
+                          {/* Feature-specific elements */}
+                          <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'center' }}>
+                            <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(57, 94, 202, 0.2)' }} />
+                            <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(132, 139, 216, 0.2)' }} />
+                            <Box sx={{ width: '50px', height: '30px', borderRadius: 1, background: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)' }} />
+                          </Box>
                         </Box>
                       </Box>
-                    </Box>
+                    )}
                   </Box>
                 </Box>
 

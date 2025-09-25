@@ -98,41 +98,21 @@ const FeaturedProjects: React.FC = () => {
   };
 
   const handlePrevious = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setRealIndex(prev => prev - 1);
-    
-    // If we're at the first duplicated section, reset to the end without animation
-    setTimeout(() => {
-      setRealIndex(prev => {
-        if (prev === projectsPerView - 1) {
-          setIsTransitioning(false);
-          return originalProjects.length + projectsPerView - 1;
-        }
-        setIsTransitioning(false);
-        return prev;
-      });
-    }, 500); // Match the transition duration
+    setCurrentIndex(prev => {
+      if (prev === 0) {
+        return maxIndex;
+      }
+      return prev - 1;
+    });
   };
 
   const handleNext = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setRealIndex(prev => prev + 1);
-    
-    // If we're at the last duplicated section, reset to the beginning without animation
-    setTimeout(() => {
-      setRealIndex(prev => {
-        if (prev === originalProjects.length + projectsPerView) {
-          setIsTransitioning(false);
-          return projectsPerView;
-        }
-        setIsTransitioning(false);
-        return prev;
-      });
-    }, 500); // Match the transition duration
+    setCurrentIndex(prev => {
+      if (prev >= maxIndex) {
+        return 0;
+      }
+      return prev + 1;
+    });
   };
 
   const getProjectTypeColor = (type: string) => {
@@ -245,395 +225,330 @@ const FeaturedProjects: React.FC = () => {
           px: { xs: 4, md: 6 }, // Increased horizontal padding to prevent clipping
           py: { xs: 6, md: 8 }, // Significantly increased vertical padding to prevent clipping
         }}>
+        {/* Simple Carousel Container */}
+        <Box sx={{ position: 'relative', mb: { xs: 6, md: 8 } }}>
           {/* Navigation Arrows */}
           <IconButton
             onClick={handlePrevious}
             sx={{
               position: 'absolute',
-              left: { xs: -20, sm: -40, md: -80 },
+              left: -60,
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              width: { xs: 40, sm: 56, md: 64 },
-              height: { xs: 40, sm: 56, md: 64 },
-              background: isDark
-                ? 'rgba(30, 41, 59, 0.9)'
-                : 'rgba(255, 255, 255, 0.9)',
-              backdropFilter: 'blur(10px)',
-              border: `2px solid ${theme.palette.primary.main}40`,
+              width: 48,
+              height: 48,
+              background: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
-              boxShadow: isDark
-                ? '0 8px 32px rgba(0, 0, 0, 0.3)'
-                : '0 8px 32px rgba(0, 0, 0, 0.1)',
               '&:hover': {
-                background: isDark
-                  ? 'rgba(30, 41, 59, 1)'
-                  : 'rgba(255, 255, 255, 1)',
-                transform: 'translateY(-50%) scale(1.15)',
-                border: `2px solid ${theme.palette.primary.main}`,
-                boxShadow: isDark
-                  ? '0 12px 48px rgba(0, 0, 0, 0.4)'
-                  : '0 12px 48px rgba(0, 0, 0, 0.15)',
+                background: isDark ? 'rgba(30, 41, 59, 1)' : 'rgba(255, 255, 255, 1)',
+                transform: 'translateY(-50%) scale(1.1)',
               },
             }}
           >
-            <ChevronLeft sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
+            <ChevronLeft />
           </IconButton>
 
           <IconButton
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              right: { xs: -20, sm: -40, md: -80 },
+              right: -60,
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              width: { xs: 40, sm: 56, md: 64 },
-              height: { xs: 40, sm: 56, md: 64 },
-              background: isDark
-                ? 'rgba(30, 41, 59, 0.9)'
-                : 'rgba(255, 255, 255, 0.9)',
-              backdropFilter: 'blur(10px)',
-              border: `2px solid ${theme.palette.primary.main}40`,
+              width: 48,
+              height: 48,
+              background: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
-              boxShadow: isDark
-                ? '0 8px 32px rgba(0, 0, 0, 0.3)'
-                : '0 8px 32px rgba(0, 0, 0, 0.1)',
               '&:hover': {
-                background: isDark
-                  ? 'rgba(30, 41, 59, 1)'
-                  : 'rgba(255, 255, 255, 1)',
-                transform: 'translateY(-50%) scale(1.15)',
-                border: `2px solid ${theme.palette.primary.main}`,
-                boxShadow: isDark
-                  ? '0 12px 48px rgba(0, 0, 0, 0.4)'
-                  : '0 12px 48px rgba(0, 0, 0, 0.15)',
+                background: isDark ? 'rgba(30, 41, 59, 1)' : 'rgba(255, 255, 255, 1)',
+                transform: 'translateY(-50%) scale(1.1)',
               },
             }}
           >
-            <ChevronRight sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
+            <ChevronRight />
           </IconButton>
 
-          {/* Carousel Track */}
+          {/* Simple Grid Layout - Always 3 cards */}
           <Box
             sx={{
-              overflow: 'visible', // Change to visible to prevent clipping
-              width: '100%',
-              py: { xs: 2, sm: 4, md: 6 }, // Responsive padding for hover effects
-              position: 'relative',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 3,
+              px: 2,
             }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {/* Inner container with overflow hidden for the sliding effect */}
-            <Box
-              sx={{
-                overflow: 'hidden',
-                mx: { xs: 1, sm: 2, md: 3 }, // Responsive margin for hover effects
-                position: 'relative',
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  transform: `translateX(-${realIndex * (100 / projectsPerView)}%)`,
-                  transition: isTransitioning ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-                  gap: isMobile ? 0 : { sm: 3, md: 4 }, // No gap on mobile to prevent cropping
-                  px: { xs: 0, sm: 2, md: 3 }, // No padding on mobile
-                  py: { xs: 1, sm: 2 }, // Responsive vertical padding
-                }}
-              >
-              {projects.map((project, index) => {
-                const typeColors = getProjectTypeColor(project.type);
-                const isHovered = hoveredProject === project.id;
-                
-                return (
-                  <Card
-                    key={`${project.id}-${index}`}
-                    onMouseEnter={() => setHoveredProject(project.id)}
-                    onMouseLeave={() => setHoveredProject(null)}
+            {projects.slice(currentIndex, currentIndex + 3).map((project, index) => {
+              const typeColors = getProjectTypeColor(project.type);
+              const isHovered = hoveredProject === project.id;
+              
+              return (
+                <Card
+                  key={project.id}
+                  onMouseEnter={() => setHoveredProject(project.id)}
+                  onMouseLeave={() => setHoveredProject(null)}
+                  sx={{
+                    height: 600,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    background: isDark
+                      ? 'rgba(30, 41, 59, 0.8)'
+                      : 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    border: 'none',
+                    borderRadius: 3,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'all 0.3s ease',
+                    transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
+                    boxShadow: isHovered
+                      ? isDark
+                        ? '0 20px 40px rgba(0, 0, 0, 0.3)'
+                        : '0 20px 40px rgba(0, 0, 0, 0.15)'
+                      : isDark
+                        ? '0 8px 16px rgba(0, 0, 0, 0.2)'
+                        : '0 8px 16px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  {/* Project Image Placeholder */}
+                  <Box
                     sx={{
-                      width: isMobile ? '100%' : `calc(${100 / projectsPerView}% - 24px)`,
-                      minWidth: isMobile ? '100%' : `calc(${100 / projectsPerView}% - 24px)`,
-                      maxWidth: isMobile ? '100%' : `calc(${100 / projectsPerView}% - 24px)`,
-                      flexShrink: 0,
-                      height: '100%',
+                      height: 200,
+                      background: `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
                       display: 'flex',
-                      flexDirection: 'column',
-                      background: isDark
-                        ? 'rgba(30, 41, 59, 0.8)'
-                        : 'rgba(255, 255, 255, 0.9)',
-                      backdropFilter: 'blur(10px)',
-                      border: 'none',
-                      borderRadius: { xs: 2, md: 3 },
+                      alignItems: 'center',
+                      justifyContent: 'center',
                       position: 'relative',
                       overflow: 'hidden',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      transform: isHovered && !isMobile ? 'translateY(-0.5rem) scale(1.01)' : 'translateY(0) scale(1)',
-                      boxShadow: isHovered && !isMobile
-                        ? isDark
-                          ? '0 1.5rem 3rem rgba(0, 0, 0, 0.4)'
-                          : '0 1.5rem 3rem rgba(0, 0, 0, 0.15)'
-                        : isDark
-                          ? '0 0.5rem 1rem rgba(0, 0, 0, 0.2)'
-                          : '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
                     }}
                   >
-                    {/* Project Image Placeholder */}
                     <Box
                       sx={{
-                        height: { xs: 150, sm: 180, md: 200 },
-                        background: `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
+                        width: 80,
+                        height: 80,
+                        borderRadius: '50%',
+                        background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        position: 'relative',
-                        overflow: 'hidden',
+                        color: 'white',
+                        fontSize: '2rem',
+                        fontWeight: 'bold',
+                        transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      {project.title.charAt(0)}
+                    </Box>
+                    
+                    {/* Overlay on hover */}
+                    <Fade in={isHovered}>
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: 'rgba(0, 0, 0, 0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <IconButton
+                          component={Link}
+                          href={project.liveUrl || '#'}
+                          target="_blank"
+                          rel="noopener"
+                          sx={{
+                            background: 'rgba(255, 255, 255, 0.9)',
+                            color: 'primary.main',
+                            '&:hover': {
+                              background: 'white',
+                              transform: 'scale(1.1)',
+                            },
+                          }}
+                        >
+                          <Launch />
+                        </IconButton>
+                      </Box>
+                    </Fade>
+                  </Box>
+
+                  <CardContent sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                    {/* Project Type and Status */}
+                    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
+                      <Chip 
+                        label={project.type} 
+                        size="small" 
+                        sx={{
+                          backgroundColor: typeColors.bg,
+                          color: typeColors.color,
+                          border: `1px solid ${typeColors.border}40`,
+                          fontWeight: 600,
+                        }}
+                      />
+                      <Chip 
+                        label={project.status} 
+                        size="small" 
+                        sx={{
+                          backgroundColor: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.1)',
+                          color: 'success.main',
+                          border: `1px solid ${theme.palette.success.main}40`,
+                          fontWeight: 600,
+                        }}
+                      />
+                    </Stack>
+
+                    {/* Business Logo */}
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        mb: 2,
                       }}
                     >
                       <Box
                         sx={{
-                          width: { xs: 60, sm: 70, md: 80 },
-                          height: { xs: 60, sm: 70, md: 80 },
+                          width: 60,
+                          height: 60,
                           borderRadius: '50%',
                           background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           color: 'white',
-                          fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' },
+                          fontSize: '1.5rem',
                           fontWeight: 'bold',
-                          transform: isHovered && !isMobile ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+                          transform: isHovered ? 'scale(1.1)' : 'scale(1)',
                           transition: 'all 0.3s ease',
+                          boxShadow: isDark
+                            ? '0 4px 16px rgba(0, 0, 0, 0.3)'
+                            : '0 4px 16px rgba(0, 0, 0, 0.1)',
                         }}
                       >
                         {project.title.charAt(0)}
                       </Box>
-                      
-                      {/* Overlay on hover - only show on non-mobile */}
-                      {!isMobile && (
-                        <Fade in={isHovered}>
-                          <Box
-                            sx={{
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              bottom: 0,
-                              background: 'rgba(0, 0, 0, 0.3)',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <IconButton
-                              component={Link}
-                              href={project.liveUrl || '#'}
-                              target="_blank"
-                              rel="noopener"
-                              sx={{
-                                background: 'rgba(255, 255, 255, 0.9)',
-                                color: 'primary.main',
-                                '&:hover': {
-                                  background: 'white',
-                                  transform: 'scale(1.1)',
-                                },
-                              }}
-                            >
-                              <Launch />
-                            </IconButton>
-                          </Box>
-                        </Fade>
-                      )}
                     </Box>
+                    {/* Project Title */}
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        mb: 1,
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        lineHeight: 1.3,
+                        textAlign: 'center',
+                      }}
+                    >
+                      {project.title}
+                    </Typography>
 
-                    <CardContent sx={{ p: { xs: 2, sm: 2.5, md: 3 }, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                      {/* Project Type and Status */}
-                      <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
-                        <Chip 
-                          label={project.type} 
-                          size="small" 
-                          sx={{
-                            backgroundColor: typeColors.bg,
-                            color: typeColors.color,
-                            border: `1px solid ${typeColors.border}40`,
-                            fontWeight: 600,
-                          }}
-                        />
-                        <Chip 
-                          label={project.status} 
-                          size="small" 
-                          sx={{
-                            backgroundColor: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.1)',
-                            color: 'success.main',
-                            border: `1px solid ${theme.palette.success.main}40`,
-                            fontWeight: 600,
-                          }}
-                        />
-                      </Stack>
+                    {/* Project Description - Fixed height to ensure uniform card sizes */}
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        mb: 2,
+                        color: 'text.secondary',
+                        lineHeight: 1.6,
+                        height: '4.8rem', // Fixed height for 3 lines
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                      }}
+                    >
+                      {project.description}
+                    </Typography>
 
-                      {/* Business Logo */}
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          mb: 2,
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            width: { xs: 50, sm: 60 },
-                            height: { xs: 50, sm: 60 },
-                            borderRadius: '50%',
-                            background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                            fontWeight: 'bold',
-                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-                            transition: 'all 0.3s ease',
-                            boxShadow: isDark
-                              ? '0 4px 16px rgba(0, 0, 0, 0.3)'
-                              : '0 4px 16px rgba(0, 0, 0, 0.1)',
-                          }}
-                        >
-                          {project.title.charAt(0)}
-                        </Box>
-                      </Box>
-
-                      {/* Project Title */}
-                      <Typography
-                        variant={isMobile ? "h6" : "h5"}
-                        sx={{
-                          mb: 1,
-                          fontWeight: 600,
-                          color: 'text.primary',
-                          lineHeight: 1.3,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
-                        }}
-                      >
-                        {project.title}
-                      </Typography>
-
-                      {/* Project Description */}
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          mb: 2,
-                          color: 'text.secondary',
-                          lineHeight: 1.6,
-                          height: { xs: '3.2rem', sm: '4.8rem' }, // Responsive height: 2 lines on mobile, 3 on larger screens
-                          overflow: 'hidden',
-                          display: '-webkit-box',
-                          WebkitLineClamp: { xs: 2, sm: 3 },
-                          WebkitBoxOrient: 'vertical',
-                          fontSize: { xs: '0.875rem', sm: '0.875rem' },
-                        }}
-                      >
-                        {project.description}
-                      </Typography>
-
-                      {/* Key Metrics */}
-                      {project.metrics && (
-                        <Box sx={{ mb: 2 }}>
-                          <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1 }}>
-                            {Object.entries(project.metrics).slice(0, 2).map(([key, metric]) => (
-                              <Tooltip
-                                key={key}
-                                title={metric.tooltip}
-                                arrow
-                                placement="top"
+                    {/* Key Metrics */}
+                    {project.metrics && (
+                      <Box sx={{ mb: 2 }}>
+                        <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1 }}>
+                          {Object.entries(project.metrics).slice(0, 2).map(([key, metric]) => (
+                            <Tooltip
+                              key={key}
+                              title={metric.tooltip}
+                              arrow
+                              placement="top"
+                            >
+                              <Box
+                                sx={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 0.5,
+                                  px: 1,
+                                  py: 0.5,
+                                  borderRadius: 1,
+                                  backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
+                                  border: `1px solid ${theme.palette.primary.main}20`,
+                                  cursor: 'help',
+                                  transition: 'all 0.2s ease',
+                                  '&:hover': {
+                                    backgroundColor: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
+                                    transform: 'scale(1.05)',
+                                  },
+                                }}
                               >
-                                <Box
-                                  sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: 0.5,
-                                    px: 1,
-                                    py: 0.5,
-                                    borderRadius: 1,
-                                    backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(57, 94, 202, 0.05)',
-                                    border: `1px solid ${theme.palette.primary.main}20`,
-                                    cursor: 'help',
-                                    transition: 'all 0.2s ease',
-                                    '&:hover': {
-                                      backgroundColor: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.08)',
-                                      transform: 'scale(1.05)',
-                                    },
-                                  }}
-                                >
-                                  {getMetricIcon(metric.type)}
-                                  <Typography variant="caption" sx={{ fontWeight: 600, color: 'primary.main' }}>
-                                    {metric.value}
-                                  </Typography>
-                                </Box>
-                              </Tooltip>
-                            ))}
-                          </Stack>
-                        </Box>
-                      )}
+                                {getMetricIcon(metric.type)}
+                                <Typography variant="caption" sx={{ fontWeight: 600, color: 'primary.main' }}>
+                                  {metric.value}
+                                </Typography>
+                              </Box>
+                            </Tooltip>
+                          ))}
+                        </Stack>
+                      </Box>
+                    )}
 
-                      {/* CTA Buttons */}
-                      <Stack 
-                        direction={isMobile ? "column" : "row"} 
-                        spacing={1} 
-                        sx={{ mt: 'auto' }}
-                      >
-                        {project.liveUrl && (
-                          <Button
-                            component={Link}
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener"
-                            variant="contained"
-                            size={isMobile ? "medium" : "small"}
-                            endIcon={<Launch />}
-                            fullWidth={isMobile}
-                            sx={{
-                              background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                              fontSize: { xs: '0.875rem', sm: '0.75rem' },
-                              py: { xs: 1, sm: 0.5 },
-                              '&:hover': {
-                                background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                                transform: isMobile ? 'none' : 'scale(1.05)',
-                              },
-                            }}
-                          >
-                            View Live
-                          </Button>
-                        )}
+                    {/* CTA Buttons */}
+                    <Stack direction="row" spacing={1} sx={{ mt: 'auto' }}>
+                      {project.liveUrl && (
                         <Button
                           component={Link}
-                          href="/portfolio"
-                          variant="outlined"
-                          size={isMobile ? "medium" : "small"}
-                          fullWidth={isMobile}
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener"
+                          variant="contained"
+                          size="small"
+                          endIcon={<Launch />}
                           sx={{
-                            borderColor: 'primary.main',
-                            color: 'primary.main',
-                            fontSize: { xs: '0.875rem', sm: '0.75rem' },
-                            py: { xs: 1, sm: 0.5 },
+                            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                             '&:hover': {
-                              backgroundColor: 'primary.main',
-                              color: 'primary.contrastText',
+                              background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
+                              transform: 'scale(1.05)',
                             },
                           }}
                         >
-                          Details
+                          View Live
                         </Button>
-                      </Stack>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-              </Box>
-            </Box>
+                      )}
+                      <Button
+                        component={Link}
+                        href="/portfolio"
+                        variant="outlined"
+                        size="small"
+                        sx={{
+                          borderColor: 'primary.main',
+                          color: 'primary.main',
+                          '&:hover': {
+                            backgroundColor: 'primary.main',
+                            color: 'primary.contrastText',
+                          },
+                        }}
+                      >
+                        Details
+                      </Button>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </Box>
         </Box>
 

@@ -239,73 +239,6 @@ const AboutPage: React.FC = () => {
                 mx: 'auto',
               }}
             >
-              {/* Waleed Card */}
-              <Card
-                sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  background: isDark
-                    ? 'rgba(30, 41, 59, 0.8)'
-                    : 'rgba(255, 255, 255, 0.8)',
-                  backdropFilter: 'blur(10px)',
-                  border: `1px solid ${theme.palette.divider}`,
-                  borderRadius: 3,
-                  textAlign: 'center',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  '&:hover': {
-                    transform: 'translateY(-0.25rem)',
-                    boxShadow: isDark
-                      ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
-                      : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
-                    borderColor: 'secondary.main',
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    p: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Box>
-                    <Avatar
-                      sx={{
-                        width: 80,
-                        height: 80,
-                        mx: 'auto',
-                        mb: 2,
-                        backgroundColor: 'secondary.main',
-                        fontSize: '1.5rem',
-                      }}
-                    >
-                      <Business />
-                    </Avatar>
-                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                      Waleed Amray
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'secondary.main', fontWeight: 500 }}>
-                      Chief Operating Officer
-                    </Typography>
-                  </Box>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: 'text.secondary',
-                      flex: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      minHeight: '3rem',
-                    }}
-                  >
-                    Drives strategy, client growth, and ensures every creative vision aligns with business goals.
-                  </Typography>
-                </Box>
-              </Card>
-
               {/* Safiuddin Card */}
               <Card
                 sx={{
@@ -331,46 +264,71 @@ const AboutPage: React.FC = () => {
               >
                 <Box
                   sx={{
-                    p: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    justifyContent: 'space-between',
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 2,
+                    backgroundColor: 'primary.main',
+                    fontSize: '1.5rem',
                   }}
                 >
-                  <Box>
-                    <Avatar
-                      sx={{
-                        width: 80,
-                        height: 80,
-                        mx: 'auto',
-                        mb: 2,
-                        backgroundColor: 'primary.main',
-                        fontSize: '1.5rem',
-                      }}
-                    >
-                      <Code />
-                    </Avatar>
-                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                      Safiuddin Ahmed Mohammad
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
-                      Chief Technology Officer
-                    </Typography>
-                  </Box>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: 'text.secondary',
-                      flex: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      minHeight: '3rem',
-                    }}
-                  >
-                    Designs and builds thoughtful digital experiences — from the first line of code to final polish.
-                  </Typography>
-                </Box>
+                  <Code />
+                </Avatar>
+                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                  Safiuddin Ahmed Mohammad
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
+                  Co-Founder - Engineering Lead & Product Architect
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Safiuddin combines deep technical expertise with a drive for innovation. He designs system architectures, leads development efforts, and ensures that solutions are as robust under the hood as they are seamless on the surface. His strength lies in turning complex problems into elegant, robust, and scalable products.
+                </Typography>
+              </Card>
+
+              {/* Waleed Card */}
+              <Card
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  background: isDark
+                    ? 'rgba(30, 41, 59, 0.8)'
+                    : 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 3,
+                  textAlign: 'center',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-0.25rem)',
+                    boxShadow: isDark
+                      ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
+                      : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
+                    borderColor: 'secondary.main',
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 2,
+                    backgroundColor: 'secondary.main',
+                    fontSize: '1.5rem',
+                  }}
+                >
+                  <Business />
+                </Avatar>
+                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                  Waleed Amray
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: 'secondary.main', fontWeight: 500 }}>
+                  Co-Founder - Business Strategy & Client Partnerships
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Waleed connects technology with business outcomes. With a background in finance and business analysis, he helps clients clarify goals, measure success, and unlock ROI. He ensures every project is grounded in strategy and delivers value beyond the launch.
+                </Typography>
               </Card>
 
               {/* Kevin Tran Card */}
@@ -405,39 +363,17 @@ const AboutPage: React.FC = () => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Box>
-                    <Avatar
-                      sx={{
-                        width: 80,
-                        height: 80,
-                        mx: 'auto',
-                        mb: 2,
-                        backgroundColor: 'primary.main',
-                        fontSize: '1.5rem',
-                      }}
-                    >
-                      <Code />
-                    </Avatar>
-                    <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
-                      Kevin Tran
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
-                      Chief Information Officer
-                    </Typography>
-                  </Box>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: 'text.secondary',
-                      flex: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      minHeight: '3rem',
-                    }}
-                  >
-                    Brings extensive experience in building robust software solutions with a focus on scalability and performance.
-                  </Typography>
-                </Box>
+                  <Code />
+                </Avatar>
+                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                  Kevin Tran
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: 'primary.main', fontWeight: 500 }}>
+                  Co-Founder - Engineering Lead & Systems Architect
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Kevin specializes in building high-performance software systems. With a strong background in modern frameworks and infrastructure, he ensures products are engineered for speed, stability, and long-term growth. His focus is on writing clean, maintainable code that powers resilient digital experiences.
+                </Typography>
               </Card>
             </Box>
           </Container>

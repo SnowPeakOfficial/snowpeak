@@ -81,7 +81,6 @@ const Navigation: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesAnchorEl, setServicesAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -95,38 +94,13 @@ const Navigation: React.FC = () => {
   const handleServicesClick = (event: React.MouseEvent<HTMLElement>) => {
     if (isMobile) {
       setMobileServicesOpen(!mobileServicesOpen);
-    }
-  };
-
-  const handleServicesMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
-    if (!isMobile) {
-      if (hoverTimeout) {
-        clearTimeout(hoverTimeout);
-        setHoverTimeout(null);
-      }
-      setServicesAnchorEl(event.currentTarget);
-    }
-  };
-
-  const handleServicesMouseLeave = () => {
-    if (!isMobile) {
-      const timeout = setTimeout(() => {
+    } else {
+      // Desktop click functionality
+      if (servicesAnchorEl) {
         setServicesAnchorEl(null);
-      }, 150);
-      setHoverTimeout(timeout);
-    }
-  };
-
-  const handleMenuMouseEnter = () => {
-    if (!isMobile && hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
-  };
-
-  const handleMenuMouseLeave = () => {
-    if (!isMobile) {
-      setServicesAnchorEl(null);
+      } else {
+        setServicesAnchorEl(event.currentTarget);
+      }
     }
   };
 
@@ -179,7 +153,7 @@ const Navigation: React.FC = () => {
                           <Button
                             key={service.id}
                             component={Link}
-                            href={`/services#${service.id}`}
+                            href={`/services/${service.id}`}
                             onClick={handleNavClick}
                             variant="text"
                             sx={{
@@ -329,7 +303,7 @@ const Navigation: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/snowpeak-logo/vector/defaultLandscape.svg"
+                    src={mode === 'dark' ? "/snowpeak-logo/vector/defaultLandscape-white.svg" : "/snowpeak-logo/vector/defaultLandscape.svg"}
                     alt={COMPANY_INFO.name}
                     width={240}
                     height={80}
@@ -343,12 +317,9 @@ const Navigation: React.FC = () => {
                   {NAVIGATION_ITEMS.map((item) => {
                     if (item.label === 'Services') {
                       return (
-                        <Box 
-                          key={item.href}
-                          onMouseEnter={handleServicesMouseEnter}
-                          onMouseLeave={handleServicesMouseLeave}
-                        >
+                        <Box key={item.href}>
                           <Button
+                            onClick={handleServicesClick}
                             variant={isActivePage(item.href) ? 'contained' : 'text'}
                             endIcon={<KeyboardArrowDown />}
                             sx={{
@@ -373,8 +344,6 @@ const Navigation: React.FC = () => {
                             TransitionComponent={Fade}
                             transformOrigin={{ horizontal: 'center', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-                            onMouseEnter={handleMenuMouseEnter}
-                            onMouseLeave={handleMenuMouseLeave}
                             sx={{
                               '& .MuiPaper-root': {
                                 mt: 1,
@@ -431,7 +400,7 @@ const Navigation: React.FC = () => {
                                     <Box
                                       key={service.id}
                                       component={Link}
-                                      href={`/services#${service.id}`}
+                                      href={`/services/${service.id}`}
                                       onClick={handleServicesClose}
                                       sx={{
                                         display: 'block',
