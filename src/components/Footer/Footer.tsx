@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
                 <Button
                   key={service.id}
                   component={Link}
-                  href={`/services#${service.id}`}
+                  href={`/services/${service.id}`}
                   variant="text"
                   sx={{
                     justifyContent: 'flex-start',
