@@ -424,7 +424,7 @@ export const PORTFOLIO_PROJECTS = [
     title: 'TouchTone Electronics',
     type: 'Website',
     description: 'Professional electronics repair and retail website featuring comprehensive services, products catalogue, and customer inquiry system',
-    liveUrl: 'https://touchtoneelectronics.com',
+    liveUrl: 'https://touchtoneelectronics.vercel.app/',
   },
   {
     id: 'puff-patties-delight',
@@ -451,8 +451,8 @@ export const PORTFOLIO_PROJECTS = [
     id: 'islamic-guidance',
     title: 'Islamic Guidance',
     type: 'Web Application',
-    description: 'Comprehensive spiritual platform providing Muslims with daily Islamic guidance and Quranic study tools.',
-    liveUrl: 'https://islamic-guidance.com',
+    description: 'Comprehensive spiritual AI-powered platform providing Muslims with daily Islamic guidance, personal reflection, and Quranic study tools.',
+    liveUrl: 'https://islamguidance.info/',
   },
   {
     id: 'micahs-music',
