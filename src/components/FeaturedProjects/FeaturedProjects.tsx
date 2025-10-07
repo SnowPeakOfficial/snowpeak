@@ -352,20 +352,6 @@ const FeaturedProjects: React.FC = () => {
                   </Box>
 
                   <CardContent sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    {/* Project Type */}
-                    <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
-                      <Chip 
-                        label={project.type} 
-                        size="small" 
-                        sx={{
-                          backgroundColor: typeColors.bg,
-                          color: typeColors.color,
-                          border: `1px solid ${typeColors.border}40`,
-                          fontWeight: 600,
-                        }}
-                      />
-                    </Stack>
-
                     {/* Business Logo */}
                     <Box
                       sx={{
@@ -396,6 +382,7 @@ const FeaturedProjects: React.FC = () => {
                         {project.title.charAt(0)}
                       </Box>
                     </Box>
+
                     {/* Project Title */}
                     <Typography
                       variant="h5"
@@ -427,6 +414,19 @@ const FeaturedProjects: React.FC = () => {
                       {project.description}
                     </Typography>
 
+                    {/* Project Type */}
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 2 }}>
+                      <Chip 
+                        label={project.type} 
+                        size="small" 
+                        sx={{
+                          backgroundColor: typeColors.bg,
+                          color: typeColors.color,
+                          border: `1px solid ${typeColors.border}40`,
+                          fontWeight: 600,
+                        }}
+                      />
+                    </Box>
 
                     {/* CTA Button */}
                     <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'center' }}>

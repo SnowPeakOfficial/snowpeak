@@ -476,7 +476,7 @@ export const PORTFOLIO_PROJECTS = [
         type: 'users'
       },
       rating: {
-        value: '4.8/5',
+        value: '5/5',
         label: 'User Rating',
         tooltip: 'Average rating from Chrome Web Store and Firefox Add-ons',
         type: 'rating'
