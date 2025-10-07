@@ -31,9 +31,14 @@ const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity,
     <Box
       sx={{
         position: 'absolute',
-        top: '25%',
-        width: '150%',
-        height: '75%',
+        // Responsive positioning: lower on mobile, higher on desktop
+        top: { xs: '55%', sm: '50%', md: '25%' },
+        // Responsive width: wider on mobile/landscape for better scenery
+        width: { xs: '200%', sm: '250%', md: '150%' },
+        // Responsive height: shorter on mobile, taller on desktop
+        height: { xs: '45%', sm: '55%', md: '75%' },
+        // Center horizontally on mobile to prevent overflow issues
+        left: { xs: '-50%', sm: '-75%', md: '0' },
         background: `linear-gradient(to top, ${isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(57, 94, 202, 0.3)'} 0%, ${isDark ? 'rgba(59, 130, 246, 0.05)' : 'rgba(57, 94, 202, 0.1)'} 100%)`,
         clipPath: zIndex === 3 
           ? 'polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%)'
