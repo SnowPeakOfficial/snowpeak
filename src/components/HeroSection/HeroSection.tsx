@@ -57,7 +57,7 @@ const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity,
 
 
 // Fuzzy White Snow Elements
-const FuzzySnowElements: React.FC = () => {
+const FuzzySnowElements: React.FC<{ windowHeight: number }> = ({ windowHeight }) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   
@@ -66,7 +66,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 1 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-100, window.innerHeight + 100],
+          y: [-100, windowHeight + 100],
           x: [0, 30, -20, 10],
           rotate: [0, 360],
         }}
@@ -98,7 +98,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 2 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-80, window.innerHeight + 80],
+          y: [-80, windowHeight + 80],
           x: [0, -25, 15, -10],
           scale: [1, 1.1, 0.9, 1],
         }}
@@ -130,7 +130,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 3 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-60, window.innerHeight + 60],
+          y: [-60, windowHeight + 60],
           x: [0, 20, -15, 5],
           opacity: [0.6, 1, 0.8, 0.6],
         }}
@@ -162,7 +162,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 4 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-40, window.innerHeight + 40],
+          y: [-40, windowHeight + 40],
           x: [0, 15, -10, 8],
           opacity: [0.4, 0.8, 0.6, 0.4],
         }}
@@ -194,7 +194,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 5 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-50, window.innerHeight + 50],
+          y: [-50, windowHeight + 50],
           x: [0, -12, 18, -5],
           scale: [0.8, 1.1, 0.9, 0.8],
         }}
@@ -226,7 +226,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 6 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-30, window.innerHeight + 30],
+          y: [-30, windowHeight + 30],
           x: [0, 25, -8, 12],
           opacity: [0.5, 0.9, 0.7, 0.5],
         }}
@@ -258,7 +258,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 7 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-70, window.innerHeight + 70],
+          y: [-70, windowHeight + 70],
           x: [0, -18, 22, -8],
           rotate: [0, 180, 360],
           opacity: [0.3, 0.7, 0.5, 0.3],
@@ -291,7 +291,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 8 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-90, window.innerHeight + 90],
+          y: [-90, windowHeight + 90],
           x: [0, 35, -12, 18],
           scale: [0.9, 1.2, 0.8, 0.9],
           opacity: [0.4, 0.9, 0.6, 0.4],
@@ -324,7 +324,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 9 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-45, window.innerHeight + 45],
+          y: [-45, windowHeight + 45],
           x: [0, -20, 28, -15],
           rotate: [0, -180, -360],
           opacity: [0.6, 0.8, 0.9, 0.6],
@@ -357,7 +357,7 @@ const FuzzySnowElements: React.FC = () => {
       {/* Small Snowflake 10 - Falling Animation */}
       <motion.div
         animate={{
-          y: [-65, window.innerHeight + 65],
+          y: [-65, windowHeight + 65],
           x: [0, 15, -25, 10],
           scale: [1, 0.7, 1.3, 1],
           opacity: [0.5, 1, 0.4, 0.5],
@@ -394,9 +394,18 @@ const HeroSection: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const [isClient, setIsClient] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(1000);
 
   useEffect(() => {
     setIsClient(true);
+    setWindowHeight(window.innerHeight);
+    
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
 
@@ -429,7 +438,7 @@ const HeroSection: React.FC = () => {
       />
 
       {/* Fuzzy White Snow Elements */}
-      <FuzzySnowElements />
+      {isClient && <FuzzySnowElements windowHeight={windowHeight} />}
 
       {/* Mountain Layers */}
       <MountainLayer opacity={0.2} zIndex={1} />

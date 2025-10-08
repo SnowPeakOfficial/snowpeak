@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import {
   Box,
   Container,
@@ -589,8 +590,97 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
   const process = getServiceProcess(service.id);
   const faqs = getServiceFAQs(service.id);
 
+  // Generate structured data for the service
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": service.title,
+    "provider": {
+      "@type": "Organization",
+      "name": "SnowPeak",
+      "url": "https://snowpeak.ca"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Canada"
+    },
+    "description": service.description,
+    "offers": service.packages.map(pkg => ({
+      "@type": "Offer",
+      "name": pkg.name,
+      "price": pkg.price.replace(/[^0-9]/g, ''),
+      "priceCurrency": "CAD",
+      "description": pkg.features.join(', ')
+    }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://snowpeak.ca"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://snowpeak.ca/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": service.title,
+        "item": `https://snowpeak.ca/services/${service.id}`
+      }
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
+  // Set page metadata dynamically
+  useEffect(() => {
+    // Update page title
+    document.title = `${service.title} | SnowPeak - Professional Development Services`;
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', `${service.description} Starting at ${service.packages[0]?.price}. Serving Toronto and all of Canada.`);
+    }
+  }, [service]);
+
   return (
     <Box>
+      {/* Structured Data */}
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
       {/* Breadcrumbs */}
       <Box
         sx={{
