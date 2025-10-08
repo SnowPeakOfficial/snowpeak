@@ -478,7 +478,7 @@ export const TESTIMONIALS = [
     name: 'Wasiuddin',
     company: 'IlmTab',
     role: 'CEO',
-    content: 'SnowPeak transformed my vision of an Islamic productivity tool into reality. The browser extension they built has helped thousands of Muslims stay connected to their faith throughout their day. Their technical expertise and understanding of the project\'s spiritual purpose made all the difference.',
+    content: 'SnowPeak transformed my vision of an Islamic productivity tool into reality. The browser extension they built has helped hundreds of Muslims stay connected to their faith throughout their day. Their technical expertise and understanding of the project\'s spiritual purpose made all the difference.',
     rating: 5,
   },
   {
@@ -486,7 +486,7 @@ export const TESTIMONIALS = [
     name: 'Saleem Mohammed',
     company: 'TouchTone Electronics',
     role: 'Founder',
-    content: 'The professional website SnowPeak created has completely transformed how customers discover our electronics repair services. The clean design, easy navigation, and inquiry system have significantly increased our customer engagement and business growth.',
+    content: 'The professional website SnowPeak created has completely transformed how customers discover our electronics repair services. The clean design, easy navigation, and email system have significantly increased our customer engagement and business growth.',
     rating: 5,
   },
   {
@@ -494,7 +494,7 @@ export const TESTIMONIALS = [
     name: 'Brie Ayala',
     company: 'ColorMeBrie',
     role: 'Speech Language Pathologist',
-    content: 'SnowPeak built a beautiful portfolio website that perfectly showcases my coloring books. The seamless Amazon integration and contact form have made it incredibly easy for customers to purchase and reach out. Their attention to artistic detail was exceptional.',
+    content: 'SnowPeak built a beautiful portfolio website that perfectly showcases my coloring books. The seamless Amazon integration and contact page have made it incredibly easy for customers to purchase and reach out. Their attention to artistic detail was exceptional.',
     rating: 5,
   },
 ];
