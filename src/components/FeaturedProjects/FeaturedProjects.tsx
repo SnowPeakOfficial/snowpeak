@@ -289,8 +289,10 @@ const FeaturedProjects: React.FC = () => {
                   {/* Project Screenshot or Placeholder */}
                   <Box
                     sx={{
-                      height: 200,
-                      background: (project as any).screenshot ? 'transparent' : `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
+                      height: 280,
+                      background: (project as any).screenshot 
+                        ? isDark ? 'rgba(15, 23, 42, 0.5)' : 'rgba(241, 245, 249, 0.5)'
+                        : `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -303,7 +305,7 @@ const FeaturedProjects: React.FC = () => {
                         src={(project as any).screenshot}
                         alt={`${project.title} screenshot`}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: 'contain' }}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     ) : (
@@ -375,7 +377,7 @@ const FeaturedProjects: React.FC = () => {
                         sx={{
                           width: 60,
                           height: 60,
-                          borderRadius: '50%',
+                          borderRadius: 2,
                           background: (project as any).logo ? 'white' : `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                           display: 'flex',
                           alignItems: 'center',
@@ -390,6 +392,7 @@ const FeaturedProjects: React.FC = () => {
                             : '0 4px 16px rgba(0, 0, 0, 0.1)',
                           overflow: 'hidden',
                           position: 'relative',
+                          padding: (project as any).logo ? 1 : 0,
                         }}
                       >
                         {(project as any).logo ? (
