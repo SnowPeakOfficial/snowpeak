@@ -411,6 +411,7 @@ export const PORTFOLIO_PROJECTS = [
     type: 'Web Application',
     description: 'Specialized travel booking platform for ground transportation routes with one-click booking and real-time schedules.',
     liveUrl: 'https://landtrip.com',
+    logo: '/images/portfolio/logos/landtrip.png',
   },
   {
     id: 'ilmtab',
@@ -418,6 +419,8 @@ export const PORTFOLIO_PROJECTS = [
     type: 'Browser Extension',
     description: 'Cross-browser Islamic productivity browser extension with daily Quran verses, prayer times, Hadith collections, and spiritual tools.',
     liveUrl: 'https://ilmtab.vercel.app/',
+    logo: '/images/portfolio/logos/ilmtab.svg',
+    screenshot: '/images/portfolio/screenshots/ilmtab.png',
   },
   {
     id: 'touchtone-electronics',
@@ -425,6 +428,8 @@ export const PORTFOLIO_PROJECTS = [
     type: 'Website',
     description: 'Professional electronics repair and retail website featuring comprehensive services, products catalogue, and customer inquiry system',
     liveUrl: 'https://touchtoneelectronics.vercel.app/',
+    logo: '/images/portfolio/logos/touchtoneelectronics.webp',
+    screenshot: '/images/portfolio/screenshots/touchtoneelectronics.png',
   },
   {
     id: 'puff-patties-delight',
@@ -446,6 +451,8 @@ export const PORTFOLIO_PROJECTS = [
     type: 'Website',
     description: 'Portfolio website showcasing coloring books with Amazon purchase links and contact form.',
     liveUrl: 'https://colormebrie.com',
+    logo: '/images/portfolio/logos/ColorMeBrie.png',
+    screenshot: '/images/portfolio/screenshots/colormebrie.png',
   },
   {
     id: 'islamic-guidance',
@@ -453,6 +460,8 @@ export const PORTFOLIO_PROJECTS = [
     type: 'Web Application',
     description: 'Comprehensive spiritual AI-powered platform providing Muslims with daily Islamic guidance, personal reflection, and Quranic study tools.',
     liveUrl: 'https://islamguidance.info/',
+    logo: '/images/portfolio/logos/islamicguidance.png',
+    screenshot: '/images/portfolio/screenshots/islamguidance.png',
   },
   {
     id: 'micahs-music',

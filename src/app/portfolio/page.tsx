@@ -27,6 +27,7 @@ import {
   ArrowForward
 } from '@mui/icons-material';
 import Link from 'next/link';
+import Image from 'next/image';
 import { PORTFOLIO_PROJECTS } from '@/data/constants';
 
 const PortfolioPage: React.FC = () => {
@@ -223,11 +224,11 @@ const PortfolioPage: React.FC = () => {
                         : '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  {/* Project Image Placeholder */}
+                  {/* Project Screenshot or Placeholder */}
                   <Box
                     sx={{
                       height: 220,
-                      background: `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
+                      background: (project as any).screenshot ? 'transparent' : `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -235,24 +236,34 @@ const PortfolioPage: React.FC = () => {
                       overflow: 'hidden',
                     }}
                   >
-                    <Box
-                      sx={{
-                        width: 90,
-                        height: 90,
-                        borderRadius: '50%',
-                        background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '2.5rem',
-                        fontWeight: 'bold',
-                        transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
-                        transition: 'all 0.3s ease',
-                      }}
-                    >
-                      {project.title.charAt(0)}
-                    </Box>
+                    {(project as any).screenshot ? (
+                      <Image
+                        src={(project as any).screenshot}
+                        alt={`${project.title} screenshot`}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <Box
+                        sx={{
+                          width: 90,
+                          height: 90,
+                          borderRadius: '50%',
+                          background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontSize: '2.5rem',
+                          fontWeight: 'bold',
+                          transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+                          transition: 'all 0.3s ease',
+                        }}
+                      >
+                        {project.title.charAt(0)}
+                      </Box>
+                    )}
                     
                     {/* Overlay on hover */}
                     <Fade in={isHovered}>
@@ -303,7 +314,7 @@ const PortfolioPage: React.FC = () => {
                             width: { xs: 50, sm: 60 },
                             height: { xs: 50, sm: 60 },
                             borderRadius: '50%',
-                            background: `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
+                            background: (project as any).logo ? 'white' : `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -315,9 +326,21 @@ const PortfolioPage: React.FC = () => {
                             boxShadow: isDark
                               ? '0 4px 16px rgba(0, 0, 0, 0.3)'
                               : '0 4px 16px rgba(0, 0, 0, 0.1)',
+                            overflow: 'hidden',
+                            position: 'relative',
                           }}
                         >
-                          {project.title.charAt(0)}
+                          {(project as any).logo ? (
+                            <Image
+                              src={(project as any).logo}
+                              alt={`${project.title} logo`}
+                              width={50}
+                              height={50}
+                              style={{ objectFit: 'contain' }}
+                            />
+                          ) : (
+                            project.title.charAt(0)
+                          )}
                         </Box>
                       </Box>
 
