@@ -36,7 +36,7 @@ const FeaturedProjects: React.FC = () => {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   
   // Use only the first 4 complete projects (with screenshots)
-  const originalProjects = PORTFOLIO_PROJECTS.slice(0, 4);
+  const projects = PORTFOLIO_PROJECTS.slice(0, 4);
   
   // Responsive projects per view
   const getProjectsPerView = () => {
@@ -51,13 +51,6 @@ const FeaturedProjects: React.FC = () => {
   useEffect(() => {
     setProjectsPerView(getProjectsPerView());
   }, [isMobile, isTablet, getProjectsPerView]);
-  
-  // Create infinite carousel by duplicating projects at beginning and end
-  const projects = [
-    ...originalProjects.slice(-projectsPerView), // Last few projects at the beginning
-    ...originalProjects, // Original projects
-    ...originalProjects.slice(0, projectsPerView), // First few projects at the end
-  ];
 
   // Calculate max index for carousel navigation
   const maxIndex = Math.max(0, projects.length - projectsPerView);
@@ -267,7 +260,10 @@ const FeaturedProjects: React.FC = () => {
                   onMouseEnter={() => setHoveredProject(project.id)}
                   onMouseLeave={() => setHoveredProject(null)}
                   sx={{
-                    height: 600,
+                    width: '100%',
+                    maxWidth: '100%',
+                    minHeight: { xs: 600, md: 600 },
+                    height: { xs: 'auto', md: 600 },
                     display: 'flex',
                     flexDirection: 'column',
                     background: isDark
@@ -426,17 +422,17 @@ const FeaturedProjects: React.FC = () => {
                       {project.title}
                     </Typography>
 
-                    {/* Project Description - Responsive height */}
+                    {/* Project Description - Consistent height */}
                     <Typography
                       variant="body2"
                       sx={{
                         mb: 2,
                         color: 'text.secondary',
                         lineHeight: 1.6,
-                        height: { xs: 'auto', md: '4.8rem' }, // Auto height on mobile, fixed on desktop
+                        minHeight: { xs: '8rem', md: '4.8rem' },
                         overflow: 'hidden',
                         display: '-webkit-box',
-                        WebkitLineClamp: { xs: 5, md: 3 }, // 5 lines on mobile, 3 on desktop
+                        WebkitLineClamp: { xs: 5, md: 3 },
                         WebkitBoxOrient: 'vertical',
                       }}
                     >
