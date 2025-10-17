@@ -54,35 +54,37 @@ const Footer: React.FC = () => {
           sx={{
             display: 'grid',
             gridTemplateColumns: {
-              xs: '1fr',
-              sm: 'repeat(2, 1fr)',
+              xs: 'repeat(2, 1fr)',
+              sm: 'repeat(3, 1fr)',
               md: 'repeat(4, 1fr)',
             },
-            gap: { xs: 4, md: 6 },
-            mb: 4,
+            gap: { xs: 2, sm: 3, md: 6 },
+            mb: { xs: 3, md: 4 },
           }}
         >
           {/* Company Info */}
           <Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: { xs: 1, sm: 1.5 } }}>
               <Image
                 src={isDark ? "/snowpeak-logo/vector/defaultLandscape-white.svg" : "/snowpeak-logo/vector/defaultLandscape.svg"}
                 alt={COMPANY_INFO.name}
-                width={300}
-                height={300}
+                width={200}
+                height={200}
+                style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
               />
             </Box>
             <Typography
               variant="body2"
               sx={{
                 color: 'text.secondary',
-                mb: 3,
+                mb: { xs: 1.5, sm: 2 },
                 lineHeight: 1.6,
+                display: { xs: 'none', sm: 'block' },
               }}
             >
               Creating exceptional digital experiences that help businesses reach new heights.
             </Typography>
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} flexWrap="wrap">
               <IconButton
                 component="a"
                 href={CONTACT_INFO.social.linkedin}
@@ -174,13 +176,14 @@ const Footer: React.FC = () => {
               sx={{
                 fontWeight: 600,
                 color: 'text.primary',
-                mb: 2,
+                mb: { xs: 1, sm: 1.5, md: 2 },
                 px: 1,
+                fontSize: { xs: '0.95rem', sm: '1rem', md: '1.25rem' },
               }}
             >
               Quick Links
             </Typography>
-            <Stack spacing={1}>
+            <Stack spacing={{ xs: 0.5, sm: 0.75, md: 1 }}>
               {NAVIGATION_ITEMS.map((item) => (
                 <Button
                   key={item.href}
@@ -193,7 +196,9 @@ const Footer: React.FC = () => {
                     textTransform: 'none',
                     fontWeight: 400,
                     px: 1,
-                    maxWidth: '60%',
+                    py: { xs: 0.25, sm: 0.5 },
+                    minHeight: { xs: '28px', sm: '32px', md: '36px' },
+                    fontSize: { xs: '0.8rem', sm: '0.875rem', md: '0.875rem' },
                     '&:hover': {
                       color: 'primary.main',
                       backgroundColor: 'transparent',
@@ -213,13 +218,14 @@ const Footer: React.FC = () => {
               sx={{
                 fontWeight: 600,
                 color: 'text.primary',
-                mb: 2,
+                mb: { xs: 1, sm: 1.5, md: 2 },
                 px: 1,
+                fontSize: { xs: '0.95rem', sm: '1rem', md: '1.25rem' },
               }}
             >
               Services
             </Typography>
-            <Stack spacing={1}>
+            <Stack spacing={{ xs: 0.5, sm: 0.75, md: 1 }}>
               {SERVICES.map((service) => (
                 <Button
                   key={service.id}
@@ -232,7 +238,9 @@ const Footer: React.FC = () => {
                     textTransform: 'none',
                     fontWeight: 400,
                     px: 1,
-                    maxWidth: '60%',
+                    py: { xs: 0.25, sm: 0.5 },
+                    minHeight: { xs: '28px', sm: '32px', md: '36px' },
+                    fontSize: { xs: '0.8rem', sm: '0.875rem', md: '0.875rem' },
                     '&:hover': {
                       color: 'primary.main',
                       backgroundColor: 'transparent',
@@ -252,18 +260,20 @@ const Footer: React.FC = () => {
               sx={{
                 fontWeight: 600,
                 color: 'text.primary',
-                mb: 2,
+                mb: { xs: 1, sm: 1.5, md: 2 },
+                fontSize: { xs: '0.95rem', sm: '1rem', md: '1.25rem' },
               }}
             >
               Contact
             </Typography>
-            <Stack spacing={2}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Email sx={{ fontSize: '1.25rem', color: 'text.secondary' }} />
+            <Stack spacing={{ xs: 1, sm: 1.5, md: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 } }}>
+                <Email sx={{ fontSize: { xs: '1rem', sm: '1.25rem' }, color: 'text.secondary' }} />
                 <Typography
                   variant="body2"
                   sx={{
                     color: 'text.secondary',
+                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
                     '&:hover': { color: 'primary.main' },
                   }}
                   component="a"
@@ -272,12 +282,13 @@ const Footer: React.FC = () => {
                   {CONTACT_INFO.email}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Phone sx={{ fontSize: '1.25rem', color: 'text.secondary' }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 } }}>
+                <Phone sx={{ fontSize: { xs: '1rem', sm: '1.25rem' }, color: 'text.secondary' }} />
                 <Typography
                   variant="body2"
                   sx={{
                     color: 'text.secondary',
+                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
                     '&:hover': { color: 'primary.main' },
                   }}
                   component="a"
@@ -286,13 +297,20 @@ const Footer: React.FC = () => {
                   {CONTACT_INFO.phone}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
                 <LocationOn sx={{ fontSize: '1.25rem', color: 'text.secondary' }} />
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {CONTACT_INFO.address}
                 </Typography>
               </Box>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  color: 'text.secondary',
+                  fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                  display: { xs: 'none', sm: 'block' },
+                }}
+              >
                 {CONTACT_INFO.hours}
               </Typography>
             </Stack>
