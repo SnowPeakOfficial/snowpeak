@@ -132,13 +132,19 @@ const PortfolioPage: React.FC = () => {
               onChange={(_, newValue) => setSelectedCategory(newValue)}
               variant="scrollable"
               scrollButtons="auto"
+              allowScrollButtonsMobile
               sx={{
                 '& .MuiTabs-flexContainer': {
-                  justifyContent: 'center',
+                  justifyContent: { xs: 'flex-start', md: 'center' },
+                },
+                '& .MuiTabs-scrollButtons': {
+                  '&.Mui-disabled': {
+                    opacity: 0.3,
+                  },
                 },
                 '& .MuiTab-root': {
-                  minWidth: 'auto',
-                  px: 3,
+                  minWidth: { xs: 'auto', md: 120 },
+                  px: { xs: 2, md: 3 },
                   py: 1.5,
                   fontWeight: 600,
                   textTransform: 'none',

@@ -188,7 +188,7 @@ const FeaturedProjects: React.FC = () => {
         <Box sx={{ 
           position: 'relative', 
           mb: { xs: 6, md: 8 },
-          px: { xs: 4, md: 6 }, // Increased horizontal padding to prevent clipping
+          px: { xs: 1, md: 6 }, // Reduced mobile padding for wider cards
           py: { xs: 6, md: 8 }, // Significantly increased vertical padding to prevent clipping
         }}>
           {/* Navigation Arrows */}
@@ -196,7 +196,7 @@ const FeaturedProjects: React.FC = () => {
             onClick={handlePrevious}
             sx={{
               position: 'absolute',
-              left: { xs: -8, md: -60 },
+              left: { xs: -4, md: -60 },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -217,7 +217,7 @@ const FeaturedProjects: React.FC = () => {
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              right: { xs: -8, md: -60 },
+              right: { xs: -4, md: -60 },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -244,7 +244,7 @@ const FeaturedProjects: React.FC = () => {
                 lg: 'repeat(3, 1fr)'
               },
               gap: 3,
-              px: 2,
+              px: { xs: 0, sm: 2 }, // No padding on mobile, padding on larger screens
             }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
