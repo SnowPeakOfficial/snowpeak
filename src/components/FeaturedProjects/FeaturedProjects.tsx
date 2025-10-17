@@ -8,7 +8,6 @@ import {
   Card, 
   CardContent, 
   Chip, 
-  Stack, 
   Button, 
   useTheme,
   useMediaQuery,
@@ -290,7 +289,7 @@ const FeaturedProjects: React.FC = () => {
                   <Box
                     sx={{
                       height: 280,
-                      background: (project as any).screenshot 
+                      background: 'screenshot' in project && project.screenshot
                         ? isDark ? 'rgba(15, 23, 42, 0.5)' : 'rgba(241, 245, 249, 0.5)'
                         : `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
                       display: 'flex',
@@ -300,9 +299,9 @@ const FeaturedProjects: React.FC = () => {
                       overflow: 'hidden',
                     }}
                   >
-                    {(project as any).screenshot ? (
+                    {'screenshot' in project && project.screenshot ? (
                       <Image
-                        src={(project as any).screenshot}
+                        src={project.screenshot}
                         alt={`${project.title} screenshot`}
                         fill
                         style={{ objectFit: 'contain' }}
@@ -378,7 +377,7 @@ const FeaturedProjects: React.FC = () => {
                           width: 60,
                           height: 60,
                           borderRadius: 2,
-                          background: (project as any).logo ? 'white' : `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
+                          background: 'logo' in project && project.logo ? 'white' : `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -392,12 +391,12 @@ const FeaturedProjects: React.FC = () => {
                             : '0 4px 16px rgba(0, 0, 0, 0.1)',
                           overflow: 'hidden',
                           position: 'relative',
-                          padding: (project as any).logo ? 1 : 0,
+                          padding: 'logo' in project && project.logo ? 1 : 0,
                         }}
                       >
-                        {(project as any).logo ? (
+                        {'logo' in project && project.logo ? (
                           <Image
-                            src={(project as any).logo}
+                            src={project.logo}
                             alt={`${project.title} logo`}
                             width={50}
                             height={50}

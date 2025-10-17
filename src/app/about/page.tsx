@@ -10,7 +10,6 @@ import {
   Button,
   useTheme,
   Avatar,
-  Chip,
 } from '@mui/material';
 import {
   ArrowForward,

@@ -62,7 +62,7 @@ const Testimonials: React.FC = () => {
                   &ldquo;{t.content}&rdquo;
                 </Typography>
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ mt: 'auto' }}>
-                  <Avatar src={t.image} alt={t.name} />
+                  <Avatar alt={t.name}>{t.name.charAt(0)}</Avatar>
                   <Box>
                     <Typography variant="body1" sx={{ fontWeight: 600 }}>
                       {t.name}

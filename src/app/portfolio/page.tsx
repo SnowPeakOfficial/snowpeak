@@ -8,22 +8,15 @@ import {
   Card, 
   CardContent, 
   Chip, 
-  Stack, 
   Button, 
   useTheme,
   IconButton,
   Fade,
   Tabs,
   Tab,
-  Divider,
-  Tooltip
 } from '@mui/material';
 import { 
   Launch, 
-  Star,
-  TrendingUp,
-  People,
-  Code,
   ArrowForward
 } from '@mui/icons-material';
 import Link from 'next/link';
@@ -56,23 +49,6 @@ const PortfolioPage: React.FC = () => {
         return { bg: 'rgba(249, 115, 22, 0.1)', color: '#F97316', border: '#F97316' };
       default:
         return { bg: 'rgba(107, 114, 128, 0.1)', color: '#6B7280', border: '#6B7280' };
-    }
-  };
-
-  const getMetricIcon = (key: string) => {
-    switch (key) {
-      case 'downloads':
-      case 'transactions':
-      case 'mrr':
-        return <TrendingUp sx={{ fontSize: '1rem' }} />;
-      case 'users':
-      case 'activeUsers':
-      case 'retention':
-        return <People sx={{ fontSize: '1rem' }} />;
-      case 'rating':
-        return <Star sx={{ fontSize: '1rem' }} />;
-      default:
-        return <Code sx={{ fontSize: '1rem' }} />;
     }
   };
 
@@ -228,7 +204,7 @@ const PortfolioPage: React.FC = () => {
                   <Box
                     sx={{
                       height: 280,
-                      background: (project as any).screenshot 
+                      background: 'screenshot' in project && project.screenshot
                         ? isDark ? 'rgba(15, 23, 42, 0.5)' : 'rgba(241, 245, 249, 0.5)'
                         : `linear-gradient(135deg, ${typeColors.color}20 0%, ${typeColors.color}10 100%)`,
                       display: 'flex',
@@ -238,9 +214,9 @@ const PortfolioPage: React.FC = () => {
                       overflow: 'hidden',
                     }}
                   >
-                    {(project as any).screenshot ? (
+                    {'screenshot' in project && project.screenshot ? (
                       <Image
-                        src={(project as any).screenshot}
+                        src={project.screenshot}
                         alt={`${project.title} screenshot`}
                         fill
                         style={{ objectFit: 'contain' }}
@@ -316,7 +292,7 @@ const PortfolioPage: React.FC = () => {
                             width: { xs: 50, sm: 60 },
                             height: { xs: 50, sm: 60 },
                             borderRadius: 2,
-                            background: (project as any).logo ? 'white' : `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
+                            background: 'logo' in project && project.logo ? 'white' : `linear-gradient(135deg, ${typeColors.color} 0%, ${typeColors.color}80 100%)`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -330,12 +306,12 @@ const PortfolioPage: React.FC = () => {
                               : '0 4px 16px rgba(0, 0, 0, 0.1)',
                             overflow: 'hidden',
                             position: 'relative',
-                            padding: (project as any).logo ? 1 : 0,
+                            padding: 'logo' in project && project.logo ? 1 : 0,
                           }}
                         >
-                          {(project as any).logo ? (
+                          {'logo' in project && project.logo ? (
                             <Image
-                              src={(project as any).logo}
+                              src={project.logo}
                               alt={`${project.title} logo`}
                               width={50}
                               height={50}

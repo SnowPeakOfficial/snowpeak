@@ -49,29 +49,52 @@ import { notFound } from 'next/navigation';
 import { SERVICES } from '@/data/constants';
 
 interface ServicePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
+  const [slug, setSlug] = React.useState<string>('');
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const [selectedPackageIndex, setSelectedPackageIndex] = useState<number>(0);
   const [imageLoadStates, setImageLoadStates] = useState<Record<string, boolean>>({});
   
+  // Load params
+  React.useEffect(() => {
+    params.then(p => setSlug(p.slug));
+  }, [params]);
+  
   // Find the service by slug
-  const service = SERVICES.find(s => s.id === params.slug);
+  const service = SERVICES.find(s => s.id === slug);
+  
+  // Initialize selected package index to popular package or first package
+  React.useEffect(() => {
+    if (service) {
+      const popularIndex = service.packages.findIndex(pkg => pkg.popular);
+      setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
+    }
+  }, [service]);
+  
+  // Update page metadata
+  useEffect(() => {
+    if (service) {
+      document.title = `${service.title} | SnowPeak - Professional Development Services`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', `${service.description} Starting at ${service.packages[0]?.price}. Serving Toronto and all of Canada.`);
+      }
+    }
+  }, [service]);
+  
+  if (!slug) {
+    return null; // Loading state
+  }
   
   if (!service) {
     notFound();
   }
-
-  // Initialize selected package index to popular package or first package
-  React.useEffect(() => {
-    const popularIndex = service.packages.findIndex(pkg => pkg.popular);
-    setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
-  }, [service.packages]);
 
   const getServiceFeatureImage = (serviceId: string, featureTitle: string): string => {
     const serviceMaps: Record<string, { folder: string; images: Record<string, string> }> = {
@@ -651,18 +674,6 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
       }
     }))
   };
-
-  // Set page metadata dynamically
-  useEffect(() => {
-    // Update page title
-    document.title = `${service.title} | SnowPeak - Professional Development Services`;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', `${service.description} Starting at ${service.packages[0]?.price}. Serving Toronto and all of Canada.`);
-    }
-  }, [service]);
 
   return (
     <Box>
