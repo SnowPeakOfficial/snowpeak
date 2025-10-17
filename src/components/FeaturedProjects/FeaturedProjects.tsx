@@ -35,8 +35,8 @@ const FeaturedProjects: React.FC = () => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   
-  // Use all projects
-  const originalProjects = PORTFOLIO_PROJECTS;
+  // Use only the first 4 complete projects (with screenshots)
+  const originalProjects = PORTFOLIO_PROJECTS.slice(0, 4);
   
   // Responsive projects per view
   const getProjectsPerView = () => {

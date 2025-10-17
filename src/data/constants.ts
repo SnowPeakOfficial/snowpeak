@@ -406,23 +406,6 @@ export const ADDITIONAL_SERVICES = [
 
 export const PORTFOLIO_PROJECTS = [
   {
-    id: 'landtrip',
-    title: 'LandTrip',
-    type: 'Web Application',
-    description: 'Specialized travel booking platform for ground transportation routes with one-click booking and real-time schedules.',
-    liveUrl: 'https://landtrip.com',
-    logo: '/images/portfolio/logos/landtrip.png',
-  },
-  {
-    id: 'ilmtab',
-    title: 'IlmTab',
-    type: 'Browser Extension',
-    description: 'Cross-browser Islamic productivity browser extension with daily Quran verses, prayer times, Hadith collections, and spiritual tools.',
-    liveUrl: 'https://ilmtab.vercel.app/',
-    logo: '/images/portfolio/logos/ilmtab.svg',
-    screenshot: '/images/portfolio/screenshots/ilmtab.png',
-  },
-  {
     id: 'touchtone-electronics',
     title: 'TouchTone Electronics',
     type: 'Website',
@@ -432,18 +415,13 @@ export const PORTFOLIO_PROJECTS = [
     screenshot: '/images/portfolio/screenshots/touchtoneelectronics.png',
   },
   {
-    id: 'puff-patties-delight',
-    title: 'Puff Patties Delight',
-    type: 'Website',
-    description: 'Authentic Pakistani street food restaurant website with interactive menu system, category filtering, and interactive map.',
-    liveUrl: 'https://puffpattiesdelight.com',
-  },
-  {
-    id: 'aqualog',
-    title: 'AquaLog',
-    type: 'Mobile Application',
-    description: 'Comprehensive aquarium management app for tracking water chemistry and livestock health across multiple tanks.',
-    liveUrl: 'https://aqualog-app.com',
+    id: 'ilmtab',
+    title: 'IlmTab',
+    type: 'Browser Extension',
+    description: 'Cross-browser Islamic productivity browser extension with daily Quran verses, prayer times, Hadith collections, and spiritual tools.',
+    liveUrl: 'https://ilmtab.vercel.app/',
+    logo: '/images/portfolio/logos/ilmtab.svg',
+    screenshot: '/images/portfolio/screenshots/ilmtab.png',
   },
   {
     id: 'colormebrie',
@@ -464,11 +442,37 @@ export const PORTFOLIO_PROJECTS = [
     screenshot: '/images/portfolio/screenshots/islamguidance.png',
   },
   {
+    id: 'landtrip',
+    title: 'LandTrip',
+    type: 'Web Application',
+    description: 'Specialized travel booking platform for ground transportation routes with one-click booking and real-time schedules.',
+    liveUrl: 'https://landtrip.com',
+    logo: '/images/portfolio/logos/landtrip.png',
+    inProgress: true,
+  },
+  {
+    id: 'puff-patties-delight',
+    title: 'Puff Patties Delight',
+    type: 'Website',
+    description: 'Authentic Pakistani street food restaurant website with interactive menu system, category filtering, and interactive map.',
+    liveUrl: 'https://puffpattiesdelight.com',
+    inProgress: true,
+  },
+  {
+    id: 'aqualog',
+    title: 'AquaLog',
+    type: 'Mobile Application',
+    description: 'Comprehensive aquarium management app for tracking water chemistry and livestock health across multiple tanks.',
+    liveUrl: 'https://aqualog-app.com',
+    inProgress: true,
+  },
+  {
     id: 'micahs-music',
     title: 'Micah\'s Music',
     type: 'Website',
     description: 'Elegant professional website for music teacher showcasing talents with integrated booking system for lessons and performances.',
     liveUrl: 'https://micahsmusic.com',
+    inProgress: true,
   }
 ];
 

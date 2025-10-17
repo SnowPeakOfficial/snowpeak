@@ -352,8 +352,8 @@ const PortfolioPage: React.FC = () => {
                       {project.description}
                     </Typography>
 
-                    {/* Project Type */}
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 2 }}>
+                    {/* Project Type and Status */}
+                    <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-start', mb: 2, flexWrap: 'wrap' }}>
                       <Chip 
                         label={project.type} 
                         size="small" 
@@ -364,6 +364,18 @@ const PortfolioPage: React.FC = () => {
                           fontWeight: 600,
                         }}
                       />
+                      {'inProgress' in project && project.inProgress && (
+                        <Chip 
+                          label="In Progress" 
+                          size="small" 
+                          sx={{
+                            backgroundColor: 'rgba(20, 184, 166, 0.1)',
+                            color: '#14B8A6',
+                            border: '1px solid rgba(20, 184, 166, 0.3)',
+                            fontWeight: 600,
+                          }}
+                        />
+                      )}
                     </Box>
 
                     {/* CTA Buttons */}
