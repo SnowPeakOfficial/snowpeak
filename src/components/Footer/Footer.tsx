@@ -65,13 +65,20 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: { xs: 1, sm: 1.5 } }}>
-              <Image
-                src={isDark ? "/snowpeak-logo/vector/defaultLandscape-white.svg" : "/snowpeak-logo/vector/defaultLandscape.svg"}
-                alt={COMPANY_INFO.name}
-                width={200}
-                height={200}
-                style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
-              />
+              <Box
+                sx={{
+                  width: '100%',
+                  maxWidth: { xs: '140px', sm: '180px', md: '200px' },
+                }}
+              >
+                <Image
+                  src={isDark ? "/snowpeak-logo/vector/defaultLandscape-white.svg" : "/snowpeak-logo/vector/defaultLandscape.svg"}
+                  alt={COMPANY_INFO.name}
+                  width={200}
+                  height={200}
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              </Box>
             </Box>
             <Typography
               variant="body2"
@@ -84,7 +91,14 @@ const Footer: React.FC = () => {
             >
               Creating exceptional digital experiences that help businesses reach new heights.
             </Typography>
-            <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} flexWrap="wrap">
+            <Stack 
+              direction="row" 
+              spacing={{ xs: 0.25, sm: 1 }} 
+              sx={{
+                flexWrap: 'nowrap',
+                justifyContent: { xs: 'flex-start', sm: 'flex-start' },
+              }}
+            >
               <IconButton
                 component="a"
                 href={CONTACT_INFO.social.linkedin}
@@ -92,13 +106,14 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 sx={{
                   color: 'text.secondary',
+                  p: { xs: 0.5, sm: 1 },
                   '&:hover': {
                     color: '#0077B5',
                     backgroundColor: 'rgba(0, 119, 181, 0.1)',
                   },
                 }}
               >
-                <LinkedIn />
+                <LinkedIn sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }} />
               </IconButton>
               <IconButton
                 component="a"
@@ -107,13 +122,14 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 sx={{
                   color: 'text.secondary',
+                  p: { xs: 0.5, sm: 1 },
                   '&:hover': {
                     color: '#1DA1F2',
                     backgroundColor: 'rgba(29, 161, 242, 0.1)',
                   },
                 }}
               >
-                <Twitter />
+                <Twitter sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }} />
               </IconButton>
               <IconButton
                 component="a"
@@ -122,13 +138,14 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 sx={{
                   color: 'text.secondary',
+                  p: { xs: 0.5, sm: 1 },
                   '&:hover': {
                     color: '#E4405F',
                     backgroundColor: 'rgba(228, 64, 95, 0.1)',
                   },
                 }}
               >
-                <Instagram />
+                <Instagram sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }} />
               </IconButton>
               <IconButton
                 component="a"
@@ -137,13 +154,14 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 sx={{
                   color: 'text.secondary',
+                  p: { xs: 0.5, sm: 1 },
                   '&:hover': {
                     color: '#1877F2',
                     backgroundColor: 'rgba(24, 119, 242, 0.1)',
                   },
                 }}
               >
-                <Facebook />
+                <Facebook sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }} />
               </IconButton>
               <IconButton
                 component="a"
@@ -152,6 +170,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 sx={{
                   color: 'text.secondary',
+                  p: { xs: 0.5, sm: 1 },
                   '&:hover': {
                     color: '#000',
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -160,7 +179,13 @@ const Footer: React.FC = () => {
               >
                 <Box
                   component="svg"
-                  sx={{ width: 24, height: 24, fill: 'currentColor' }}
+                  sx={{ 
+                    width: { xs: '1.25rem', sm: '1.5rem' }, 
+                    height: { xs: '1.25rem', sm: '1.5rem' }, 
+                    fill: 'currentColor',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
                   viewBox="0 0 24 24"
                 >
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
