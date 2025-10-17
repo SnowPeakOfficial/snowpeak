@@ -60,7 +60,7 @@ const FeaturedProjects: React.FC = () => {
   ];
 
   // Calculate max index for carousel navigation
-  const maxIndex = Math.max(0, projects.length - 3); // Always show 3 cards
+  const maxIndex = Math.max(0, projects.length - projectsPerView);
 
   // Touch handlers for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -203,12 +203,12 @@ const FeaturedProjects: React.FC = () => {
             onClick={handlePrevious}
             sx={{
               position: 'absolute',
-              left: -60,
+              left: { xs: -8, md: -60 },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              width: 48,
-              height: 48,
+              width: { xs: 40, md: 48 },
+              height: { xs: 40, md: 48 },
               background: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
               '&:hover': {
@@ -224,12 +224,12 @@ const FeaturedProjects: React.FC = () => {
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              right: -60,
+              right: { xs: -8, md: -60 },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              width: 48,
-              height: 48,
+              width: { xs: 40, md: 48 },
+              height: { xs: 40, md: 48 },
               background: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
               '&:hover': {
@@ -241,11 +241,15 @@ const FeaturedProjects: React.FC = () => {
             <ChevronRight />
           </IconButton>
 
-          {/* Simple Grid Layout - Always 3 cards */}
+          {/* Responsive Grid Layout */}
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                lg: 'repeat(3, 1fr)'
+              },
               gap: 3,
               px: 2,
             }}
@@ -253,7 +257,7 @@ const FeaturedProjects: React.FC = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {projects.slice(currentIndex, currentIndex + 3).map((project) => {
+            {projects.slice(currentIndex, currentIndex + projectsPerView).map((project) => {
               const typeColors = getProjectTypeColor(project.type);
               const isHovered = hoveredProject === project.id;
               
@@ -422,17 +426,17 @@ const FeaturedProjects: React.FC = () => {
                       {project.title}
                     </Typography>
 
-                    {/* Project Description - Fixed height to ensure uniform card sizes */}
+                    {/* Project Description - Responsive height */}
                     <Typography
                       variant="body2"
                       sx={{
                         mb: 2,
                         color: 'text.secondary',
                         lineHeight: 1.6,
-                        height: '4.8rem', // Fixed height for 3 lines
+                        height: { xs: 'auto', md: '4.8rem' }, // Auto height on mobile, fixed on desktop
                         overflow: 'hidden',
                         display: '-webkit-box',
-                        WebkitLineClamp: 3,
+                        WebkitLineClamp: { xs: 5, md: 3 }, // 5 lines on mobile, 3 on desktop
                         WebkitBoxOrient: 'vertical',
                       }}
                     >
