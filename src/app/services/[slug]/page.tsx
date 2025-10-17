@@ -621,7 +621,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     "provider": {
       "@type": "Organization",
       "name": "SnowPeak",
-      "url": "https://snowpeak.ca"
+      "url": "https://snow-peak.ca"
     },
     "areaServed": {
       "@type": "Country",
@@ -645,19 +645,19 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://snowpeak.ca"
+        "item": "https://snow-peak.ca"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://snowpeak.ca/services"
+        "item": "https://snow-peak.ca/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://snowpeak.ca/services/${service.id}`
+        "item": `https://snow-peak.ca/services/${service.id}`
       }
     ]
   };

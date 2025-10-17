@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   description: "Professional web development, mobile applications, browser extensions, and maintenance services. Serving Toronto and all of Canada. Free consultation available.",
   keywords: "web development services, mobile app development, browser extensions, maintenance support, Toronto, Canada, Ontario, software development",
   alternates: {
-    canonical: "https://snowpeak.ca/services"
+    canonical: "https://snow-peak.ca/services"
   },
   openGraph: {
     title: "Services - Web Development, Mobile Apps & More | SnowPeak",
     description: "Professional web development, mobile applications, browser extensions, and maintenance services in Canada.",
-    url: "https://snowpeak.ca/services",
+    url: "https://snow-peak.ca/services",
     type: "website",
     images: [
       {

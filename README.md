@@ -25,12 +25,12 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 Create a `.env.local` like:
 
 ```
-NEXT_PUBLIC_SITE_URL=https://snowpeak.ca
+NEXT_PUBLIC_SITE_URL=https://snow-peak.ca
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=your_turnstile_site_key
 TURNSTILE_SECRET_KEY=your_turnstile_secret_key
 RESEND_API_KEY=your_resend_api_key
 CONTACT_TO_EMAIL=owner@example.com
-CONTACT_FROM_EMAIL=contact@snowpeak.ca
+CONTACT_FROM_EMAIL=contact@snow-peak.ca
 ```
 
 ## Contact API
