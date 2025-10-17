@@ -66,6 +66,13 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     params.then(p => setSlug(p.slug));
   }, [params]);
   
+  // Scroll to top when slug changes
+  React.useEffect(() => {
+    if (slug) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [slug]);
+  
   // Find the service by slug
   const service = SERVICES.find(s => s.id === slug);
   

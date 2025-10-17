@@ -188,7 +188,7 @@ const FeaturedProjects: React.FC = () => {
         <Box sx={{ 
           position: 'relative', 
           mb: { xs: 6, md: 8 },
-          px: { xs: 1, md: 6 }, // Reduced mobile padding for wider cards
+          px: { xs: 2, md: 6 }, // Slightly increased mobile padding to prevent arrow overlap
           py: { xs: 6, md: 8 }, // Significantly increased vertical padding to prevent clipping
         }}>
           {/* Navigation Arrows */}
@@ -196,7 +196,11 @@ const FeaturedProjects: React.FC = () => {
             onClick={handlePrevious}
             sx={{
               position: 'absolute',
-              left: { xs: -4, md: -60 },
+              left: { 
+                xs: 4,  // Inside container for mobile (portrait & landscape)
+                sm: -12, // Outside for tablet
+                md: -60  // Far outside for desktop
+              },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -204,6 +208,7 @@ const FeaturedProjects: React.FC = () => {
               height: { xs: 40, md: 48 },
               background: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
               '&:hover': {
                 background: isDark ? 'rgba(30, 41, 59, 1)' : 'rgba(255, 255, 255, 1)',
                 transform: 'translateY(-50%) scale(1.1)',
@@ -217,7 +222,11 @@ const FeaturedProjects: React.FC = () => {
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              right: { xs: -4, md: -60 },
+              right: { 
+                xs: 4,  // Inside container for mobile (portrait & landscape)
+                sm: -12, // Outside for tablet
+                md: -60  // Far outside for desktop
+              },
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -225,6 +234,7 @@ const FeaturedProjects: React.FC = () => {
               height: { xs: 40, md: 48 },
               background: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
               color: 'primary.main',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
               '&:hover': {
                 background: isDark ? 'rgba(30, 41, 59, 1)' : 'rgba(255, 255, 255, 1)',
                 transform: 'translateY(-50%) scale(1.1)',
