@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnowPeak Business Card - Print Ready</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .instructions {
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions h1 {
+            color: #395ECA;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .instructions h2 {
+            color: #334155;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .instructions p, .instructions li {
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+        }
+
+        .instructions .highlight {
+            background: #F1F5F9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #395ECA;
+        }
+
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .card-label {
+            text-align: center;
+            color: #64748B;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Business Card Dimensions: 3.5" x 2" */
+        .business-card {
+            width: 3.5in;
+            height: 2in;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            /* Force backgrounds to print */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        /* Front Card - Elegant Light Gradient (matches hero section) */
+        .card-front {
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px 15px 20px;
+            position: relative;
+            /* Force backgrounds to print */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        .card-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(57, 94, 202, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 240px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            /* Optimize SVG rendering for print */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            shape-rendering: geometricPrecision;
+        }
+
+        .front-contact {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            border-top: 1px solid rgba(57, 94, 202, 0.15);
+            padding-top: 10px;
+        }
+
+        .front-contact-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .contact-icon-front {
+            font-size: 10px;
+            color: #395ECA;
+        }
+
+        .contact-text-front {
+            font-size: 6px;
+            color: #475569;
+            font-weight: 600;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        /* Back Card - Simple Modern Design */
+        .card-back {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .card-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(57, 94, 202, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(132, 139, 216, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .back-logo-container {
+            width: 100%;
+            max-width: 110px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-logo-svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            shape-rendering: geometricPrecision;
+        }
+
+        .services-section {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .services-title {
+            font-size: 7px;
+            font-weight: 700;
+            color: #395ECA;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .services-line {
+            font-size: 6.5px;
+            color: #475569;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .service-separator {
+            color: #395ECA;
+            margin: 0 4px;
+        }
+
+        .cta-section-back {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta-text-back {
+            font-size: 8px;
+            font-weight: 700;
+            color: #0F172A;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .qr-container-back {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .qr-code-back {
+            width: 60px;
+            height: 60px;
+            background: white;
+            padding: 4px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-code-back img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .qr-label-back {
+            font-size: 5.5px;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        /* Print Styles */
+        @media print {
+            * {
+                /* Force all backgrounds and colors to print */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .instructions {
+                display: none;
+            }
+
+            .card-label {
+                display: none;
+            }
+
+            .card-container {
+                gap: 0.25in;
+            }
+
+            .business-card {
+                box-shadow: none;
+                border-radius: 0;
+                page-break-inside: avoid;
+                /* Ensure backgrounds print */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .card-front {
+                /* Force gradient to print */
+                background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .card-front::before {
+                /* Ensure overlay prints */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .logo-svg {
+                /* Maximum quality for print */
+                image-rendering: -webkit-optimize-contrast;
+                shape-rendering: geometricPrecision;
+            }
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+    </style>
+</head>
+<body>
+    <!-- Instructions -->
+    <div class="instructions">
+        <h1>🏔️ SnowPeak Business Card - Print Ready</h1>
+        <p>Professional business cards with your actual logo, designed to match your website's elegant aesthetic.</p>
+        
+        <div class="highlight">
+            <strong>📏 Specifications:</strong>
+            <ul>
+                <li>Size: 3.5" × 2" (Standard US Business Card)</li>
+                <li>Resolution: Print Quality (Vector SVG)</li>
+                <li>Design: Gradient front with logo, clean back</li>
+                <li>Colors: Exact brand colors (#395ECA → #848BD8)</li>
+            </ul>
+        </div>
+
+        <h2>🖨️ How to Print (IMPORTANT - Read Carefully!):</h2>
+        <ol>
+            <li><strong>Print to PDF with Background Graphics:</strong>
+                <ul>
+                    <li>Press <code>Ctrl+P</code> (Windows) or <code>Cmd+P</code> (Mac)</li>
+                    <li><strong>⚠️ CRITICAL:</strong> Click "More settings" or "Show more settings"</li>
+                    <li><strong>✅ CHECK "Background graphics"</strong> - This ensures the gradient background prints!</li>
+                    <li>Select "Save as PDF" as the printer</li>
+                    <li>Choose "Letter" paper size</li>
+                    <li>Set margins to 0.5 inches</li>
+                    <li>Set scale to 100%</li>
+                    <li>Save the PDF</li>
+                </ul>
+            </li>
+            <li><strong>Send to Professional Printer:</strong>
+                <ul>
+                    <li>Use the PDF file created above</li>
+                    <li>Recommended: VistaPrint, Moo, or local print shop</li>
+                    <li>Specify: 3.5" × 2" business cards</li>
+                    <li>Paper: Premium cardstock (16pt or higher)</li>
+                    <li>Finish: Matte or glossy (your preference)</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>💡 Printing Tips:</h2>
+        <ul>
+            <li><strong>Paper Quality:</strong> Use thick cardstock (16pt-18pt) for professional feel</li>
+            <li><strong>Finish Options:</strong> Matte for elegant, Glossy for vibrant colors</li>
+            <li><strong>Quantity:</strong> Order 250-500 cards (better price per card)</li>
+            <li><strong>Rounded Corners:</strong> Optional upgrade for modern look</li>
+        </ul>
+
+        <h2>⚠️ Important Notes:</h2>
+        <div class="highlight">
+            <p><strong>To view the logos properly:</strong></p>
+            <p>Open this file by running a local server (e.g., <code>npm run dev</code>) and navigating to <code>http://localhost:3000/business-card.html</code></p>
+            <p>The logos use relative paths and need to be served from a web server to display correctly.</p>
+        </div>
+        
+        <div class="highlight" style="border-left-color: #DC2626;">
+            <p><strong>🚨 For Best PDF Quality:</strong></p>
+            <ul>
+                <li><strong>Chrome/Edge:</strong> Enable "Background graphics" in print settings</li>
+                <li><strong>Firefox:</strong> Check "Print backgrounds" in print settings</li>
+                <li><strong>Safari:</strong> Check "Print backgrounds" in the print dialog</li>
+                <li>If background still doesn't print, try a different browser (Chrome works best)</li>
+                <li>The CSS now forces backgrounds to print, but browser settings can override this</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Business Cards -->
+    <div class="card-container">
+        <!-- Front Card -->
+        <div>
+            <div class="card-label">Front Side</div>
+            <div class="business-card card-front">
+                <div class="logo-container">
+                    <img src="snowpeak-logo/vector/defaultLandscape.svg" 
+                         alt="SnowPeak - Build Beyond the Summit" 
+                         class="logo-svg">
+                </div>
+                <div class="front-contact">
+                    <div class="front-contact-item">
+                        <span class="contact-icon-front">🌐</span>
+                        <span class="contact-text-front">www.snow-peak.ca</span>
+                    </div>
+                    <div class="front-contact-item">
+                        <span class="contact-icon-front">📧</span>
+                        <span class="contact-text-front">snowpeak.contact@gmail.com</span>
+                    </div>
+                    <div class="front-contact-item">
+                        <span class="contact-icon-front">📞</span>
+                        <span class="contact-text-front">+1 (647) 786-2161</span>
+                    </div>
+                    <div class="front-contact-item">
+                        <span class="contact-icon-front">📍</span>
+                        <span class="contact-text-front">Toronto, Ontario, Canada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Card -->
+        <div>
+            <div class="card-label">Back Side</div>
+            <div class="business-card card-back">
+                <div class="back-logo-container">
+                    <img src="snowpeak-logo/vector/defaultLandscape.svg" 
+                         alt="SnowPeak" 
+                         class="back-logo-svg">
+                </div>
+                <div class="services-section">
+                    <div class="services-title">OUR SERVICES</div>
+                    <div class="services-line">
+                        🌐 Websites<span class="service-separator">•</span>💻 Web Apps<span class="service-separator">•</span>📱 Mobile Apps<span class="service-separator">•</span>🧩 Browser Extensions<span class="service-separator">•</span>⚙️ Support
+                    </div>
+                </div>
+                <div class="cta-section-back">
+                    <div class="cta-text-back">Ready to Build Beyond<br>the Summit?</div>
+                    <div class="qr-container-back">
+                        <div class="qr-code-back">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://snow-peak.ca" alt="QR Code">
+                        </div>
+                        <div class="qr-label-back">Scan to visit site</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Multiple Cards Section -->
+    <div class="instructions" style="margin-top: 20px;">
+        <h2>📋 Multiple Cards Per Page</h2>
+        <p>When printing, you can fit multiple cards on one page for cutting. Most professional printers will handle this automatically, but if printing at home:</p>
+        <ul>
+            <li>Print on 8.5" × 11" cardstock</li>
+            <li>You can fit 10 cards per page (2 columns × 5 rows)</li>
+            <li>Use a paper cutter for clean edges</li>
+            <li>Leave small margins between cards for cutting</li>
+        </ul>
+    </div>
+</body>
+</html>

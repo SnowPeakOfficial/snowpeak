@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnowPeak - Professional Flyer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Flyer Container - 8.5" x 11" */
+        .flyer {
+            width: 8.5in;
+            height: 11in;
+            background: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            /* Force backgrounds to print */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%);
+            padding: 40px 50px;
+            text-align: center;
+            position: relative;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(57, 94, 202, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .tagline {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 30px 50px;
+            background: #F8FAFC;
+            border-left: 4px solid #395ECA;
+            margin: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .mission-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #475569;
+            text-align: center;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 30px 50px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%);
+            margin: 8px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .service-card {
+            background: #F8FAFC;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .service-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #395ECA;
+            margin-bottom: 6px;
+        }
+
+        .service-card p {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #64748B;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 25px 50px;
+            background: #F8FAFC;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 0 auto 8px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .step-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .step-timeline {
+            font-size: 9px;
+            color: #64748B;
+            font-style: italic;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 25px 50px 50px 50px;
+            background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%);
+            color: white;
+            text-align: center;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .cta-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .qr-section {
+            text-align: center;
+        }
+
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            margin: 0 auto 8px;
+        }
+
+        .qr-text {
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .cta-button {
+            background: white;
+            color: #395ECA;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+
+        /* Print Styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .flyer {
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+            }
+
+            .header,
+            .mission,
+            .service-card,
+            .process,
+            .cta-section,
+            .step-number {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @page {
+            size: letter;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="snowpeak-logo/vector/defaultLandscape.svg" alt="SnowPeak" class="logo">
+            </div>
+            <div class="tagline">Build Beyond the Summit</div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission">
+            <p class="mission-text">
+                We create exceptional websites, web applications, mobile apps, and browser extensions while providing comprehensive maintenance and support to help businesses reach new heights.
+            </p>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🌐 Web Development</h3>
+                    <p>Professional websites that establish credibility and drive business growth. From simple business sites to complex multi-page platforms.</p>
+                </div>
+                <div class="service-card">
+                    <h3>💻 Web Applications</h3>
+                    <p>Powerful, scalable web applications for SaaS platforms, business tools, and data-driven solutions that grow with your business.</p>
+                </div>
+                <div class="service-card">
+                    <h3>📱 Mobile Applications</h3>
+                    <p>Cross-platform mobile apps that deliver exceptional user experiences on iOS and Android, built with modern frameworks.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🧩 Browser Extensions</h3>
+                    <p>Powerful browser extensions that enhance productivity and user engagement across Chrome, Firefox, Edge, and other browsers.</p>
+                </div>
+            </div>
+            <div class="service-card" style="margin-top: 15px;">
+                <h3>⚙️ Maintenance & Support</h3>
+                <p>Comprehensive ongoing support to keep your digital assets secure, updated, and performing at their best with dedicated developer time.</p>
+            </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="process">
+            <h2 class="section-title">Our Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Discovery & Planning</div>
+                    <div class="step-timeline">1-3 days</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Design & Development</div>
+                    <div class="step-timeline">2-6 weeks</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Testing & Refinement</div>
+                    <div class="step-timeline">1-2 weeks</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Launch & Support</div>
+                    <div class="step-timeline">1-3 days</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Build Beyond the Summit?</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>snowpeak.contact@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <span>+1 (647) 786-2161</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🌐</span>
+                        <span>snow-peak.ca</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Toronto, Ontario, Canada</span>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <div class="cta-button">Get Free Consultation</div>
+                    </div>
+                </div>
+                <div class="qr-section">
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://snow-peak.ca" alt="QR Code" style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="qr-text">Scan to visit our website</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
