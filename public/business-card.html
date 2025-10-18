@@ -95,7 +95,7 @@
             color-adjust: exact;
         }
 
-        /* Front Card - Elegant Light Gradient */
+        /* Front Card - Elegant Light Gradient with Mountains */
         .card-front {
             background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%);
             display: flex;
@@ -104,6 +104,7 @@
             align-items: center;
             padding: 28px 20px 16px 20px;
             position: relative;
+            overflow: hidden;
             /* Force backgrounds to print */
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
@@ -119,11 +120,59 @@
             bottom: 0;
             background: radial-gradient(circle at top right, rgba(57, 94, 202, 0.05) 0%, transparent 60%);
             pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Mountain Layer 1 - Front Card */
+        .card-front::after {
+            content: '';
+            position: absolute;
+            bottom: -5%;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(57, 94, 202, 0.3) 0%, rgba(57, 94, 202, 0.1) 100%);
+            clip-path: polygon(0% 100%, 25% 80%, 45% 50%, 65% 75%, 85% 45%, 100% 70%, 100% 100%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.2;
+            filter: drop-shadow(0 2px 8px rgba(57, 94, 202, 0.2));
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Mountain Layers 2 & 3 - Front Card */
+        .mountain-layer-2-front,
+        .mountain-layer-3-front {
+            position: absolute;
+            bottom: -5%;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            pointer-events: none;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .mountain-layer-2-front {
+            background: linear-gradient(to top, rgba(57, 94, 202, 0.3) 0%, rgba(57, 94, 202, 0.1) 100%);
+            clip-path: polygon(0% 100%, 20% 70%, 35% 35%, 50% 60%, 70% 30%, 85% 65%, 100% 50%, 100% 100%);
+            z-index: 2;
+            opacity: 0.3;
+            filter: drop-shadow(0 2px 8px rgba(57, 94, 202, 0.2));
+        }
+
+        .mountain-layer-3-front {
+            background: linear-gradient(to top, rgba(57, 94, 202, 0.3) 0%, rgba(57, 94, 202, 0.1) 100%);
+            clip-path: polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%);
+            z-index: 3;
+            opacity: 0.4;
+            filter: drop-shadow(0 2px 8px rgba(57, 94, 202, 0.2));
         }
 
         .logo-container {
             position: relative;
-            z-index: 1;
+            z-index: 4;
             width: 100%;
             max-width: 260px;
             flex: 1;
@@ -144,7 +193,7 @@
 
         .front-contact {
             position: relative;
-            z-index: 1;
+            z-index: 4;
             width: 100%;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -178,7 +227,7 @@
             word-break: break-word;
         }
 
-        /* Back Card - Modern Sleek Design */
+        /* Back Card - Modern Sleek Design with Mountains */
         .card-back {
             background: linear-gradient(135deg, #FAFBFC 0%, #F1F5F9 100%);
             padding: 16px 14px;
@@ -188,6 +237,7 @@
             align-items: center;
             gap: 9px;
             position: relative;
+            overflow: hidden;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
@@ -203,13 +253,61 @@
                 radial-gradient(circle at 15% 25%, rgba(57, 94, 202, 0.04) 0%, transparent 50%),
                 radial-gradient(circle at 85% 75%, rgba(132, 139, 216, 0.04) 0%, transparent 50%);
             pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Mountain Layer 1 - Back Card */
+        .card-back::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(57, 94, 202, 0.3) 0%, rgba(57, 94, 202, 0.1) 100%);
+            clip-path: polygon(0% 100%, 25% 80%, 45% 50%, 65% 75%, 85% 45%, 100% 70%, 100% 100%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.2;
+            filter: drop-shadow(0 2px 8px rgba(57, 94, 202, 0.2));
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Mountain Layers 2 & 3 - Back Card */
+        .mountain-layer-2-back,
+        .mountain-layer-3-back {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            pointer-events: none;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .mountain-layer-2-back {
+            background: linear-gradient(to top, rgba(57, 94, 202, 0.3) 0%, rgba(57, 94, 202, 0.1) 100%);
+            clip-path: polygon(0% 100%, 20% 70%, 35% 35%, 50% 60%, 70% 30%, 85% 65%, 100% 50%, 100% 100%);
+            z-index: 2;
+            opacity: 0.3;
+            filter: drop-shadow(0 2px 8px rgba(57, 94, 202, 0.2));
+        }
+
+        .mountain-layer-3-back {
+            background: linear-gradient(to top, rgba(57, 94, 202, 0.3) 0%, rgba(57, 94, 202, 0.1) 100%);
+            clip-path: polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%);
+            z-index: 3;
+            opacity: 0.4;
+            filter: drop-shadow(0 2px 8px rgba(57, 94, 202, 0.2));
         }
 
         .back-logo-container {
             width: 100%;
             max-width: 105px;
             position: relative;
-            z-index: 1;
+            z-index: 4;
         }
 
         .back-logo-svg {
@@ -223,7 +321,7 @@
 
         .services-section {
             position: relative;
-            z-index: 1;
+            z-index: 4;
             width: 100%;
         }
 
@@ -266,7 +364,7 @@
 
         .cta-section-back {
             position: relative;
-            z-index: 1;
+            z-index: 4;
             text-align: center;
         }
 
@@ -451,6 +549,10 @@
         <div>
             <div class="card-label">Front Side</div>
             <div class="business-card card-front">
+                <!-- Mountain Layers -->
+                <div class="mountain-layer-2-front"></div>
+                <div class="mountain-layer-3-front"></div>
+                
                 <div class="logo-container">
                     <img src="snowpeak-logo/vector/defaultLandscape.svg" 
                          alt="SnowPeak - Build Beyond the Summit" 
@@ -481,6 +583,10 @@
         <div>
             <div class="card-label">Back Side</div>
             <div class="business-card card-back">
+                <!-- Mountain Layers -->
+                <div class="mountain-layer-2-back"></div>
+                <div class="mountain-layer-3-back"></div>
+                
                 <div class="back-logo-container">
                     <img src="snowpeak-logo/vector/defaultLandscape.svg" 
                          alt="SnowPeak" 
