@@ -95,14 +95,14 @@
             color-adjust: exact;
         }
 
-        /* Front Card - Elegant Light Gradient (matches hero section) */
+        /* Front Card - Elegant Light Gradient */
         .card-front {
             background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 20px 15px 20px;
+            padding: 28px 20px 16px 20px;
             position: relative;
             /* Force backgrounds to print */
             -webkit-print-color-adjust: exact;
@@ -125,7 +125,7 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 240px;
+            max-width: 260px;
             flex: 1;
             display: flex;
             align-items: center;
@@ -148,9 +148,13 @@
             width: 100%;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            border-top: 1px solid rgba(57, 94, 202, 0.15);
-            padding-top: 10px;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 8px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .front-contact-item {
@@ -167,22 +171,22 @@
         }
 
         .contact-text-front {
-            font-size: 6px;
-            color: #475569;
-            font-weight: 600;
+            font-size: 5.5px;
+            color: #1E293B;
+            font-weight: 700;
             line-height: 1.2;
             word-break: break-word;
         }
 
-        /* Back Card - Simple Modern Design */
+        /* Back Card - Modern Sleek Design */
         .card-back {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
-            padding: 18px 16px;
+            background: linear-gradient(135deg, #FAFBFC 0%, #F1F5F9 100%);
+            padding: 16px 14px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             position: relative;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
@@ -196,14 +200,14 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(57, 94, 202, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(132, 139, 216, 0.03) 0%, transparent 50%);
+                radial-gradient(circle at 15% 25%, rgba(57, 94, 202, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(132, 139, 216, 0.04) 0%, transparent 50%);
             pointer-events: none;
         }
 
         .back-logo-container {
             width: 100%;
-            max-width: 110px;
+            max-width: 105px;
             position: relative;
             z-index: 1;
         }
@@ -211,7 +215,7 @@
         .back-logo-svg {
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             shape-rendering: geometricPrecision;
@@ -220,28 +224,44 @@
         .services-section {
             position: relative;
             z-index: 1;
-            text-align: center;
+            width: 100%;
         }
 
         .services-title {
-            font-size: 7px;
+            font-size: 6.5px;
             font-weight: 700;
             color: #395ECA;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             margin-bottom: 6px;
+            text-align: center;
         }
 
-        .services-line {
-            font-size: 6.5px;
+        .services-grid-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .service-pill {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            padding: 3px 7px;
+            border-radius: 10px;
+            font-size: 5.5px;
+            font-weight: 700;
             color: #475569;
-            font-weight: 600;
-            line-height: 1.3;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(57, 94, 202, 0.12);
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        .service-separator {
-            color: #395ECA;
-            margin: 0 4px;
+        .service-pill-icon {
+            font-size: 7px;
         }
 
         .cta-section-back {
@@ -251,27 +271,36 @@
         }
 
         .cta-text-back {
-            font-size: 8px;
+            font-size: 7.5px;
             font-weight: 700;
-            color: #0F172A;
+            background: linear-gradient(135deg, #395ECA 0%, #5B7FD8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1.3;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
         .qr-container-back {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
         }
 
         .qr-code-back {
-            width: 60px;
-            height: 60px;
+            width: 58px;
+            height: 58px;
             background: white;
             padding: 4px;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(57, 94, 202, 0.15);
+            border: 2px solid transparent;
+            background-image: linear-gradient(white, white), linear-gradient(135deg, #395ECA, #848BD8);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .qr-code-back img {
@@ -280,9 +309,11 @@
         }
 
         .qr-label-back {
-            font-size: 5.5px;
+            font-size: 5px;
             color: #64748B;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         /* Print Styles */
@@ -457,8 +488,27 @@
                 </div>
                 <div class="services-section">
                     <div class="services-title">OUR SERVICES</div>
-                    <div class="services-line">
-                        🌐 Websites<span class="service-separator">•</span>💻 Web Apps<span class="service-separator">•</span>📱 Mobile Apps<span class="service-separator">•</span>🧩 Browser Extensions<span class="service-separator">•</span>⚙️ Support
+                    <div class="services-grid-pills">
+                        <div class="service-pill">
+                            <span class="service-pill-icon">🌐</span>
+                            <span>Websites</span>
+                        </div>
+                        <div class="service-pill">
+                            <span class="service-pill-icon">💻</span>
+                            <span>Web Apps</span>
+                        </div>
+                        <div class="service-pill">
+                            <span class="service-pill-icon">📱</span>
+                            <span>Mobile Apps</span>
+                        </div>
+                        <div class="service-pill">
+                            <span class="service-pill-icon">🧩</span>
+                            <span>Browser Extensions</span>
+                        </div>
+                        <div class="service-pill">
+                            <span class="service-pill-icon">⚙️</span>
+                            <span>Support</span>
+                        </div>
                     </div>
                 </div>
                 <div class="cta-section-back">
@@ -467,7 +517,6 @@
                         <div class="qr-code-back">
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://snow-peak.ca" alt="QR Code">
                         </div>
-                        <div class="qr-label-back">Scan to visit site</div>
                     </div>
                 </div>
             </div>
