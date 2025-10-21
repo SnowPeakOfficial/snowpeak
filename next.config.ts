@@ -4,6 +4,21 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'snow-peak.ca',
+          },
+        ],
+        destination: 'https://www.snow-peak.ca/:path*',
+        permanent: true,
+      },
+    ];
+  },
   headers: async () => {
     return [
       {

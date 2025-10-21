@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://snow-peak.ca';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.snow-peak.ca';
   const now = new Date();
   
   // Main pages
