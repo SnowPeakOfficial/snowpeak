@@ -46,9 +46,6 @@ import {
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SERVICES } from '@/data/constants';
-import { generateMetadata } from './metadata';
-
-export { generateMetadata };
 
 interface ServicePageProps {
   params: Promise<{
