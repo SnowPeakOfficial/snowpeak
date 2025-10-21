@@ -93,7 +93,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "SnowPeak",
     "url": "https://snow-peak.ca",
-    "logo": "https://snow-peak.ca/snowpeak-logo/vector/default.svg",
+    "logo": "https://www.snow-peak.ca/snowpeak-logo/vector/default.svg",
     "description": "Professional web development, mobile apps, and browser extensions serving Canadian businesses",
     "address": {
       "@type": "PostalAddress",
@@ -122,7 +122,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "SnowPeak",
-    "image": "https://snow-peak.ca/snowpeak-logo/cover.png",
+    "image": "https://www.snow-peak.ca/snowpeak-logo/cover.png",
     "@id": "https://snow-peak.ca",
     "url": "https://snow-peak.ca",
     "telephone": "+1-647-786-2161",

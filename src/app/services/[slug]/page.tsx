@@ -639,13 +639,13 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://snow-peak.ca/services"
+        "item": "https://www.snow-peak.ca/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://snow-peak.ca/services/${service.id}`
+        "item": `https://www.snow-peak.ca/services/${service.id}`
       }
     ]
   };
