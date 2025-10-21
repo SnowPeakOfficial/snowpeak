@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://snow-peak.ca'),
+  metadataBase: new URL('https://www.snow-peak.ca'),
   title: {
     default: "SnowPeak - Build Beyond the Summit | Web & Mobile Development Canada",
     template: "%s | SnowPeak"
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   creator: "SnowPeak",
   publisher: "SnowPeak",
   alternates: {
-    canonical: "https://snow-peak.ca"
+    canonical: "https://www.snow-peak.ca"
   },
   icons: {
     icon: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://snow-peak.ca",
+    url: "https://www.snow-peak.ca",
     title: "SnowPeak - Build Beyond the Summit | Web & Mobile Development Canada",
     description: "Professional web development, mobile apps, and browser extensions. Trusted by 10+ Canadian businesses. Free consultation available.",
     siteName: "SnowPeak",
@@ -92,8 +92,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "SnowPeak",
-    "url": "https://snow-peak.ca",
-    "logo": "https://www.snow-peak.ca/snowpeak-logo/vector/default.svg",
+    "url": "https://www.snow-peak.ca",
+    "logo": "https://www.snow-peak.ca/snowpeak-logo/default.png",
     "description": "Professional web development, mobile apps, and browser extensions serving Canadian businesses",
     "address": {
       "@type": "PostalAddress",
@@ -123,8 +123,8 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     "name": "SnowPeak",
     "image": "https://www.snow-peak.ca/snowpeak-logo/cover.png",
-    "@id": "https://snow-peak.ca",
-    "url": "https://snow-peak.ca",
+    "@id": "https://www.snow-peak.ca",
+    "url": "https://www.snow-peak.ca",
     "telephone": "+1-647-786-2161",
     "email": "snowpeak.contact@gmail.com",
     "priceRange": "$$",
