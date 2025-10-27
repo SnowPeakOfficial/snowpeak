@@ -20,7 +20,54 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useInView as useInViewHook } from 'react-intersection-observer';
 import { COMPANY_INFO, COMPANY_STATS } from '@/data/constants';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Aurora to avoid SSR issues
+const Aurora = dynamic(() => import('@/components/Aurora/Aurora'), {
+  ssr: false,
+});
+
+// Animated Counter Component
+const AnimatedCounter: React.FC<{ end: number; duration?: number; suffix?: string }> = ({ 
+  end, 
+  duration = 1.2,
+  suffix = ''
+}) => {
+  const [count, setCount] = useState(0);
+  const { ref, inView } = useInViewHook({ triggerOnce: true, threshold: 0.3 });
+
+  useEffect(() => {
+    if (!inView) return;
+
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      
+      // Use easeOutQuad for gentler easing - less aggressive than cubic
+      const easeOutQuad = 1 - (1 - progress) * (1 - progress);
+      const currentCount = Math.round(easeOutQuad * end);
+      
+      setCount(currentCount);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        // Ensure we always end on the exact number
+        setCount(end);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [inView, end, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
 
 // Mountain Layer Component
 const MountainLayer: React.FC<{ opacity: number; zIndex: number }> = ({ opacity, zIndex }) => {
@@ -422,6 +469,32 @@ const HeroSection: React.FC = () => {
         overflow: 'hidden',
       }}
     >
+      {/* Aurora Background */}
+      {isClient && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 0,
+            opacity: isDark ? 0.6 : 0.5,
+          }}
+        >
+          <Aurora
+            colorStops={
+              isDark
+                ? ['#3B82F6', '#60A5FA', '#93C5FD']
+                : ['#3B82F6', '#60A5FA', '#93C5FD']
+            }
+            amplitude={1.0}
+            blend={0.5}
+            speed={0.5}
+          />
+        </Box>
+      )}
+
       {/* Background Pattern */}
       <Box
         sx={{
@@ -461,33 +534,36 @@ const HeroSection: React.FC = () => {
           {/* Left Content */}
           <Box sx={{ flex: { xs: '1', lg: '1' }, width: '100%' }}>
             <Box sx={{ textAlign: { xs: 'center', lg: 'left' } }}>
-              {/* Main Heading */}
+              {/* Main Heading - ENHANCED SIZE */}
               <Typography
                 variant="h1"
                 sx={{
                   mb: 3,
+                  fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '6rem', xl: '7rem' },
+                  fontWeight: 800,
+                  lineHeight: 1.1,
                   background: isDark
                     ? 'linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%)'
                     : 'linear-gradient(135deg, #0F172A 0%, #334155 100%)',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  fontWeight: 700,
                 }}
               >
                 {COMPANY_INFO.name}
               </Typography>
 
-              {/* Tagline */}
+              {/* Tagline - ENHANCED SIZE */}
               <Typography
                 variant="h2"
                 sx={{
                   mb: 4,
+                  fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem', lg: '3.5rem' },
+                  fontWeight: 700,
                   background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  fontWeight: 600,
                 }}
               >
                 {COMPANY_INFO.tagline}
@@ -725,30 +801,34 @@ const HeroSection: React.FC = () => {
                       border: `1px solid ${theme.palette.divider}`,
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       '&:hover': {
-                        transform: 'translateY(-0.25rem)',
+                        transform: 'translateY(-0.25rem) scale(1.02)',
                         boxShadow: isDark
                           ? '0 1rem 2rem rgba(0, 0, 0, 0.3)'
                           : '0 1rem 2rem rgba(0, 0, 0, 0.1)',
                       },
                     }}
                   >
-                    <CardContent sx={{ py: 2 }}>
+                    <CardContent sx={{ py: 3 }}>
                       <Typography
                         variant="h4"
                         sx={{
                           fontWeight: 700,
                           color: 'primary.main',
                           mb: 0.5,
-                          fontSize: 'clamp(1.5rem, 3vw + 1rem, 2rem)',
+                          fontSize: 'clamp(1.75rem, 3vw + 1rem, 2.5rem)',
                         }}
                       >
-                        {stat.value}
+                        <AnimatedCounter 
+                          end={parseInt(stat.value.replace(/\D/g, ''))} 
+                          suffix={stat.value.replace(/\d/g, '')}
+                        />
                       </Typography>
                       <Typography
                         variant="body2"
                         sx={{
                           color: 'text.secondary',
-                          fontSize: 'clamp(0.75rem, 1vw + 0.25rem, 0.875rem)',
+                          fontSize: 'clamp(0.875rem, 1vw + 0.25rem, 1rem)',
+                          fontWeight: 500,
                         }}
                       >
                         {stat.label}
