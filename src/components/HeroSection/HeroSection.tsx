@@ -22,6 +22,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView as useInViewHook } from 'react-intersection-observer';
 import { COMPANY_INFO, COMPANY_STATS } from '@/data/constants';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Aurora to avoid SSR issues
+const Aurora = dynamic(() => import('@/components/Aurora/Aurora'), {
+  ssr: false,
+});
 
 // Animated Counter Component
 const AnimatedCounter: React.FC<{ end: number; duration?: number; suffix?: string }> = ({ 
@@ -463,6 +469,32 @@ const HeroSection: React.FC = () => {
         overflow: 'hidden',
       }}
     >
+      {/* Aurora Background */}
+      {isClient && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 0,
+            opacity: isDark ? 0.6 : 0.5,
+          }}
+        >
+          <Aurora
+            colorStops={
+              isDark
+                ? ['#3B82F6', '#60A5FA', '#93C5FD']
+                : ['#3B82F6', '#60A5FA', '#93C5FD']
+            }
+            amplitude={1.0}
+            blend={0.5}
+            speed={0.5}
+          />
+        </Box>
+      )}
+
       {/* Background Pattern */}
       <Box
         sx={{
