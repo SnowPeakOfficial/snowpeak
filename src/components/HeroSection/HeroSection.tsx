@@ -31,7 +31,7 @@ const Aurora = dynamic(() => import('@/components/Aurora/Aurora'), {
 // Animated Counter Component
 const AnimatedCounter: React.FC<{ end: number; duration?: number; suffix?: string }> = ({ 
   end, 
-  duration = 1.2,
+  duration = 0.8,
   suffix = ''
 }) => {
   const [count, setCount] = useState(0);
