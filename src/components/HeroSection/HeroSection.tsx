@@ -477,7 +477,8 @@ const HeroSection: React.FC = () => {
             top: 0,
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: { xs: 'auto', md: 0 },
+            height: { xs: '60vh', sm: '70vh', md: '100%' },
             zIndex: 0,
             opacity: isDark ? 0.6 : 0.5,
           }}
