@@ -28,6 +28,9 @@ const AboutPage: React.FC = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
 
+  // Feature flag for Team section
+  const showTeamSection = process.env.NEXT_PUBLIC_SHOW_TEAM_SECTION === 'true';
+
   const values = [
     {
       icon: <Handshake sx={{ fontSize: '2rem', color: 'primary.main' }} />,
@@ -182,6 +185,7 @@ const AboutPage: React.FC = () => {
         </Box>
 
         {/* Founding Team Section */}
+        {showTeamSection && (
         <Box
           sx={{
             py: { xs: 8, md: 12 },
@@ -371,6 +375,7 @@ const AboutPage: React.FC = () => {
             </Box>
           </Container>
         </Box>
+        )}
 
         {/* Company Evolution Section */}
         <Box
