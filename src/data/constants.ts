@@ -194,7 +194,7 @@ export const SERVICES = [
   {
     id: 'browser-extensions',
     title: 'Browser Extensions',
-    description: 'Powerful browser extensions that enhance productivity and user engagement across Chrome, Firefox, Edge, and other modern browsers.',
+    description: 'Powerful browser extensions that enhance productivity and user engagement across Chrome, Firefox, Edge, and other browsers.',
     packages: [
       {
         name: 'Basic',
