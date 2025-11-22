@@ -17,7 +17,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: 'Starting at $750',
+        price: 'Starting at $1,000',
         timeline: '1-2 weeks',
         features: [
           'Up to 3 pages (Home, About, Contact)',
@@ -31,7 +31,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: 'Starting at $2,500',
+        price: 'Starting at $3,000',
         timeline: '3+ weeks',
         features: [
           '5-10+ custom designed pages',
@@ -57,7 +57,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: 'Starting at $3,000',
+        price: 'Starting at $5,000',
         timeline: '3+ weeks',
         features: [
           'Core app with 1-2 key features',
@@ -67,14 +67,13 @@ export const SERVICES = [
           'Custom design with basic theming',
           'Contact form integration',
           'Basic SEO (meta tags, descriptions)',
-          'Deployed to Vercel/Netlify/Render',
           'One revision round'
         ],
         popular: false
       },
       {
         name: 'Pro',
-        price: 'Starting at $8,000',
+        price: 'Starting at $10,000',
         timeline: '6+ weeks',
         features: [
           'Core app with 3-5 key features',
@@ -130,7 +129,7 @@ export const SERVICES = [
     packages: [
       {
         name: 'Basic',
-        price: 'Starting at $5,000',
+        price: 'Starting at $7,000',
         timeline: '4+ weeks',
         features: [
           'Cross-platform app with 1-2 features',
@@ -145,7 +144,7 @@ export const SERVICES = [
       },
       {
         name: 'Pro',
-        price: 'Starting at $10,000',
+        price: 'Starting at $14,000',
         timeline: '8+ weeks',
         features: [
           'Cross-platform app with advanced features',
@@ -238,7 +237,6 @@ export const SERVICES = [
         price: 'Starting at $300/month',
         timeline: 'Ongoing',
         features: [
-          'Up to 3 hours/month dev work',
           'Uptime monitoring',
           'Minor content updates',
           'Priority response within 3 days'
@@ -250,7 +248,6 @@ export const SERVICES = [
         price: 'Starting at $800/month',
         timeline: 'Ongoing',
         features: [
-          'Up to 10 hours/month dev work',
           'Analytics monitoring and optimizations',
           'Feature tweaks and UI improvements',
           'Performance enhancements',
@@ -263,7 +260,6 @@ export const SERVICES = [
         price: 'Starting at $3,000/month',
         timeline: 'Ongoing',
         features: [
-          '30 hours/month dev work',
           'Dedicated dev availability',
           'Scaling, infrastructure support',
           'Analytics monitoring and optimizations',
