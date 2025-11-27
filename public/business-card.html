@@ -100,9 +100,9 @@
             background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 28px 20px 16px 20px;
+            padding: 20px;
             position: relative;
             overflow: hidden;
             /* Force backgrounds to print */
@@ -175,7 +175,6 @@
             z-index: 4;
             width: 100%;
             max-width: 260px;
-            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -192,12 +191,15 @@
         }
 
         .front-contact {
-            position: relative;
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 28px);
             z-index: 4;
-            width: 100%;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 4px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 10px 8px;
@@ -224,7 +226,6 @@
             color: #1E293B;
             font-weight: 700;
             line-height: 1.2;
-            word-break: break-word;
         }
 
         /* Back Card - Modern Sleek Design with Mountains */
@@ -323,43 +324,51 @@
             position: relative;
             z-index: 4;
             width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 8px 8px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .services-title {
-            font-size: 6.5px;
+            font-size: 5.5px;
             font-weight: 700;
             color: #395ECA;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 6px;
+            letter-spacing: 0.6px;
+            margin-bottom: 5px;
             text-align: center;
         }
 
         .services-grid-pills {
             display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
+            flex-wrap: nowrap;
+            gap: 3px;
             justify-content: center;
+            align-items: center;
         }
 
         .service-pill {
             background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
-            padding: 3px 7px;
-            border-radius: 10px;
-            font-size: 5.5px;
+            padding: 2px 5px;
+            border-radius: 8px;
+            font-size: 4.5px;
             font-weight: 700;
             color: #475569;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(57, 94, 202, 0.12);
             display: inline-flex;
             align-items: center;
-            gap: 2px;
+            gap: 1.5px;
+            white-space: nowrap;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
         .service-pill-icon {
-            font-size: 7px;
+            font-size: 6px;
         }
 
         .cta-section-back {
