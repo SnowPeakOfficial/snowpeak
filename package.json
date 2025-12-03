@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export-print-materials": "node scripts/export-print-materials.js",
+    "export-business-card": "node scripts/export-print-materials.js business-card",
+    "export-flyer": "node scripts/export-print-materials.js flyer"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -34,6 +37,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
+    "puppeteer": "^24.31.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
