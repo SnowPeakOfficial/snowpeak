@@ -12,19 +12,20 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
 // Configuration
 const OUTPUT_DIR = path.join(__dirname, '../print-ready');
 const PUBLIC_DIR = path.join(__dirname, '../public');
-const DPI = 300;
+const DPI = 600;
 
 // Print dimensions (in inches)
 const DIMENSIONS = {
   businessCard: {
-    width: 3.5,
-    height: 2,
-    pixelWidth: 3.5 * DPI,
-    pixelHeight: 2 * DPI
+    width: 3.75,  // With bleed for Staples/Canva (trims to 3.5")
+    height: 2.25, // With bleed for Staples/Canva (trims to 2")
+    pixelWidth: 3.75 * DPI,
+    pixelHeight: 2.25 * DPI
   },
   flyer: {
     width: 8.5,
@@ -40,6 +41,20 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 }
 
 /**
+ * Add DPI metadata to PNG file using Sharp
+ */
+async function addDpiMetadata(filePath) {
+  const buffer = await sharp(filePath)
+    .withMetadata({
+      density: DPI
+    })
+    .toBuffer();
+  
+  await fs.promises.writeFile(filePath, buffer);
+  console.log(`  🎯 DPI metadata set to ${DPI}`);
+}
+
+/**
  * Export business card (front and back)
  */
 async function exportBusinessCard(browser) {
@@ -51,7 +66,7 @@ async function exportBusinessCard(browser) {
   await page.setViewport({
     width: DIMENSIONS.businessCard.pixelWidth,
     height: DIMENSIONS.businessCard.pixelHeight,
-    deviceScaleFactor: 5
+    deviceScaleFactor: 10  // Ultra-high quality for crystal-clear text
   });
 
   // Load the business card HTML
@@ -62,30 +77,150 @@ async function exportBusinessCard(browser) {
   await page.evaluateHandle('document.fonts.ready');
   await new Promise(resolve => setTimeout(resolve, 1000));
 
-  // Export front side
-  console.log('  📄 Capturing front side...');
+  // Export front side PNG
+  console.log('  📄 Capturing front side PNG...');
   const frontElement = await page.$('.card-front');
+  const frontPath = path.join(OUTPUT_DIR, 'business-card-front.png');
   if (frontElement) {
     await frontElement.screenshot({
-      path: path.join(OUTPUT_DIR, 'business-card-front.png'),
+      path: frontPath,
       omitBackground: false
     });
-    console.log('  ✅ Front side saved: business-card-front.png');
+    console.log('  ✅ Front PNG saved: business-card-front.png');
+    await addDpiMetadata(frontPath);
   }
 
-  // Export back side
-  console.log('  📄 Capturing back side...');
+  // Export back side PNG
+  console.log('  📄 Capturing back side PNG...');
   const backElement = await page.$('.card-back');
+  const backPath = path.join(OUTPUT_DIR, 'business-card-back.png');
   if (backElement) {
     await backElement.screenshot({
-      path: path.join(OUTPUT_DIR, 'business-card-back.png'),
+      path: backPath,
       omitBackground: false
     });
-    console.log('  ✅ Back side saved: business-card-back.png');
+    console.log('  ✅ Back PNG saved: business-card-back.png');
+    await addDpiMetadata(backPath);
   }
+
+  // Export front side PDF (element only, no white space)
+  console.log('  📄 Creating front side PDF...');
+  await page.evaluate(() => {
+    // Remove all body styling and make it fit the card exactly
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.background = 'transparent';
+    document.body.style.width = '3.75in';
+    document.body.style.height = '2.25in';
+    document.body.style.overflow = 'hidden';
+    
+    // Hide everything except front card
+    const instructions = document.querySelectorAll('.instructions');
+    const labels = document.querySelectorAll('.card-label');
+    instructions.forEach(el => el.remove());
+    labels.forEach(el => el.remove());
+    
+    // Hide back card
+    const backCard = document.querySelector('.card-back');
+    if (backCard && backCard.parentElement) {
+      backCard.parentElement.remove();
+    }
+    
+    // Make card container fit perfectly
+    const container = document.querySelector('.card-container');
+    if (container) {
+      container.style.margin = '0';
+      container.style.padding = '0';
+      container.style.gap = '0';
+      container.style.width = '3.75in';
+      container.style.height = '2.25in';
+    }
+    
+    // Make front card fill the entire space
+    const frontCard = document.querySelector('.card-front');
+    if (frontCard) {
+      frontCard.style.margin = '0';
+      frontCard.style.position = 'absolute';
+      frontCard.style.top = '0';
+      frontCard.style.left = '0';
+      frontCard.style.width = '3.75in';
+      frontCard.style.height = '2.25in';
+    }
+  });
+  
+  await page.pdf({
+    path: path.join(OUTPUT_DIR, 'business-card-front.pdf'),
+    width: `${DIMENSIONS.businessCard.width}in`,
+    height: `${DIMENSIONS.businessCard.height}in`,
+    printBackground: true,
+    preferCSSPageSize: false,
+    margin: { top: 0, right: 0, bottom: 0, left: 0 }
+  });
+  console.log('  ✅ Front PDF saved: business-card-front.pdf');
+
+  // Reload page for back side PDF
+  await page.goto(businessCardPath, { waitUntil: 'networkidle0' });
+  await page.evaluateHandle('document.fonts.ready');
+  await new Promise(resolve => setTimeout(resolve, 500));
+
+  // Export back side PDF (element only, no white space)
+  console.log('  📄 Creating back side PDF...');
+  await page.evaluate(() => {
+    // Remove all body styling and make it fit the card exactly
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.background = 'transparent';
+    document.body.style.width = '3.75in';
+    document.body.style.height = '2.25in';
+    document.body.style.overflow = 'hidden';
+    
+    // Hide everything except back card
+    const instructions = document.querySelectorAll('.instructions');
+    const labels = document.querySelectorAll('.card-label');
+    instructions.forEach(el => el.remove());
+    labels.forEach(el => el.remove());
+    
+    // Hide front card
+    const frontCard = document.querySelector('.card-front');
+    if (frontCard && frontCard.parentElement) {
+      frontCard.parentElement.remove();
+    }
+    
+    // Make card container fit perfectly
+    const container = document.querySelector('.card-container');
+    if (container) {
+      container.style.margin = '0';
+      container.style.padding = '0';
+      container.style.gap = '0';
+      container.style.width = '3.75in';
+      container.style.height = '2.25in';
+    }
+    
+    // Make back card fill the entire space
+    const backCard = document.querySelector('.card-back');
+    if (backCard) {
+      backCard.style.margin = '0';
+      backCard.style.position = 'absolute';
+      backCard.style.top = '0';
+      backCard.style.left = '0';
+      backCard.style.width = '3.75in';
+      backCard.style.height = '2.25in';
+    }
+  });
+  
+  await page.pdf({
+    path: path.join(OUTPUT_DIR, 'business-card-back.pdf'),
+    width: `${DIMENSIONS.businessCard.width}in`,
+    height: `${DIMENSIONS.businessCard.height}in`,
+    printBackground: true,
+    preferCSSPageSize: false,
+    margin: { top: 0, right: 0, bottom: 0, left: 0 }
+  });
+  console.log('  ✅ Back PDF saved: business-card-back.pdf');
 
   // Create combined PDF
   console.log('  📄 Creating combined PDF...');
+  await page.goto(businessCardPath, { waitUntil: 'networkidle0' });
   await page.pdf({
     path: path.join(OUTPUT_DIR, 'business-card.pdf'),
     width: `${DIMENSIONS.businessCard.width}in`,
@@ -93,7 +228,7 @@ async function exportBusinessCard(browser) {
     printBackground: true,
     preferCSSPageSize: false
   });
-  console.log('  ✅ PDF saved: business-card.pdf');
+  console.log('  ✅ Combined PDF saved: business-card.pdf');
 
   await page.close();
 }
@@ -124,12 +259,14 @@ async function exportFlyer(browser) {
   // Export flyer element only (no white space)
   console.log('  📄 Capturing flyer...');
   const flyerElement = await page.$('.flyer');
+  const flyerPngPath = path.join(OUTPUT_DIR, 'flyer.png');
   if (flyerElement) {
     await flyerElement.screenshot({
-      path: path.join(OUTPUT_DIR, 'flyer.png'),
+      path: flyerPngPath,
       omitBackground: false
     });
     console.log('  ✅ PNG saved: flyer.png');
+    await addDpiMetadata(flyerPngPath);
   }
 
   // Create PDF
