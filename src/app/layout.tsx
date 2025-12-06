@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation/Navigation";
 import Footer from "@/components/Footer/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { COMPANY_INFO } from "@/data/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,13 +56,13 @@ export const metadata: Metadata = {
       }
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "SnowPeak - Build Beyond the Summit | Web & Mobile Development Canada",
-    description: "Professional web development, mobile apps, and browser extensions. Trusted by 10+ Canadian businesses.",
-    creator: "@snowpeak",
-    images: ["/snowpeak-logo/cover.png"],
-  },
+    twitter: {
+      card: 'summary_large_image',
+      title: COMPANY_INFO.name,
+      description: COMPANY_INFO.description,
+      creator: '@snowpeak_dev',
+      images: ['/snowpeak-logo/cover.png'],
+    },
   robots: {
     index: true,
     follow: true,
@@ -111,9 +112,9 @@ export default function RootLayout({
     },
     "sameAs": [
       "https://linkedin.com/company/snowpeak",
-      "https://twitter.com/snowpeak",
+      "https://twitter.com/snowpeak_dev",
       "https://tiktok.com/@snowpeak",
-      "https://instagram.com/snowpeak",
+      "https://instagram.com/snowpeak.dev",
       "https://facebook.com/snowpeak"
     ]
   };
@@ -153,7 +154,7 @@ export default function RootLayout({
     },
     "sameAs": [
       "https://linkedin.com/company/snowpeak",
-      "https://twitter.com/snowpeak"
+      "https://twitter.com/snowpeak_dev"
     ]
   };
 
