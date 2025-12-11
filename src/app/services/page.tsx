@@ -437,7 +437,7 @@ const ServicesPage: React.FC = () => {
                       'Reach your audience wherever they are with cross-platform mobile applications. Our apps deliver native-like performance and user experience across iOS and Android, built with modern frameworks for maximum efficiency and maintainability.'
                     }
                     {service.id === 'browser-extensions' && 
-                      'Enhance productivity and user engagement with custom browser extensions. We develop powerful extensions that integrate seamlessly with Chrome, Firefox, Edge, and other modern browsers, helping users accomplish tasks more efficiently.'
+                      'Enhance productivity and user engagement with custom browser extensions. We develop powerful extensions that integrate seamlessly with Chrome, Firefox, Edge, and other browsers, helping users accomplish tasks more efficiently.'
                     }
                     {service.id === 'maintenance-support' && 
                       'Keep your digital assets secure, updated, and performing at their best with our comprehensive maintenance services. From security updates to feature enhancements, we provide ongoing support to ensure your continued success.'

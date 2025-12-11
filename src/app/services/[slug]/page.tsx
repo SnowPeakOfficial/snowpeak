@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -66,13 +65,6 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     params.then(p => setSlug(p.slug));
   }, [params]);
   
-  // Scroll to top when slug changes
-  React.useEffect(() => {
-    if (slug) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [slug]);
-  
   // Find the service by slug
   const service = SERVICES.find(s => s.id === slug);
   
@@ -81,17 +73,6 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     if (service) {
       const popularIndex = service.packages.findIndex(pkg => pkg.popular);
       setSelectedPackageIndex(popularIndex !== -1 ? popularIndex : 0);
-    }
-  }, [service]);
-  
-  // Update page metadata
-  useEffect(() => {
-    if (service) {
-      document.title = `${service.title} | SnowPeak - Professional Development Services`;
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', `${service.description} Starting at ${service.packages[0]?.price}. Serving Toronto and all of Canada.`);
-      }
     }
   }, [service]);
   
@@ -628,7 +609,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
     "provider": {
       "@type": "Organization",
       "name": "SnowPeak",
-      "url": "https://snow-peak.ca"
+      "url": "https://www.snow-peak.ca"
     },
     "areaServed": {
       "@type": "Country",
@@ -652,19 +633,19 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://snow-peak.ca"
+        "item": "https://www.snow-peak.ca"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://snow-peak.ca/services"
+        "item": "https://www.snow-peak.ca/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://snow-peak.ca/services/${service.id}`
+        "item": `https://www.snow-peak.ca/services/${service.id}`
       }
     ]
   };
@@ -684,21 +665,6 @@ const ServicePage: React.FC<ServicePageProps> = ({ params }) => {
 
   return (
     <Box>
-      {/* Structured Data */}
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      </Head>
       {/* Breadcrumbs */}
       <Box
         sx={{
