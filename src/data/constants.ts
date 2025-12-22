@@ -5,7 +5,8 @@ export const COMPANY_INFO = {
   description: 'We create exceptional websites, web applications, mobile apps, and browser extensions while providing comprehensive maintenance and support to help businesses reach new heights.',
   email: 'snowpeak.contact@gmail.com',
   phone: '+1 (647) 786-2161',
-  location: 'Canada',
+  phoneEdmonton: '+1 (780) 233-2065',
+  location: 'Toronto, ON & Edmonton, AB',
   founded: '2025',
 };
 
@@ -501,7 +502,7 @@ export const TESTIMONIALS = [
 
 export const COMPANY_STATS = [
   {
-    label: 'Projects Completed',
+    label: 'Projects Completed with SnowPeak',
     value: '10+',
     icon: 'CheckCircle',
   },
@@ -511,7 +512,7 @@ export const COMPANY_STATS = [
     icon: 'Users',
   },
   {
-    label: 'Years Experience',
+    label: 'Years Industry Experience',
     value: '5+',
     icon: 'Calendar',
   },

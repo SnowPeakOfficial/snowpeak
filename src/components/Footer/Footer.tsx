@@ -307,25 +307,42 @@ const Footer: React.FC = () => {
                   {CONTACT_INFO.email}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 } }}>
-                <Phone sx={{ fontSize: { xs: '1rem', sm: '1.25rem' }, color: 'text.secondary' }} />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                    '&:hover': { color: 'primary.main' },
-                  }}
-                  component="a"
-                  href={`tel:${CONTACT_INFO.phone}`}
-                >
-                  {CONTACT_INFO.phone}
-                </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: { xs: 0.5, sm: 1 } }}>
+                <Phone sx={{ fontSize: { xs: '1rem', sm: '1.25rem' }, color: 'text.secondary', mt: 0.25 }} />
+                <Box>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                      fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                      '&:hover': { color: 'primary.main' },
+                      display: 'block',
+                      mb: 0.25,
+                    }}
+                    component="a"
+                    href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+                  >
+                    Toronto: {CONTACT_INFO.phone}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                      fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                      '&:hover': { color: 'primary.main' },
+                      display: 'block',
+                    }}
+                    component="a"
+                    href="tel:+17802332065"
+                  >
+                    Edmonton: +1 (780) 233-2065
+                  </Typography>
+                </Box>
               </Box>
               <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
                 <LocationOn sx={{ fontSize: '1.25rem', color: 'text.secondary' }} />
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {CONTACT_INFO.address}
+                  Toronto, ON & Edmonton, AB
                 </Typography>
               </Box>
               <Typography 

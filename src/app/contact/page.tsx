@@ -22,6 +22,7 @@ import {
   Email,
   Schedule,
   CalendarMonth,
+  Phone,
 } from '@mui/icons-material';
  
 import { CONTACT_INFO } from '@/data/constants';
@@ -401,6 +402,39 @@ const ContactPage: React.FC = () => {
                         </Typography>
                         
                         <Stack spacing={2}>
+                          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
+                            <Phone sx={{ color: 'primary.main', fontSize: '1.25rem', mt: 0.25 }} />
+                            <Box>
+                              <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>
+                                Phone
+                              </Typography>
+                              <MuiLink
+                                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+                                sx={{
+                                  color: 'primary.main',
+                                  textDecoration: 'none',
+                                  fontSize: '0.875rem',
+                                  display: 'block',
+                                  '&:hover': { textDecoration: 'underline' },
+                                }}
+                              >
+                                Toronto: {CONTACT_INFO.phone}
+                              </MuiLink>
+                              <MuiLink
+                                href="tel:+17802332065"
+                                sx={{
+                                  color: 'primary.main',
+                                  textDecoration: 'none',
+                                  fontSize: '0.875rem',
+                                  display: 'block',
+                                  '&:hover': { textDecoration: 'underline' },
+                                }}
+                              >
+                                Edmonton: +1 (780) 233-2065
+                              </MuiLink>
+                            </Box>
+                          </Box>
+
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                             <Email sx={{ color: 'primary.main', fontSize: '1.25rem' }} />
                             <Box>

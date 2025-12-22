@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     default: "SnowPeak - Build Beyond the Summit | Web & Mobile Development Canada",
     template: "%s | SnowPeak"
   },
-  description: "Professional web development, mobile apps, and browser extensions. Trusted by 10+ Canadian businesses. Free consultation available. Based in Toronto, Ontario.",
-  keywords: "web development, mobile apps, browser extensions, maintenance, support, Canada, Toronto, Ontario, SnowPeak, web design, software development",
+  description: "Professional web development, mobile apps, and browser extensions. Trusted by 10+ Canadian businesses. Free consultation available. Serving Toronto, ON & Edmonton, AB.",
+  keywords: "web development, mobile apps, browser extensions, maintenance, support, Canada, Toronto, Ontario, Edmonton, Alberta, SnowPeak, web design, software development",
   authors: [{ name: "SnowPeak" }],
   creator: "SnowPeak",
   publisher: "SnowPeak",
@@ -121,12 +121,11 @@ export default function RootLayout({
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
     "name": "SnowPeak",
     "image": "https://www.snow-peak.ca/snowpeak-logo/cover.png",
     "@id": "https://www.snow-peak.ca",
     "url": "https://www.snow-peak.ca",
-    "telephone": "+1-647-786-2161",
     "email": "snowpeak.contact@gmail.com",
     "priceRange": "$$",
     "address": {
@@ -140,6 +139,46 @@ export default function RootLayout({
       "latitude": 43.6532,
       "longitude": -79.3832
     },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Toronto",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Ontario"
+        }
+      },
+      {
+        "@type": "City",
+        "name": "Edmonton",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Alberta"
+        }
+      }
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-647-786-2161",
+        "contactType": "Customer Service",
+        "areaServed": {
+          "@type": "State",
+          "name": "Ontario"
+        },
+        "availableLanguage": "English"
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-780-233-2065",
+        "contactType": "Customer Service",
+        "areaServed": {
+          "@type": "State",
+          "name": "Alberta"
+        },
+        "availableLanguage": "English"
+      }
+    ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
