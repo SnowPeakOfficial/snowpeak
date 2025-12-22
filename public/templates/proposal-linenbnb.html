@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnowPeak - LinenBnB Growth Foundation Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .page { width: 8.5in; min-height: 11in; background: white; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); position: relative; margin-bottom: 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
+        .header { background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%); padding: 30px 50px; text-align: center; position: relative; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at top right, rgba(57, 94, 202, 0.05) 0%, transparent 60%); pointer-events: none; }
+        .logo-container { position: relative; z-index: 1; margin-bottom: 15px; }
+        .logo { height: 94px; width: auto; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15)); transform: scale(1.02); }
+        .tagline { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; z-index: 1; letter-spacing: -0.3px; margin-bottom: 8px; }
+        .document-title { font-size: 14px; color: #64748B; font-weight: 600; position: relative; z-index: 1; letter-spacing: 0.5px; text-transform: uppercase; }
+        .content-section { padding: 40px 50px; }
+        .greeting { font-size: 16px; color: #0F172A; line-height: 1.8; margin-bottom: 30px; }
+        .intro-text { font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 30px; }
+        .service-block { background: #F8FAFC; border-left: 4px solid #395ECA; padding: 24px; margin-bottom: 30px; border-radius: 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+        .service-1 { page-break-after: always; }
+        .service-number { font-size: 18px; font-weight: 700; color: #395ECA; margin-bottom: 12px; }
+        .service-description { font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 16px; }
+        .investment { font-size: 16px; font-weight: 700; color: #0F172A; margin-top: 16px; padding: 12px; background: white; border-radius: 6px; border: 2px solid #395ECA; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .investment span { color: #395ECA; }
+        .closing { font-size: 14px; color: #475569; line-height: 1.8; margin: 30px 0; }
+        .signature { font-size: 14px; color: #0F172A; line-height: 1.6; margin-top: 30px; }
+        .service-list { margin: 16px 0; padding-left: 0; list-style: none; }
+        .service-list li { font-size: 14px; color: #475569; line-height: 1.8; padding-left: 24px; position: relative; margin-bottom: 8px; }
+        .service-list li::before { content: '•'; color: #395ECA; font-weight: bold; position: absolute; left: 0; font-size: 18px; }
+        .benefits-section { margin-top: 20px; }
+        .benefits-title { font-size: 15px; font-weight: 700; color: #0F172A; margin-bottom: 12px; }
+        .bundle-block { background: linear-gradient(135deg, rgba(57, 94, 202, 0.08) 0%, rgba(132, 139, 216, 0.08) 100%); border: 2px solid #395ECA; padding: 24px; margin: 30px 0; border-radius: 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+        .bundle-title { font-size: 18px; font-weight: 700; color: #395ECA; margin-bottom: 16px; }
+        .bundle-pricing { font-size: 16px; color: #0F172A; line-height: 1.8; }
+        .bundle-pricing strong { color: #395ECA; font-size: 18px; }
+        .special-rate-block { background: linear-gradient(135deg, #F0F4FF 0%, #E8EFFF 100%); border: 2px solid #395ECA; padding: 28px; margin: 30px 0; border-radius: 8px; position: relative; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .special-rate-badge { display: inline-block; background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        .special-rate-text { font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 12px; }
+        .special-rate-pricing { margin-top: 20px; padding: 16px; background: white; border-radius: 6px; border-left: 4px solid #395ECA; }
+        .special-rate-pricing p { font-size: 15px; color: #0F172A; line-height: 2; margin: 0; }
+        .special-rate-pricing strong { color: #395ECA; font-weight: 700; }
+        .cta-section { margin-top: 30px; padding: 20px 50px 30px 50px; background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%); color: white; text-align: center; position: relative; overflow: visible; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .cta-section::after { content: ''; position: absolute; bottom: -5%; left: -10%; width: 120%; height: 60%; background: linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%); clip-path: polygon(0% 100%, 25% 80%, 45% 50%, 65% 75%, 85% 45%, 100% 70%, 100% 100%); pointer-events: none; z-index: 1; opacity: 0.2; }
+        .mountain-layer-2, .mountain-layer-3 { position: absolute; bottom: -5%; left: -10%; width: 120%; height: 60%; pointer-events: none; }
+        .mountain-layer-2 { background: linear-gradient(to top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%); clip-path: polygon(0% 100%, 20% 70%, 35% 35%, 50% 60%, 70% 30%, 85% 65%, 100% 50%, 100% 100%); z-index: 2; opacity: 0.3; }
+        .mountain-layer-3 { background: linear-gradient(to top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.25) 100%); clip-path: polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%); z-index: 3; opacity: 0.4; }
+        .cta-title { font-size: 18px; font-weight: 800; margin-bottom: 15px; position: relative; z-index: 4; }
+        .contact-grid { display: flex; align-items: flex-start; justify-content: center; position: relative; z-index: 4; }
+        .contact-info { text-align: center; }
+        .contact-item { display: flex; align-items: center; justify-content: center; margin-bottom: 7px; font-size: 11px; }
+        .contact-icon { font-family: 'Material Icons'; margin-right: 10px; font-size: 18px; }
+        @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } body { background: white; padding: 0; margin: 0; } .page { box-shadow: none; width: 100%; margin: 0; page-break-after: always; } .service-block, .bundle-block { page-break-inside: avoid !important; } .closing, .signature { orphans: 3; widows: 3; } }
+        @page { size: letter; margin: 0; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-container">
+                <img src="../snowpeak-logo/vector/defaultLandscape.svg" alt="SnowPeak" class="logo">
+            </div>
+            <div class="tagline">Build Beyond the Summit</div>
+            <div class="document-title">Growth Foundation Proposal</div>
+        </div>
+        <div class="content-section">
+            <div class="greeting"><strong>Hello Jack,</strong></div>
+            <div class="intro-text">Thank you for taking the time to discuss LinenBnB's growth challenges with us. We understand that despite offering quality linen rental services to Airbnb and vacation rental hosts in Miami and Orlando, you're not seeing the visibility, client growth, and online presence your business deserves.</div>
+            <div class="intro-text">We've identified the core issues holding LinenBnB back: an outdated, slow website that doesn't inspire trust, and the challenge of reaching your ideal customers—the hundreds of Airbnb and vacation rental property owners in your service areas. To address both challenges and position LinenBnB for rapid growth, we're proposing a comprehensive two-part foundation package:</div>
+            
+            <!-- Service 1 -->
+            <div class="service-block service-1">
+                <div class="service-number">1. Modern Website Rebuild</div>
+                <div class="service-description">Your current WordPress website is slow, outdated, and not converting visitors into customers. We'll completely rebuild LinenBnB's website using modern technology (Next.js) to create a fast, professional platform that builds trust with Airbnb hosts and vacation rental owners. This includes:</div>
+                <ul class="service-list">
+                    <li>Complete website redesign with modern, professional hospitality-industry styling</li>
+                    <li>Lightning-fast loading speeds (Core Web Vitals optimized) for better SEO and user experience</li>
+                    <li>Mobile-first responsive design that works flawlessly on all devices</li>
+                    <li>Local SEO optimization specifically for "linen rental Miami" and "linen rental Orlando" searches</li>
+                    <li>Dedicated service area pages for Miami and Orlando to capture local searches</li>
+                    <li>Professional contact page with embedded Google Maps</li>
+                    <li>Testimonials/reviews section ready for future customer reviews</li>
+                    <li>Blog-ready structure for future content marketing</li>
+                    <li>SSL certificate, security headers, and hosting configuration</li>
+                    <li>Domain setup and DNS configuration</li>
+                </ul>
+                <div class="benefits-section">
+                    <div class="benefits-title">Benefits for LinenBnB:</div>
+                    <ul class="service-list">
+                        <li>Professional presence that builds immediate trust with Airbnb hosts</li>
+                        <li>Fast loading speeds dramatically improve Google search rankings and user experience</li>
+                        <li>Local SEO helps you dominate searches in your exact service areas</li>
+                        <li>Mobile optimization captures on-the-go property owners researching linen services</li>
+                        <li>Modern design differentiates you from outdated competitors</li>
+                        <li>Foundation for all future marketing and growth efforts</li>
+                    </ul>
+                </div>
+                <div class="investment">Investment: <span>$1,000 CAD</span> (one-time)</div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-block">
+                <div class="service-number">2. Airbnb/VRBO Lead Generation Database</div>
+                <div class="service-description">While a great website attracts visitors, proactive outreach to your ideal customers accelerates growth exponentially. We'll create a comprehensive database of 400-600 qualified Airbnb and vacation rental properties in your exact service areas—Miami and Orlando—giving you direct access to hundreds of potential recurring clients. This includes:</div>
+                <ul class="service-list">
+                    <li>400-600 qualified Airbnb and VRBO property leads in Miami metro and Orlando metro areas</li>
+                    <li>Organized CSV database with property names, addresses, listing URLs, and property details</li>
+                    <li>Host contact information (when publicly available)</li>
+                    <li>Geographic segmentation (Miami vs Orlando) for targeted campaigns</li>
+                    <li>Property size categorization to help you tailor messaging</li>
+                    <li>3 professionally written cold email templates proven to convert</li>
+                    <li>5-touch follow-up sequence guide for nurturing leads</li>
+                    <li>Best practices document for outreach strategy</li>
+                </ul>
+                <div class="benefits-section">
+                    <div class="benefits-title">Benefits for LinenBnB:</div>
+                    <ul class="service-list">
+                        <li>Immediate access to 400-600 potential recurring customers in your exact markets</li>
+                        <li>No more guessing who to target—every lead is a qualified Airbnb/vacation rental property</li>
+                        <li>One-time cost, unlimited use—reach out to leads on your timeline</li>
+                        <li>Competitive advantage: connect with hosts before your competitors do</li>
+                        <li>High ROI potential: if just 2-3% convert, that's $12,000-24,000 in annual recurring revenue</li>
+                        <li>Professional email templates save you time and increase response rates</li>
+                    </ul>
+                </div>
+                <div class="investment">Investment: <span>$1,000 CAD</span> (one-time)</div>
+            </div>
+            
+            <!-- Bundle Option -->
+            <div class="bundle-block">
+                <div class="bundle-title">Growth Foundation Package</div>
+                <div class="bundle-pricing">For maximum impact and value, we recommend combining both services into a complete foundation package:</div>
+                <div class="bundle-pricing" style="margin-top: 12px;"><strong>Modern Website + Lead Generation Database: $1,850 CAD total</strong> (save $150)</div>
+                <div class="bundle-pricing" style="margin-top: 12px; font-size: 14px; color: #475569;">This package gives you everything needed to start generating revenue immediately: a professional online presence AND direct access to hundreds of potential customers.</div>
+            </div>
+            
+            <div class="closing">This Growth Foundation Package addresses both critical needs for LinenBnB: establishing a trustworthy online presence and gaining immediate access to your ideal customers. The combination of a modern website and qualified leads positions you to start converting Airbnb hosts into recurring clients within weeks, not months.</div>
+            <div class="closing">With 400-600 qualified leads and professional email templates included, you can begin outreach immediately after website launch. Based on industry averages, if just 10 property owners become clients at $200/month each, that's $24,000 in annual recurring revenue—more than 10x your investment in this package.</div>
+            <div class="closing">We're ready to start immediately and can deliver your completed website and lead database within 3-4 weeks. Let's get LinenBnB the visibility and growth it deserves.</div>
+        </div>
+        <div class="cta-section">
+            <div class="mountain-layer-2"></div>
+            <div class="mountain-layer-3"></div>
+            <h2 class="cta-title">Let's Build Something Amazing Together!</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p style="margin-bottom: 10px; font-size: 12px;">We're excited to partner with you on this journey. Thank you for choosing SnowPeak!</p>
+                    <div class="contact-item"><span class="contact-icon">language</span><span>www.snow-peak.ca</span></div>
+                    <div class="contact-item"><span class="contact-icon">email</span><span>snowpeak.contact@gmail.com</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
