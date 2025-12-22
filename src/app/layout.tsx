@@ -126,6 +126,7 @@ export default function RootLayout({
     "image": "https://www.snow-peak.ca/snowpeak-logo/cover.png",
     "@id": "https://www.snow-peak.ca",
     "url": "https://www.snow-peak.ca",
+    "hasMap": "https://maps.app.goo.gl/18hwVZgX6mGH7P7NA",
     "email": "snowpeak.contact@gmail.com",
     "priceRange": "$$",
     "address": {
