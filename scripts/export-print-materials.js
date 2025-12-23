@@ -22,10 +22,10 @@ const DPI = 600;
 // Print dimensions (in inches)
 const DIMENSIONS = {
   businessCard: {
-    width: 3.75,  // With bleed for Staples/Canva (trims to 3.5")
-    height: 2.25, // With bleed for Staples/Canva (trims to 2")
-    pixelWidth: 3.75 * DPI,
-    pixelHeight: 2.25 * DPI
+    width: 3.5,  // Standard business card size
+    height: 2.0, // Standard business card size
+    pixelWidth: 3.5 * DPI,
+    pixelHeight: 2.0 * DPI
   },
   flyer: {
     width: 8.5,
@@ -110,8 +110,8 @@ async function exportBusinessCard(browser) {
     document.body.style.margin = '0';
     document.body.style.padding = '0';
     document.body.style.background = 'transparent';
-    document.body.style.width = '3.75in';
-    document.body.style.height = '2.25in';
+    document.body.style.width = '3.5in';
+    document.body.style.height = '2in';
     document.body.style.overflow = 'hidden';
     
     // Hide everything except front card
@@ -132,8 +132,8 @@ async function exportBusinessCard(browser) {
       container.style.margin = '0';
       container.style.padding = '0';
       container.style.gap = '0';
-      container.style.width = '3.75in';
-      container.style.height = '2.25in';
+      container.style.width = '3.5in';
+      container.style.height = '2in';
     }
     
     // Make front card fill the entire space
@@ -143,8 +143,8 @@ async function exportBusinessCard(browser) {
       frontCard.style.position = 'absolute';
       frontCard.style.top = '0';
       frontCard.style.left = '0';
-      frontCard.style.width = '3.75in';
-      frontCard.style.height = '2.25in';
+      frontCard.style.width = '3.5in';
+      frontCard.style.height = '2in';
     }
   });
   
@@ -170,8 +170,8 @@ async function exportBusinessCard(browser) {
     document.body.style.margin = '0';
     document.body.style.padding = '0';
     document.body.style.background = 'transparent';
-    document.body.style.width = '3.75in';
-    document.body.style.height = '2.25in';
+    document.body.style.width = '3.5in';
+    document.body.style.height = '2in';
     document.body.style.overflow = 'hidden';
     
     // Hide everything except back card
@@ -192,8 +192,8 @@ async function exportBusinessCard(browser) {
       container.style.margin = '0';
       container.style.padding = '0';
       container.style.gap = '0';
-      container.style.width = '3.75in';
-      container.style.height = '2.25in';
+      container.style.width = '3.5in';
+      container.style.height = '2in';
     }
     
     // Make back card fill the entire space
@@ -203,8 +203,8 @@ async function exportBusinessCard(browser) {
       backCard.style.position = 'absolute';
       backCard.style.top = '0';
       backCard.style.left = '0';
-      backCard.style.width = '3.75in';
-      backCard.style.height = '2.25in';
+      backCard.style.width = '3.5in';
+      backCard.style.height = '2in';
     }
   });
   
