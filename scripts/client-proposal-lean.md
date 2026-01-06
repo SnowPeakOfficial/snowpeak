@@ -321,12 +321,14 @@ This is not experimental technology — it is the standard for modern, high-perf
 
 ## Investment Summary
 
-| Business                | Investment      | Timeline        |
-| ----------------------- | --------------- | --------------- |
-| buffreno.com            | $2,500          | 3-4 weeks       |
-| bathshowerunlimited.com | $9,000          | 4-5 weeks       |
-| linenbnb.com            | $1,500          | 2-3 weeks       |
-| **Total (All Three)**   | **$13,000 CAD** | **10-12 weeks** |
+| Business                        | Investment        | Timeline        |
+| ------------------------------- | ----------------- | --------------- |
+| buffreno.com                    | $2,500            | 3-4 weeks       |
+| bathshowerunlimited.com         | $9,000            | 4-5 weeks       |
+| linenbnb.com                    | $1,500            | 2-3 weeks       |
+| **Total (All Three)**           | **$13,000 CAD**   | **10-12 weeks** |
+| **🎁 BUNDLE - All Three Sites** | **$12,000 CAD**   | **10-12 weeks** |
+|                                 | **(Save $1,000)** |                 |
 
 ---
 
