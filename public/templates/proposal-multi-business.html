@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnowPeak - Multi-Business Website Strategy & Modernization Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .page { width: 8.5in; min-height: 11in; background: white; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); position: relative; margin-bottom: 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
+        .header { background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%); padding: 30px 50px; text-align: center; position: relative; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at top right, rgba(57, 94, 202, 0.05) 0%, transparent 60%); pointer-events: none; }
+        .logo-container { position: relative; z-index: 1; margin-bottom: 15px; }
+        .logo { height: 94px; width: auto; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15)); transform: scale(1.02); }
+        .tagline { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; z-index: 1; letter-spacing: -0.3px; margin-bottom: 8px; }
+        .document-title { font-size: 14px; color: #64748B; font-weight: 600; position: relative; z-index: 1; letter-spacing: 0.5px; text-transform: uppercase; }
+        .content-section { padding: 40px 50px; }
+        .section-title { font-size: 20px; font-weight: 800; color: #0F172A; margin-bottom: 16px; margin-top: 30px; }
+        .section-subtitle { font-size: 16px; font-weight: 700; color: #395ECA; margin-bottom: 12px; margin-top: 20px; }
+        .intro-text { font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 20px; }
+        .text-block { font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 16px; }
+        .highlight-box { background: #F8FAFC; border-left: 4px solid #395ECA; padding: 20px; margin-bottom: 24px; border-radius: 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+        .bullet-list { margin: 12px 0; padding-left: 0; list-style: none; }
+        .bullet-list li { font-size: 14px; color: #475569; line-height: 1.8; padding-left: 24px; position: relative; margin-bottom: 8px; }
+        .bullet-list li::before { content: '•'; color: #395ECA; font-weight: bold; position: absolute; left: 0; font-size: 18px; }
+        .business-block { background: #F8FAFC; border-left: 4px solid #395ECA; padding: 24px; margin-bottom: 30px; border-radius: 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-inside: avoid; }
+        .business-title { font-size: 18px; font-weight: 700; color: #395ECA; margin-bottom: 12px; }
+        .business-subtitle { font-size: 15px; font-weight: 600; color: #0F172A; margin-bottom: 16px; }
+        .investment-box { font-size: 15px; font-weight: 700; color: #0F172A; margin-top: 16px; padding: 12px; background: white; border-radius: 6px; border: 2px solid #395ECA; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .investment-box span { color: #395ECA; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+        .comparison-table th { background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%); color: white; padding: 12px; text-align: left; font-weight: 700; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .comparison-table td { padding: 10px 12px; border-bottom: 1px solid #E2E8F0; }
+        .comparison-table tr:nth-child(even) { background: #F8FAFC; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .comparison-table strong { color: #395ECA; font-weight: 700; }
+        .why-snowpeak-item { margin-bottom: 16px; }
+        .why-snowpeak-item strong { color: #395ECA; font-size: 14px; display: block; margin-bottom: 4px; }
+        .why-snowpeak-item p { font-size: 13px; color: #475569; line-height: 1.6; margin: 0; }
+        .cta-section { margin-top: 30px; padding: 20px 50px 30px 50px; background: linear-gradient(135deg, #395ECA 0%, #848BD8 100%); color: white; text-align: center; position: relative; overflow: visible; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .cta-section::after { content: ''; position: absolute; bottom: -5%; left: -10%; width: 120%; height: 60%; background: linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%); clip-path: polygon(0% 100%, 25% 80%, 45% 50%, 65% 75%, 85% 45%, 100% 70%, 100% 100%); pointer-events: none; z-index: 1; opacity: 0.2; }
+        .mountain-layer-2, .mountain-layer-3 { position: absolute; bottom: -5%; left: -10%; width: 120%; height: 60%; pointer-events: none; }
+        .mountain-layer-2 { background: linear-gradient(to top, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%); clip-path: polygon(0% 100%, 20% 70%, 35% 35%, 50% 60%, 70% 30%, 85% 65%, 100% 50%, 100% 100%); z-index: 2; opacity: 0.3; }
+        .mountain-layer-3 { background: linear-gradient(to top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.25) 100%); clip-path: polygon(0% 100%, 15% 60%, 25% 20%, 35% 50%, 50% 15%, 65% 45%, 80% 25%, 90% 55%, 100% 40%, 100% 100%); z-index: 3; opacity: 0.4; }
+        .cta-title { font-size: 18px; font-weight: 800; margin-bottom: 15px; position: relative; z-index: 4; }
+        .contact-grid { display: flex; align-items: flex-start; justify-content: center; position: relative; z-index: 4; }
+        .contact-info { text-align: center; }
+        .contact-item { display: flex; align-items: center; justify-content: center; margin-bottom: 7px; font-size: 11px; }
+        .contact-icon { font-family: 'Material Icons'; margin-right: 10px; font-size: 18px; }
+        @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } body { background: white; padding: 0; margin: 0; } .page { box-shadow: none; width: 100%; margin: 0; page-break-after: always; } .business-block, .highlight-box { page-break-inside: avoid !important; } }
+        @page { size: letter; margin: 0; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-container">
+                <img src="../snowpeak-logo/vector/defaultLandscape.svg" alt="SnowPeak" class="logo">
+            </div>
+            <div class="tagline">Build Beyond the Summit</div>
+            <div class="document-title">Multi-Business Website Strategy & Modernization Analysis</div>
+        </div>
+        <div class="content-section">
+            <div class="section-title">Executive Overview</div>
+            <div class="intro-text">You operate three distinct businesses, each with its own market, customers, and revenue model:</div>
+            <ul class="bullet-list">
+                <li><strong>Commercial Renovations</strong> (B2B – Buffalo, NY)</li>
+                <li><strong>Bath-to-Shower Conversions & Installations</strong> (B2C – Buffalo, NY)</li>
+                <li><strong>Linen Rental for Short-Term Rentals</strong> (B2B – Miami & Orlando, FL)</li>
+            </ul>
+            <div class="text-block">Although they share ownership, these businesses should not share a single digital strategy.</div>
+            <div class="text-block">Each business currently relies on a basic or outdated WordPress setup that no longer aligns with its growth potential. This is preventing you from getting potential clients.</div>
+            
+            <div class="section-subtitle">This analysis outlines:</div>
+            <ul class="bullet-list">
+                <li>What is broken or limiting growth</li>
+                <li>Where the real opportunities are</li>
+                <li>Why a modern rebuild is justified</li>
+                <li>A realistic, risk-controlled implementation plan</li>
+            </ul>
+
+            <div class="section-title" style="margin-top: 40px;">Core Strategic Insight</div>
+            <div class="highlight-box">
+                <div class="text-block" style="margin-bottom: 12px;"><strong style="color: #0F172A;">This is not a "new website" situation.</strong></div>
+                <div class="text-block" style="margin-bottom: 12px;"><strong style="color: #0F172A;">It is a business enablement problem:</strong></div>
+                <ul class="bullet-list" style="margin-top: 12px;">
+                    <li>buffreno.com shows residential work but needs to portray commercial expertise</li>
+                    <li>bathshowerunlimited.com cannot transact online at all</li>
+                    <li>linenbnb.com lacks visibility and trust in competitive Miami and Orlando markets</li>
+                </ul>
+                <div class="text-block" style="margin-top: 12px; margin-bottom: 0;">Incremental WordPress updates would not solve these structural issues.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Business Sections -->
+    <div class="page">
+        <div class="content-section" style="padding-top: 50px;">
+            <div class="section-title" style="margin-top: 0;">Business #1: buffreno.com</div>
+            <div class="business-subtitle">Commercial Renovations – Buffalo, NY</div>
+            
+            <div class="business-block">
+                <div class="section-subtitle" style="margin-top: 0;">Current Situation</div>
+                <ul class="bullet-list">
+                    <li>Domain redirects to a residential-focused site</li>
+                    <li>No standalone identity for commercial work</li>
+                    <li>Commercial projects are diluted within residential messaging</li>
+                    <li>Lacks credibility markers expected by commercial clients</li>
+                    <li>No meeting scheduler for commercial client consultations</li>
+                </ul>
+
+                <div class="section-subtitle">Why This Is a Problem</div>
+                <div class="text-block">Commercial clients:</div>
+                <ul class="bullet-list">
+                    <li>Make higher-value decisions</li>
+                    <li>Expect professionalism, structure, and clarity</li>
+                    <li>Are risk-averse and brand-sensitive</li>
+                </ul>
+                <div class="text-block">With your current residential-focused website, commercial clients are less likely to inquire.</div>
+
+                <div class="section-subtitle">Competitive Reality</div>
+                <div class="text-block">We analyzed arielcon.com, a leading commercial contractor in the region:</div>
+                
+                <div class="text-block"><strong style="color: #0F172A;">Their Approach:</strong></div>
+                <ul class="bullet-list" style="margin-top: 8px;">
+                    <li>WordPress-based platform</li>
+                    <li>Bilingual content (English/Spanish)</li>
+                    <li>Clear commercial focus with industry-specific pages</li>
+                    <li>Project gallery with detailed case studies</li>
+                    <li>Professional B2B positioning</li>
+                </ul>
+
+                <div class="text-block" style="margin-top: 12px;"><strong style="color: #0F172A;">SnowPeak Advantage:</strong></div>
+                <div class="text-block">A modern Next.js build will outperform their WordPress setup with:</div>
+                <ul class="bullet-list">
+                    <li><strong style="color: #395ECA;">3-5x faster load times</strong> – Better user experience builds trust with commercial decision-makers</li>
+                    <li><strong style="color: #395ECA;">Zero plugin dependencies</strong> – No maintenance headaches or security vulnerabilities</li>
+                    <li><strong style="color: #395ECA;">Superior SEO structure</strong> – Better rankings for commercial renovation searches</li>
+                    <li><strong style="color: #395ECA;">Custom-built features</strong> – Tailored specifically to your commercial services, not generic templates</li>
+                    <li><strong style="color: #395ECA;">Lower long-term costs</strong> – Minimal ongoing maintenance compared to WordPress solution</li>
+                </ul>
+                <div class="text-block" style="margin-bottom: 0;">Your competitor's WordPress limitations become your competitive advantage with modern technology.</div>
+
+                <div class="section-subtitle">SnowPeak Recommendation</div>
+                <div class="text-block">Build a standalone commercial renovation website designed exclusively for B2B decision-makers.</div>
+                
+                <div class="section-subtitle">What This Site Should Do:</div>
+                <ul class="bullet-list">
+                    <li>Clearly position the business as commercial-focused</li>
+                    <li>Speak to industries (retail, office, healthcare, industrial)</li>
+                    <li>Showcase commercial projects and capabilities</li>
+                    <li>Reinforce professionalism and reliability</li>
+                    <li>Support commercial-specific SEO</li>
+                </ul>
+
+                <div class="investment-box"><strong>Timeline:</strong> 3–4 weeks | <strong>Investment:</strong> <span>$2,500 CAD</span></div>
+            </div>
+
+            <div class="section-title">Business #2: bathshowerunlimited.com</div>
+            <div class="business-subtitle">Bath-to-Shower Conversions & Installations – Buffalo, NY</div>
+            
+            <div class="business-block">
+                <div class="section-subtitle" style="margin-top: 0;">Current Situation</div>
+                <ul class="bullet-list">
+                    <li>Basic WordPress site</li>
+                    <li><strong style="color: #0F172A;">No e-commerce capability</strong></li>
+                    <li>No shopping cart or payments</li>
+                    <li>No product ordering</li>
+                    <li>All revenue depends on manual inquiries</li>
+                </ul>
+
+                <div class="section-subtitle">Competitive Reality</div>
+                <div class="text-block">We analyzed bathdepot.com, a direct competitor selling bath-to-shower conversions online:</div>
+                
+                <div class="text-block"><strong style="color: #0F172A;">Their Approach:</strong></div>
+                <ul class="bullet-list" style="margin-top: 8px;">
+                    <li>Full e-commerce platform</li>
+                    <li>Extensive product catalog with filtering and search</li>
+                    <li>Online payments and checkout functionality</li>
+                    <li>Product configurators for customization</li>
+                    <li>Financing options (Affirm, PayPal Credit)</li>
+                    <li>Customer reviews and ratings system</li>
+                </ul>
+
+                <div class="text-block" style="margin-top: 12px;"><strong style="color: #0F172A;">Their Technical Problems:</strong></div>
+                <ul class="bullet-list" style="margin-top: 8px;">
+                    <li><strong style="color: #0F172A;">100+ console errors and security violations</strong> – Poor code quality affecting user experience</li>
+                    <li><strong style="color: #0F172A;">3-6 second load times</strong> – Customers abandon sites after 3 seconds</li>
+                    <li><strong style="color: #0F172A;">Complex enterprise platform</strong> – Creating maintenance nightmares and high costs</li>
+                    <li><strong style="color: #0F172A;">Excessive third-party scripts</strong> – Slowing down the entire site</li>
+                </ul>
+
+                <div class="text-block" style="margin-top: 12px;"><strong style="color: #0F172A;">SnowPeak Advantage:</strong></div>
+                <div class="text-block">A modern Next.js build will deliver superior performance:</div>
+                <ul class="bullet-list">
+                    <li><strong style="color: #395ECA;">0.8-1.5 second load times</strong> vs their 3-6 seconds (3-5x faster)</li>
+                    <li><strong style="color: #395ECA;">Minimal console errors</strong> vs their 100+ errors (clean, professional code)</li>
+                    <li><strong style="color: #395ECA;">Programmatic SEO structure</strong> vs their generic SEO structure</li>
+                    <li><strong style="color: #395ECA;">20-30% better conversion rates</strong> due to speed alone</li>
+                    <li><strong style="color: #395ECA;">Lower maintenance costs</strong> – No plugin nightmares or complex platform issues</li>
+                    <li><strong style="color: #395ECA;">Purpose-built for your products</strong> – Not a bloated generic e-commerce system</li>
+                </ul>
+                <div class="text-block" style="margin-bottom: 0;"><strong style="color: #0F172A;">The bottom line:</strong> Your competitor's technical debt is your competitive advantage. We can build a faster, cleaner, more conversion-optimized platform that will outperform them from day one.</div>
+
+                <div class="section-subtitle">SnowPeak Recommendation</div>
+                <div class="text-block"><strong style="color: #0F172A;">Single-Phase, Simplified E-Commerce Platform</strong></div>
+                <div class="text-block">Rather than launching a complex or overbuilt system, SnowPeak recommends a lean, revenue-focused e-commerce foundation.</div>
+                
+                <div class="text-block">This allows the business to:</div>
+                <ul class="bullet-list">
+                    <li>Start selling online</li>
+                    <li>Accept payments</li>
+                    <li>Validate demand</li>
+                    <li>Keep operations simple</li>
+                </ul>
+
+                <div class="investment-box"><strong>Timeline:</strong> 4–5 weeks | <strong>Investment:</strong> <span>$9,000 CAD</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Business #3, Technical Strategy, and Investment Summary -->
+    <div class="page">
+        <div class="content-section" style="padding-top: 50px;">
+            <div class="section-title" style="margin-top: 0;">Business #3: linenbnb.com</div>
+            <div class="business-subtitle">Linen Rental – Miami & Orlando, FL</div>
+            
+            <div class="business-block">
+                <div class="section-subtitle" style="margin-top: 0;">Current Situation</div>
+                <ul class="bullet-list">
+                    <li>Outdated WordPress site</li>
+                    <li>Minimal content</li>
+                    <li>Weak trust signals</li>
+                    <li>Poor local SEO</li>
+                    <li>Low visibility in competitive markets</li>
+                </ul>
+
+                <div class="section-subtitle">Value Proposition Gap</div>
+                <div class="text-block">The current website fails to communicate why linen rental is superior to traditional cleaning services:</div>
+                
+                <div class="text-block"><strong style="color: #0F172A;">Linen Rental Model Advantages:</strong></div>
+                <ul class="bullet-list" style="margin-top: 8px;">
+                    <li><strong style="color: #395ECA;">Cost Efficiency</strong> – Predictable monthly expense vs. per-turnover cleaning charges</li>
+                    <li><strong style="color: #395ECA;">Operational Simplicity</strong> – Eliminate laundry logistics, storage, and management overhead</li>
+                    <li><strong style="color: #395ECA;">Consistency & Quality</strong> – Hotel-grade linens every time, not worn-out personal inventory</li>
+                    <li><strong style="color: #395ECA;">Time Savings</strong> – Focus on hosting and guest experience, not laundry schedules</li>
+                    <li><strong style="color: #395ECA;">Scalability</strong> – Easily expand to multiple properties without operational complexity</li>
+                    <li><strong style="color: #395ECA;">Professional Standards</strong> – Hospitality-quality presentation improves guest satisfaction and reviews</li>
+                </ul>
+                <div class="text-block" style="margin-bottom: 0;">The new website must clearly convey these advantages to convert Airbnb and vacation rental hosts.</div>
+
+                <div class="section-subtitle">SnowPeak Recommendation</div>
+                <div class="text-block">A modern, hospitality-focused redesign optimized for local visibility and trust.</div>
+                
+                <div class="section-subtitle">What This Site Should Do:</div>
+                <ul class="bullet-list">
+                    <li><strong style="color: #0F172A;">Communicate value proposition</strong> – Clearly explain why linen rental beats cleaning services</li>
+                    <li><strong style="color: #0F172A;">Highlight cost-efficiency</strong> – Show predictable pricing model vs. per-turnover expenses</li>
+                    <li><strong style="color: #0F172A;">Emphasize operational benefits</strong> – No laundry, no storage, no hassle</li>
+                    <li><strong style="color: #0F172A;">Showcase quality standards</strong> – Hotel-grade linens, professional presentation</li>
+                    <li>Clearly explain services and coverage areas</li>
+                    <li>Establish credibility quickly</li>
+                    <li>Target Miami and Orlando search terms with SEO</li>
+                    <li>Convert website visits into inquiries</li>
+                    <li>Perform well on mobile</li>
+                </ul>
+
+                <div class="investment-box"><strong>Timeline:</strong> 2–3 weeks | <strong>Investment:</strong> <span>$1,500 CAD</span></div>
+            </div>
+
+            <div class="section-title">Technical Strategy (High-Level)</div>
+            <div class="text-block">SnowPeak recommends <strong style="color: #395ECA;">React + Next.js + Vercel</strong> across all three projects.</div>
+
+            <div class="section-title">Investment Summary</div>
+            <table class="comparison-table">
+                <tr>
+                    <th>Business</th>
+                    <th>Investment</th>
+                    <th>Timeline</th>
+                </tr>
+                <tr>
+                    <td>buffreno.com</td>
+                    <td>$2,500</td>
+                    <td>3-4 weeks</td>
+                </tr>
+                <tr>
+                    <td>bathshowerunlimited.com</td>
+                    <td>$9,000</td>
+                    <td>4-5 weeks</td>
+                </tr>
+                <tr>
+                    <td>linenbnb.com</td>
+                    <td>$1,500</td>
+                    <td>2-3 weeks</td>
+                </tr>
+                <tr style="background: linear-gradient(135deg, rgba(57, 94, 202, 0.08) 0%, rgba(132, 139, 216, 0.08) 100%); -webkit-print-color-adjust: exact; print-color-adjust: exact;">
+                    <td><strong>Total (All Three)</strong></td>
+                    <td><strong style="color: #395ECA; font-size: 15px;">$13,000 CAD</strong></td>
+                    <td><strong>10-12 weeks</strong></td>
+                </tr>
+                <tr style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.12) 100%); border: 2px solid #10B981; -webkit-print-color-adjust: exact; print-color-adjust: exact;">
+                    <td><strong style="color: #047857;">BUNDLE OPTION - All Three Sites</strong></td>
+                    <td><strong style="color: #10B981; font-size: 16px;">$12,000 CAD</strong><br><span style="font-size: 12px; color: #059669;">(Save $1,000)</span></td>
+                    <td><strong style="color: #047857;">10-12 weeks</strong></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Page 4: Why SnowPeak and Final Recommendation -->
+    <div class="page">
+        <div class="content-section" style="padding-top: 50px;">
+            <div class="section-title" style="margin-top: 0;">Why SnowPeak</div>
+            
+            <div class="why-snowpeak-item">
+                <strong>Business-first thinking</strong>
+                <p>We don't build websites—we solve business problems with technology tailored to your specific goals.</p>
+            </div>
+
+            <div class="why-snowpeak-item">
+                <strong>No template dependency</strong>
+                <p>Every project is custom-built for your business model, not adapted from a generic theme that looks like everyone else's.</p>
+            </div>
+
+            <div class="why-snowpeak-item">
+                <strong>Performance-driven builds</strong>
+                <p>We obsess over speed because performance directly impacts revenue—faster sites convert 20-30% better.</p>
+            </div>
+
+            <div class="why-snowpeak-item">
+                <strong>Scalable foundations</strong>
+                <p>Built for where you're going, not just where you are—no "rebuild required" in 2-3 years.</p>
+            </div>
+
+            <div class="why-snowpeak-item">
+                <strong>Transparent pricing</strong>
+                <p>What you see is what you pay—no hidden costs, surprise fees, or scope creep.</p>
+            </div>
+
+            <div class="why-snowpeak-item">
+                <strong>Practical, not overengineered</strong>
+                <p>We recommend what you need, not what's impressive—simple solutions that work, with room to grow.</p>
+            </div>
+
+            <div class="section-title" style="margin-top: 40px;">Final Recommendation</div>
+            
+            <div class="text-block">Your existing WordPress sites were sufficient to get started.<br>
+            <strong style="color: #0F172A; font-size: 15px;">They are no longer sufficient to scale.</strong></div>
+            
+            <div class="text-block">A modern rebuild allows each business to:</div>
+            
+            <ul class="bullet-list">
+                <li><strong style="color: #0F172A;">Operate independently</strong> with proper branding</li>
+                <li><strong style="color: #0F172A;">Target the right customers</strong> with focused messaging</li>
+                <li><strong style="color: #0F172A;">Convert more effectively</strong> with fast, optimized experiences</li>
+                <li><strong style="color: #0F172A;">Reduce technical friction</strong> (no plugin nightmares)</li>
+                <li><strong style="color: #0F172A;">Support growth</strong> over the next several years</li>
+            </ul>
+
+            <div class="text-block" style="margin-top: 30px; text-align: center; font-size: 12px; color: #94A3B8;">
+                <em>Prepared by SnowPeak - Build Beyond the Summit</em><br>
+                <em>January, 2026</em>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="mountain-layer-2"></div>
+            <div class="mountain-layer-3"></div>
+            <h2 class="cta-title">Let's Build Something Amazing Together!</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p style="margin-bottom: 10px; font-size: 12px;">We're excited to partner with you on this journey. Thank you for choosing SnowPeak!</p>
+                    <div class="contact-item"><span class="contact-icon">language</span><span>www.snow-peak.ca</span></div>
+                    <div class="contact-item"><span class="contact-icon">email</span><span>snowpeak.contact@gmail.com</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
